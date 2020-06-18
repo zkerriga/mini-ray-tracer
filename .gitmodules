@@ -1,0 +1,6 @@
+[submodule "libs/libft"]
+	path = libs/libft
+	url = https://github.com/zkerriga/libft.git
+[submodule "libs/get_next_line"]
+	path = libs/get_next_line
+	url = https://github.com/zkerriga/get_next_line.git
