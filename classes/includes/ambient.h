@@ -1,44 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   ambient.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/18 13:53:53 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/18 13:54:09 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/20 15:15:20 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/20 15:15:26 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef AMBIENT_H
+# define AMBIENT_H
 
-typedef struct	s_point
+# include "scene.h"
+
+typedef struct	s_ambient
 {
-	float		x;
-	float		y;
-	float		z;
-}				t_point;
-
-typedef struct	s_3dvector
-{
-	float		x;
-	float		y;
-	float		z;
-}				t_3dvector;
-
-typedef struct		s_color
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}					t_color;
-
-typedef struct	s_scene
-{
-	void		(*del)(struct s_scene *);
-}				t_scene;
-
-void	del_scene(t_scene *self);
+	char		identifier[2];
+	float		light_ratio;
+	t_color		color;
+}				t_ambient;
 
 #endif
