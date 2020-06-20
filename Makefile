@@ -18,6 +18,7 @@ HDR_DIR = ./
 
 CC = gcc
 FLAGS = -I$(HDR_DIR) -Wall -Wextra -Werror -D BUFFER_SIZE=20
+LIBS_FLAGS = -L. -lmlx -lft
 
 .PHONY: all
 all: $(OBJ_DIR) $(NAME)
@@ -26,8 +27,8 @@ all: $(OBJ_DIR) $(NAME)
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
-$(NAME):
-	$(CC) $(FLAGS) $?
+$(NAME): $(FILES.O)
+	$(CC) $(FLAGS) $? $(LIBS_FLAGS)
 
 #
 #TRE_DIR = tree/

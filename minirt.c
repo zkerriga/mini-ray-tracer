@@ -10,11 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main()
+#include "minirt.h"
+
+int	main(int ac, char **av)
 {
-	int	x;
-	int	y;
-	//Запустить парсер
+	int		x;
+	int		y;
+	t_scene	*scene;
+
+	if (ac == 2)
+	scene = parser(av[1]);
 	//Установить точку отчёта камеры
 	y = 0;
 	while (y < Field.size.y)
