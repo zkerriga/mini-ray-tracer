@@ -13,7 +13,7 @@
 #ifndef CAMERA_H
 # define CAMERA_H
 
-# include "scene.h"
+# include "basic_structures.h"
 
 typedef struct	s_camera
 {

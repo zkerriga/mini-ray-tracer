@@ -13,31 +13,26 @@
 #ifndef SCENE_H
 # define SCENE_H
 
-typedef struct	s_point
-{
-	float		x;
-	float		y;
-	float		z;
-}				t_point;
+# include "libft.h"
 
-typedef struct	s_3dvector
-{
-	float		x;
-	float		y;
-	float		z;
-}				t_3dvector;
+# include "ambient.h"
+# include "camera.h"
+# include "cylinder.h"
+# include "light.h"
+# include "plane.h"
+# include "resolution.h"
+# include "sphere.h"
+# include "triangle.h"
 
-typedef struct		s_color
+typedef struct		s_scene
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}					t_color;
-
-typedef struct	s_scene
-{
-	void		(*del)(struct s_scene *);
-}				t_scene;
+	t_resolution	*resolution;
+	t_ambient		*ambient;
+	t_list			*cameras;
+	t_list			*lights;
+	t_list			*objects;
+	void			(*del)(struct s_scene *);
+}					t_scene;
 
 void	del_scene(t_scene *self);
 

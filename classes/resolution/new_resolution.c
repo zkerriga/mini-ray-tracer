@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolution.h                                       :+:      :+:    :+:   */
+/*   new_resolution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 15:12:29 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 15:12:34 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/20 16:16:57 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/20 16:17:14 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RESOLUTION_H
-# define RESOLUTION_H
+#include "resolution.h"
+#include "libft.h"
 
-# include "basic_structures.h"
-
-typedef struct	s_resolution
+t_resolution	*new_resolution(char *line)
 {
-	char		identifier[2];
-	int			x_size;
-	int			y_size;
-}				t_resolution;
+	t_resolution	*resolution;
 
-#endif
+	resolution = (t_resolution *)malloc_gc(sizeof(t_resolution));
+	resolution->identifier[0] = 'R';
+	while
+}

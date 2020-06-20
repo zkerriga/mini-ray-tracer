@@ -13,7 +13,7 @@
 #ifndef SPHERE_H
 # define SPHERE_H
 
-# include "scene.h"
+# include "basic_structures.h"
 
 typedef struct	s_sphere
 {

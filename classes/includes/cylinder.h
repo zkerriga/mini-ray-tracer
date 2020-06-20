@@ -13,7 +13,7 @@
 #ifndef CYLINDER_H
 # define CYLINDER_H
 
-# include "scene.h"
+# include "basic_structures.h"
 
 typedef struct	s_cylinder
 {

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolution.h                                       :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 15:12:29 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 15:12:34 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/20 15:33:25 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/20 15:33:35 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RESOLUTION_H
-# define RESOLUTION_H
+#ifndef LIGHT_H
+# define LIGHT_H
 
 # include "basic_structures.h"
 
-typedef struct	s_resolution
+typedef struct	s_light
 {
 	char		identifier[2];
-	int			x_size;
-	int			y_size;
-}				t_resolution;
+	t_point		point;
+	t_color		color;
+}				t_light;
 
 #endif

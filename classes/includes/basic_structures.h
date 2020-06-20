@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolution.h                                       :+:      :+:    :+:   */
+/*   basic_structures.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 15:12:29 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 15:12:34 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/20 15:44:28 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/20 15:44:32 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RESOLUTION_H
-# define RESOLUTION_H
+#ifndef BASIC_STRUCTURES_H
+# define BASIC_STRUCTURES_H
 
-# include "basic_structures.h"
-
-typedef struct	s_resolution
+typedef struct	s_point
 {
-	char		identifier[2];
-	int			x_size;
-	int			y_size;
-}				t_resolution;
+	float		x;
+	float		y;
+	float		z;
+}				t_point;
+
+typedef struct	s_3dvector
+{
+	float		x;
+	float		y;
+	float		z;
+}				t_3dvector;
+
+typedef struct		s_color
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}					t_color;
+
+char	*ft_next(char *line);
 
 #endif
