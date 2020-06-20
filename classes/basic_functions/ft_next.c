@@ -14,9 +14,9 @@
 
 char	*ft_next(char *line)
 {
-	while (!ft_isspace(*line))
+	while (!(ft_isspace(*line) || *line == ','))
 		++line;
-	while (ft_isspace(*line))
+	while (ft_isspace(*line) || *line == ',')
 		++line;
 	return (line);
 }

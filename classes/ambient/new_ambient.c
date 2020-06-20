@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_resolution.c                                   :+:      :+:    :+:   */
+/*   new_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 16:16:57 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 16:17:14 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/20 20:07:46 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/20 20:07:58 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "resolution.h"
 #include "libft.h"
 #include "minirt.h"
+#include "ambient.h"
 
-t_resolution	*new_resolution(char *line)
+t_ambient	*new_ambient(char *line)
 {
-	t_resolution	*resolution;
+	t_ambient	*ambient;
 
-	if (!(resolution = (t_resolution *)malloc_gc(sizeof(t_resolution))))
+	if (!(ambient = (t_ambient *)malloc_gc(sizeof(t_ambient))))
 		ft_exit(ENOMEM);
-	resolution->identifier[0] = 'R';
-	resolution->x_size = ft_atoi((line = ft_next(line)));
-	resolution->y_size = ft_atoi((line = ft_next(line)));
-	return (resolution);
+	ambient->identifier[0] = 'A';
+	ambient->light_ratio = ft_atof((line = ft_next(line)));
+	ambient->color.r = ft_atoi((line = ft_next(line)));
+	ambient->color.g = ft_atoi((line = ft_next(line)));
+	ambient->color.b = ft_atoi((line = ft_next(line)));
+	return (ambient);
 }
+
