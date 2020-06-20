@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_exit_invalid_input.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/18 19:19:30 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/18 19:19:52 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/20 23:41:25 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/20 23:41:32 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "minirt.h"
+#include "libft.h"
 
-# define ENOMEM 12 /* Out of memory */ //TODO: delete the comment
-# define INVALID_INPUT -1
-
-# include "scene.h"
-# include "parser.h"
-# include "errno.h"
-# include "stdio.h"
-
-void	ft_exit(int error_code);
-void	ft_exit_memerror(int error_code);
-void	ft_exit_invalid_input();
-
-#endif
+void	ft_exit_invalid_input()
+{
+	ft_putendl_fd("The scene description from the file is incorrect!", 1);
+	free_gc(NULL);
+	exit(0);
+}

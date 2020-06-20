@@ -16,5 +16,7 @@ void	ft_exit(int error_code)
 {
 	if (error_code == ENOMEM)
 		ft_exit_memerror(error_code);
+	else if (error_code == INVALID_INPUT)
+		ft_exit_invalid_input();
 }
 

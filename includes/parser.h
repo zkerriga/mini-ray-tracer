@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/18 19:19:30 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/18 19:19:52 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/18 20:28:45 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/18 20:28:51 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-
-# define ENOMEM 12 /* Out of memory */ //TODO: delete the comment
-# define INVALID_INPUT -1
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "scene.h"
-# include "parser.h"
-# include "errno.h"
-# include "stdio.h"
 
-void	ft_exit(int error_code);
-void	ft_exit_memerror(int error_code);
-void	ft_exit_invalid_input();
+t_scene	*parser(char *path);
 
 #endif
