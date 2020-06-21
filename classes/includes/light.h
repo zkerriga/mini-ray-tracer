@@ -19,6 +19,7 @@ typedef struct	s_light
 {
 	char		identifier[2];
 	t_point		point;
+	float		light_ratio;
 	t_color		color;
 }				t_light;
 
