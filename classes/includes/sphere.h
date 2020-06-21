@@ -24,4 +24,6 @@ typedef struct	s_sphere
 	t_color		color;
 }				t_sphere;
 
+t_sphere		*new_sphere(char *line);
+
 #endif

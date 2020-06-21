@@ -26,4 +26,6 @@ typedef struct	s_cylinder
 	t_color		color;
 }				t_cylinder;
 
+t_cylinder		*new_cylinder(char *line);
+
 #endif

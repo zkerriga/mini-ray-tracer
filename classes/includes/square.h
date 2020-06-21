@@ -25,4 +25,6 @@ typedef struct	s_square
 	t_color		color;
 }				t_square;
 
+t_square		*new_square(char *line);
+
 #endif

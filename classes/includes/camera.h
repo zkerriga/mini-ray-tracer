@@ -24,4 +24,6 @@ typedef struct	s_camera
 	void		(*del)(struct s_camera *);
 }				t_camera;
 
+t_camera		*new_camera(char *line);
+
 #endif

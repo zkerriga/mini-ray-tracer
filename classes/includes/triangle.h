@@ -25,4 +25,6 @@ typedef struct	s_triangle
 	t_color		color;
 }				t_triangle;
 
+t_triangle		*new_triangle(char *line);
+
 #endif

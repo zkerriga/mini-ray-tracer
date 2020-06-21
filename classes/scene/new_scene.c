@@ -25,6 +25,9 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 		ft_exit(ENOMEM);
 	scene->resolution = resolution;
 	scene->ambient = ambient;
+	scene->cameras = NULL;
+	scene->lights = NULL;
+	scene->objects = NULL;
 	while (all_obj)
 	{
 		any = all_obj->content;

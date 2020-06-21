@@ -23,4 +23,6 @@ typedef struct	s_resolution
 	int			y_size;
 }				t_resolution;
 
+t_resolution	*new_resolution(char *line);
+
 #endif

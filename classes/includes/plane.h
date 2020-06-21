@@ -24,4 +24,6 @@ typedef struct	s_plane
 	t_color		color;
 }				t_plane;
 
+t_plane			*new_plane(char *line);
+
 #endif

@@ -24,4 +24,6 @@ typedef struct	s_light
 	void		(*del)(struct s_light *);
 }				t_light;
 
+t_light			*new_light(char *line);
+
 #endif

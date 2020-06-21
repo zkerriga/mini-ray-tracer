@@ -34,4 +34,7 @@ typedef struct		s_scene
 	void			(*del)(struct s_scene *);
 }					t_scene;
 
+t_scene				*new_scene(t_resolution *resolution, t_ambient *ambient,
+								t_list *all_obj);
+
 #endif

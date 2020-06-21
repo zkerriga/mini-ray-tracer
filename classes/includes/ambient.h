@@ -23,4 +23,6 @@ typedef struct	s_ambient
 	void		(*del)(struct s_ambient *);
 }				t_ambient;
 
+t_ambient		*new_ambient(char *line);
+
 #endif
