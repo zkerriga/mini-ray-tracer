@@ -23,6 +23,7 @@
 # include "resolution.h"
 # include "sphere.h"
 # include "triangle.h"
+# include "square.h"
 
 typedef struct		s_scene
 {
