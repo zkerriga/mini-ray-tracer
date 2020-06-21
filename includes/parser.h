@@ -14,7 +14,9 @@
 # define PARSER_H
 
 # include "scene.h"
+# include <fcntl.h>
+# include "get_next_line.h"
 
-t_scene	*parser(char *path);
+t_scene	*parser(char *path, char *line);
 
 #endif
