@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.h                                            :+:      :+:    :+:   */
+/*   square.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 14:47:41 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 14:47:59 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/21 09:37:50 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/21 09:38:09 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLANE_H
-# define PLANE_H
+#ifndef SQUARE_H
+# define SQUARE_H
 
 # include "basic_structures.h"
 
-typedef struct	s_plane
+typedef struct	s_square
 {
 	char		identifier[2];
-	t_point		point;
+	t_point		center;
 	t_3dvector	vector;
+	float		side_size;
 	t_color		color;
-}				t_plane;
+}				t_square;
 
 #endif

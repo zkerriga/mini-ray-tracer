@@ -27,4 +27,3 @@ t_ambient	*new_ambient(char *line)
 	ambient->color.b = ft_atoi((line = ft_next(line)));
 	return (ambient);
 }
-
