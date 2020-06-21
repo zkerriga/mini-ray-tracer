@@ -18,6 +18,7 @@
 typedef struct	s_square
 {
 	char		identifier[2];
+	void		(*del)(struct s_square *);
 	t_point		center;
 	t_3dvector	vector;
 	float		side_size;

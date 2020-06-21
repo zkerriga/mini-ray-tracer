@@ -14,6 +14,8 @@
 #include "minirt.h"
 #include "plane.h"
 
+void	del_plane(t_plane *self);
+
 t_plane	*new_plane(char *line)
 {
 	t_plane	*plane;
@@ -31,5 +33,6 @@ t_plane	*new_plane(char *line)
 	plane->color.r = ft_atoi((line = ft_next(line)));
 	plane->color.g = ft_atoi((line = ft_next(line)));
 	plane->color.b = ft_atoi((line = ft_next(line)));
+	plane->del = &del_plane;
 	return (plane);
 }

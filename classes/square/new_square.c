@@ -14,6 +14,8 @@
 #include "minirt.h"
 #include "square.h"
 
+void		del_square(t_square *self);
+
 t_square	*new_square(char *line)
 {
 	t_square	*square;
@@ -32,5 +34,6 @@ t_square	*new_square(char *line)
 	square->color.r = ft_atoi((line = ft_next(line)));
 	square->color.g = ft_atoi((line = ft_next(line)));
 	square->color.b = ft_atoi((line = ft_next(line)));
+	square->del = &del_square;
 	return (square);
 }

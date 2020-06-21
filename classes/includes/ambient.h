@@ -20,6 +20,7 @@ typedef struct	s_ambient
 	char		identifier[2];
 	float		light_ratio;
 	t_color		color;
+	void		(*del)(struct s_ambient *);
 }				t_ambient;
 
 #endif

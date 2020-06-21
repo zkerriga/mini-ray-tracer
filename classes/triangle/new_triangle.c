@@ -14,6 +14,8 @@
 #include "minirt.h"
 #include "triangle.h"
 
+void		del_triangle(t_triangle *self);
+
 t_triangle	*new_triangle(char *line)
 {
 	t_triangle	*triangle;
@@ -34,5 +36,6 @@ t_triangle	*new_triangle(char *line)
 	triangle->color.r = ft_atoi((line = ft_next(line)));
 	triangle->color.g = ft_atoi((line = ft_next(line)));
 	triangle->color.b = ft_atoi((line = ft_next(line)));
+	triangle->del = &del_triangle;
 	return (triangle);
 }

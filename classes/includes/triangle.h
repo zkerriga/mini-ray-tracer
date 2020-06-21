@@ -18,6 +18,7 @@
 typedef struct	s_triangle
 {
 	char		identifier[2];
+	void		(*del)(struct s_triangle *);
 	t_point		first;
 	t_point		second;
 	t_point		third;

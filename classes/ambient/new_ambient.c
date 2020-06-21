@@ -14,6 +14,8 @@
 #include "minirt.h"
 #include "ambient.h"
 
+void		del_ambient(t_ambient *self);
+
 t_ambient	*new_ambient(char *line)
 {
 	t_ambient	*ambient;
@@ -25,5 +27,6 @@ t_ambient	*new_ambient(char *line)
 	ambient->color.r = ft_atoi((line = ft_next(line)));
 	ambient->color.g = ft_atoi((line = ft_next(line)));
 	ambient->color.b = ft_atoi((line = ft_next(line)));
+	ambient->del = &del_ambient;
 	return (ambient);
 }

@@ -14,6 +14,8 @@
 #include "libft.h"
 #include "minirt.h"
 
+void			del_resolution(t_resolution *self);
+
 t_resolution	*new_resolution(char *line)
 {
 	t_resolution	*resolution;
@@ -23,5 +25,6 @@ t_resolution	*new_resolution(char *line)
 	resolution->identifier[0] = 'R';
 	resolution->x_size = ft_atoi((line = ft_next(line)));
 	resolution->y_size = ft_atoi((line = ft_next(line)));
+	resolution->del = &del_resolution;
 	return (resolution);
 }

@@ -12,7 +12,9 @@
 
 #include "libft.h"
 #include "minirt.h"
-#include "libft.h"
+#include "light.h"
+
+void	del_light(t_light *self);
 
 t_light	*new_light(char *line)
 {
@@ -21,6 +23,7 @@ t_light	*new_light(char *line)
 	if (!(light = (t_light *)malloc_gc(sizeof(t_light))))
 		ft_exit(ENOMEM);
 	light->identifier[0] = 'l';
+	light->identifier[1] = '\0';
 	light->point.x = ft_atof((line = ft_next(line)));
 	light->point.y = ft_atof((line = ft_next(line)));
 	light->point.z = ft_atof((line = ft_next(line)));
@@ -28,5 +31,6 @@ t_light	*new_light(char *line)
 	light->color.r = ft_atoi((line = ft_next(line)));
 	light->color.g = ft_atoi((line = ft_next(line)));
 	light->color.b = ft_atoi((line = ft_next(line)));
+	light->del = &del_light;
 	return (light);
 }

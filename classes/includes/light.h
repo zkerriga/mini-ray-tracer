@@ -21,6 +21,7 @@ typedef struct	s_light
 	t_point		point;
 	float		light_ratio;
 	t_color		color;
+	void		(*del)(struct s_light *);
 }				t_light;
 
 #endif

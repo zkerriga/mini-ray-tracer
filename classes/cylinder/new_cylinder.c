@@ -14,6 +14,8 @@
 #include "minirt.h"
 #include "cylinder.h"
 
+void		del_cylinder(t_cylinder *self);
+
 t_cylinder	*new_cylinder(char *line)
 {
 	t_cylinder	*cylinder;
@@ -33,5 +35,6 @@ t_cylinder	*new_cylinder(char *line)
 	cylinder->color.r = ft_atoi((line = ft_next(line)));
 	cylinder->color.g = ft_atoi((line = ft_next(line)));
 	cylinder->color.b = ft_atoi((line = ft_next(line)));
+	cylinder->del = &del_cylinder;
 	return (cylinder);
 }

@@ -14,14 +14,27 @@
 #include "libft.h"
 #include "minirt.h"
 
-t_scene		*new_scene(int x, int y)
+void		del_scene(t_scene *self);
+
+t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_obj)
 {
-	t_scene	*scene;
+	t_scene			*scene;
+	t_any_object	*any;
 
 	if ((scene = (t_scene *)malloc_gc(sizeof(t_scene))))
-		exit(ENOMEM);
-	scene->x_size = x;
-	scene->y_size = y;
+		ft_exit(ENOMEM);
+	scene->resolution = resolution;
+	scene->ambient = ambient;
+	while (all_obj)
+	{
+		any = all_obj->content;
+		if (any->identifier[0] == 'c' && any->identifier[1] == '\0')
+			ft_lstadd_front(&scene->cameras, ft_lstnew(all_obj->content));
+		else if (any->identifier[0] == 'l' && any->identifier[1] == '\0')
+			ft_lstadd_front(&scene->lights, ft_lstnew(all_obj->content));
+		else
+			ft_lstadd_front(&scene->objects, ft_lstnew(all_obj->content));
+	}
 	scene->del = &del_scene;
 	return (scene);
 }

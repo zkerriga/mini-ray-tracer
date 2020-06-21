@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolution.h                                       :+:      :+:    :+:   */
+/*   del_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 15:12:29 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 15:12:34 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/21 17:30:13 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/21 17:31:46 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RESOLUTION_H
-# define RESOLUTION_H
+#include "libft.h"
+#include "ambient.h"
 
-# include "basic_structures.h"
-
-typedef struct	s_resolution
+void	del_ambient(t_ambient *self)
 {
-	char		identifier[2];
-	void		(*del)(struct s_resolution *);
-	int			x_size;
-	int			y_size;
-}				t_resolution;
-
-#endif
+	free_gc(self);
+}

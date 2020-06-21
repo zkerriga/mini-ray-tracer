@@ -34,6 +34,4 @@ typedef struct		s_scene
 	void			(*del)(struct s_scene *);
 }					t_scene;
 
-void	del_scene(t_scene *self);
-
 #endif

@@ -21,6 +21,7 @@ typedef struct	s_camera
 	t_point		point;
 	t_3dvector	vector;
 	int			fov;
+	void		(*del)(struct s_camera *);
 }				t_camera;
 
 #endif

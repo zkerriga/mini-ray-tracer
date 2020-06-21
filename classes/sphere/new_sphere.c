@@ -14,6 +14,8 @@
 #include "sphere.h"
 #include "minirt.h"
 
+void		del_sphere(t_sphere *self);
+
 t_sphere	*new_sphere(char *line)
 {
 	t_sphere	*sphere;
@@ -29,5 +31,6 @@ t_sphere	*new_sphere(char *line)
 	sphere->color.r = ft_atoi((line = ft_next(line)));
 	sphere->color.g = ft_atoi((line = ft_next(line)));
 	sphere->color.b = ft_atoi((line = ft_next(line)));
+	sphere->del = &del_sphere;
 	return (sphere);
 }
