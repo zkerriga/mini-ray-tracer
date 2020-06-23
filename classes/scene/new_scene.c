@@ -21,7 +21,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 	t_scene			*scene;
 	t_any_object	*any;
 
-	if ((scene = (t_scene *)malloc_gc(sizeof(t_scene))))
+	if (!(scene = (t_scene *)malloc_gc(sizeof(t_scene))))
 		ft_exit(ENOMEM);
 	scene->resolution = resolution;
 	scene->ambient = ambient;
@@ -37,6 +37,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 			ft_lstadd_front(&scene->lights, ft_lstnew(all_obj->content));
 		else
 			ft_lstadd_front(&scene->objects, ft_lstnew(all_obj->content));
+		all_obj = all_obj->next;
 	}
 	scene->del = &del_scene;
 	return (scene);

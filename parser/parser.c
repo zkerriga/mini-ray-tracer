@@ -25,21 +25,11 @@ static void	manager(t_list **all_obj, char *line)
 		ft_lstadd_front(all_obj, ft_lstnew(new_cylinder(line)));
 	else if (line[0] == 't' && line[1] == 'r')
 		ft_lstadd_front(all_obj, ft_lstnew(new_triangle(line)));
-}
+	else if (line[0] == 'c')
+		ft_lstadd_front(all_obj, ft_lstnew(new_camera(line)));
+	else if (line[0] == 'l')
+		ft_lstadd_front(all_obj, ft_lstnew(new_light(line)));
 
-static void	line_process(char *line, t_resolution **resolution,
-							t_ambient **ambient, t_list **all_obj)
-{
-	if (ft_strlen(line) > 3)
-	{
-		if (line[0] == 'R')
-			*resolution = new_resolution(line);
-		else if (line[0] == 'A')
-			*ambient = new_ambient(line);
-		else
-			manager(all_obj, line);
-	}
-	free(line);
 }
 
 //TODO: передать NULL в линию
@@ -57,9 +47,20 @@ t_scene		*parser(char *path, char *line)
 	all_obj = NULL;
 	ambient = NULL;
 	resolution = NULL;
-	while (get_next_line(fd, &line))
-		line_process(line, &resolution, &ambient, &all_obj);
-	line_process(line, &resolution, &ambient, &all_obj);
+	while (get_next_line(fd, &line) > 0)
+	{
+		if (ft_strlen(line) > 3)
+		{
+			if (line[0] == 'R')
+				resolution = new_resolution(line);
+			else if (line[0] == 'A')
+				ambient = new_ambient(line);
+			else
+				manager(&all_obj, line);
+		}
+		free(line);
+	}
+	free(line);
 	if (!ambient || !resolution)
 		ft_exit(INVALID_INPUT);
 	scene = new_scene(resolution, ambient, all_obj);

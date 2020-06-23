@@ -13,7 +13,7 @@
 #include "scene.h"
 #include "libft.h"
 
-static	del_objects(t_list *objects)
+static void	del_objects(t_list *objects)
 {
 	t_list			*tmp;
 	t_any_object	*any;
@@ -28,10 +28,9 @@ static	del_objects(t_list *objects)
 	}
 }
 
-void	del_scene(t_scene *self)
+void		del_scene(t_scene *self)
 {
 	t_list			*tmp;
-	t_any_object	*any;
 
 	self->resolution->del(self->resolution);
 	self->ambient->del(self->ambient);

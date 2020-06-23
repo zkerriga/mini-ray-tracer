@@ -39,6 +39,7 @@ typedef struct	s_any_object
 	char		identifier[2];
 	void		(*del)(struct s_any_object *);
 }				t_any_object;
+
 char	*ft_next(char *line);
 
 #endif
