@@ -18,19 +18,21 @@ int	main(int ac, char **av)
 	int		y;
 	t_scene	*scene;
 
-	if (ac == 2)
-	scene = parser(av[1]);
+	if (ac > 1)
+		scene = parser(av[1], NULL);
 	//Установить точку отчёта камеры
 	y = 0;
-	while (y < Field.size.y)
+	while (y < scene->resolution->y_size)
 	{
 		x = 0;
-		while (x < Field.size.x)
+		while (x < scene->resolution->x_size)
 		{
 			//преобразование координат для вывода в окно
 			//color = Trace ray - определить цвет пикселя по x,y
-			//раскрасить пиксель в массиве окна.йй
+			//раскрасить пиксель в массиве окна.
+			++x;
 		}
+		++y;
 	}
 	return (0);
 }

@@ -11,21 +11,37 @@
 # **************************************************************************** #
 
 NAME = miniRT
-HEAD = minirt.h
 
 OBJ_DIR = bin/
-HDR_DIR = ./
+HDR_DIR = includes/
 
 CC = gcc
-FLAGS = -I$(HDR_DIR) -Wall -Wextra -Werror -D BUFFER_SIZE=20
+FLAGS = -I$(HDR_DIR) -Wall -Wextra -Werror -D BUFFER_SIZE=50
 LIBS_FLAGS = -L. -lmlx -lft
 
+EXIT_DIR = exit/
+EXIT_FILES = $(addprefix $(EXIT_DIR)ft_, exit exit_invalid_descriptor exit_invalid_input exit_memerror)
+EXIT_FILES.O = $(addprefix $(OBJ_DIR), $(EXIT_FILES:=.o))
+
+
+
+FILES.O =
+
 .PHONY: all
-all: $(OBJ_DIR) $(NAME)
+all: $(OBJ_DIR) lft lx $(NAME)
 	@echo "\n\e[32m[+] $(NAME) is assembled!\e[0m"
 
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
+
+.PHONY: lft
+lft:
+	$(MAKE) -C ./libs/libft
+	cp ./libs/libft/libft.a .
+
+.PHONY: lx
+lx:
+	$(MAKE) -C ./libs/minilibx
 
 $(NAME): $(FILES.O)
 	$(CC) $(FLAGS) $? $(LIBS_FLAGS)
