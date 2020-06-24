@@ -15,11 +15,14 @@
 #include "minirt.h"
 
 void		del_sphere(t_sphere *self);
+t_bool		sphere_is_valid(char *line);
 
 t_sphere	*new_sphere(char *line)
 {
 	t_sphere	*sphere;
 
+	if (!sphere_is_valid(line))
+		ft_exit(INVALID_INPUT);
 	if (!(sphere = (t_sphere *)malloc_gc(sizeof(t_sphere))))
 		ft_exit(ENOMEM);
 	sphere->identifier[0] = 's';

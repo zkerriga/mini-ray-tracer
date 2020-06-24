@@ -15,11 +15,14 @@
 #include "square.h"
 
 void		del_square(t_square *self);
+t_bool		square_is_valid(char *line);
 
 t_square	*new_square(char *line)
 {
 	t_square	*square;
 
+	if (!square_is_valid(line))
+		ft_exit(INVALID_INPUT);
 	if (!(square = (t_square *)malloc_gc(sizeof(t_square))))
 		ft_exit(ENOMEM);
 	square->identifier[0] = 's';

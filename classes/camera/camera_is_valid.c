@@ -15,28 +15,19 @@
 
 t_bool	camera_is_valid(char *line)
 {
-	int		nbr;
-	int		i;
+	int	fov;
 
-	i = 0;
-	while (i++ < 3)
-	{
-		line = ft_next(line);
-		if (!(*line))
-			return (FALSE);
-	}
-	i = 0;
-	while (i++ < 3)
-	{
-		line = ft_next(line);
-		if (!(*line) || !ft_float_between(ft_atof(line), -1.0f, 1.0f))
-			return (FALSE);
-	}
 	line = ft_next(line);
-	if (!(*line) || (nbr = ft_atoi(line)) < 0 || nbr > 180)
+	if (!check_coordinates(&line))
 		return (FALSE);
-	line = ft_next(line);
-	if (*line)
+	if (!check_vector(&line))
 		return (FALSE);
-	return (TRUE);
+	if (!check_int(line))
+		return (FALSE);
+	if ((fov = ft_atoi(line)) < 0 || fov > 180)
+		return (FALSE);
+	if (*ft_next(line) == '\0')
+		return (TRUE);
+	else
+		return (FALSE);
 }

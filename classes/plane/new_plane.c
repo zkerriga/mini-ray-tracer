@@ -15,11 +15,14 @@
 #include "plane.h"
 
 void	del_plane(t_plane *self);
+t_bool	plane_is_valid(char *line);
 
 t_plane	*new_plane(char *line)
 {
 	t_plane	*plane;
 
+	if (!plane_is_valid(line))
+		ft_exit(INVALID_INPUT);
 	if (!(plane = (t_plane *)malloc_gc(sizeof(t_plane))))
 		ft_exit(ENOMEM);
 	plane->identifier[0] = 'p';

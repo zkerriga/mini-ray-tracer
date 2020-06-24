@@ -15,11 +15,14 @@
 #include "light.h"
 
 void	del_light(t_light *self);
+t_bool	light_is_valid(char *line);
 
 t_light	*new_light(char *line)
 {
 	t_light	*light;
 
+	if (!light_is_valid(line))
+		ft_exit(INVALID_INPUT);
 	if (!(light = (t_light *)malloc_gc(sizeof(t_light))))
 		ft_exit(ENOMEM);
 	light->identifier[0] = 'l';

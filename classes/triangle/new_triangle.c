@@ -15,11 +15,14 @@
 #include "triangle.h"
 
 void		del_triangle(t_triangle *self);
+t_bool		triangle_is_valid(char *line);
 
 t_triangle	*new_triangle(char *line)
 {
 	t_triangle	*triangle;
 
+	if (!triangle_is_valid(line))
+		ft_exit(INVALID_INPUT);
 	if (!(triangle = (t_triangle *)malloc_gc(sizeof(t_triangle))))
 		ft_exit(ENOMEM);
 	triangle->identifier[0] = 't';
