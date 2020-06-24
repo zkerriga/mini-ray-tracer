@@ -12,6 +12,10 @@
 
 #include "minirt.h"
 
+void	ft_exit_memerror(int error_code);
+void	ft_exit_invalid_input();
+void	ft_exit_invalid_descriptor();
+
 void	ft_exit(int error_code)
 {
 	if (error_code == ENOMEM)
