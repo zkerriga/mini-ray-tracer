@@ -15,6 +15,8 @@
 
 t_bool	check_int(char *line)
 {
+	if (*line == '-' || *line == '+')
+		++line;
 	while (ft_isdigit(*line))
 		++line;
 	if (*line == ',' || ft_isspace(*line) || *line == '\0')

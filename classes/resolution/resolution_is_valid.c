@@ -21,6 +21,7 @@ t_bool	resolution_is_valid(char *line)
 	line = ft_next(line);
 	if (!check_int(line) || ft_atoi(line) < 1)
 		return (FALSE);
+	line = ft_next(line);
 	if (*line == '\0')
 		return (TRUE);
 	else

@@ -15,6 +15,8 @@
 
 t_bool	check_float(char *line)
 {
+	if (*line == '-' || *line == '+')
+		++line;
 	while (ft_isdigit(*line))
 		++line;
 	if (*line == '.')
