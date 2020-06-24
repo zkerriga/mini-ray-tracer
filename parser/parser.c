@@ -29,10 +29,11 @@ static void	manager(t_list **all_obj, char *line)
 		ft_lstadd_front(all_obj, ft_lstnew(new_camera(line)));
 	else if (line[0] == 'l')
 		ft_lstadd_front(all_obj, ft_lstnew(new_light(line)));
+	else
+		ft_exit(INVALID_INPUT);
 
 }
 
-//TODO: передать NULL в линию
 t_scene		*parser(char *path, char *line)
 {
 	t_scene			*scene;

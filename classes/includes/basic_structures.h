@@ -13,6 +13,11 @@
 #ifndef BASIC_STRUCTURES_H
 # define BASIC_STRUCTURES_H
 
+# define TRUE 1
+# define FALSE 0
+
+typedef char	t_bool;
+
 typedef struct	s_point
 {
 	float		x;
@@ -41,5 +46,6 @@ typedef struct	s_any_object
 }				t_any_object;
 
 char	*ft_next(char *line);
+t_bool	ft_float_between(float nbr, float down, float up);
 
 #endif

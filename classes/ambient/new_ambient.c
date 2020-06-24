@@ -15,11 +15,14 @@
 #include "ambient.h"
 
 void		del_ambient(t_ambient *self);
+t_bool		ambient_is_valid(char *line);
 
 t_ambient	*new_ambient(char *line)
 {
 	t_ambient	*ambient;
 
+	if (!ambient_is_valid(line))
+		ft_exit(INVALID_INPUT);
 	if (!(ambient = (t_ambient *)malloc_gc(sizeof(t_ambient))))
 		ft_exit(ENOMEM);
 	ambient->identifier[0] = 'A';

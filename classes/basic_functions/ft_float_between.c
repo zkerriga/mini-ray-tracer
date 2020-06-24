@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_next.c                                          :+:      :+:    :+:   */
+/*   ft_float_between.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 16:43:51 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 16:43:57 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/24 12:41:01 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/24 12:41:03 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_next(char *line)
+t_bool	ft_float_between(float nbr, float down, float up)
 {
-	while (*line && !(ft_isspace(*line) || *line == ','))
-		++line;
-	while (ft_isspace(*line) || *line == ',')
-		++line;
-	return (line);
+	return (!(nbr < down || nbr > up));
 }
