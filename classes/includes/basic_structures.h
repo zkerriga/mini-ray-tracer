@@ -47,5 +47,10 @@ typedef struct	s_any_object
 
 char	*ft_next(char *line);
 t_bool	ft_float_between(float nbr, float down, float up);
+t_bool	check_float(char *line);
+t_bool	check_int(char *line);
+t_bool	check_vector(char **line);
+t_bool	check_color(char **line);
+t_bool	check_coordinates(char **line);
 
 #endif
