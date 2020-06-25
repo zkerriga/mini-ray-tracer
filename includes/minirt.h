@@ -13,6 +13,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# define MAINTAINER "zkerriga"
 # define ENOMEM 12 /* Out of memory */ //TODO: delete the comment
 # define INVALID_INPUT -1
 # define INVALID_DESCRIPTOR -2

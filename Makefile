@@ -17,7 +17,7 @@ HDR_DIR = includes/
 
 CC = gcc
 
-INCLUDES = -I$(HDR_DIR) -I$(CLASS_DIR)$(HDR_DIR) -I$(GNL_DIR) -I./libs/libft/
+INCLUDES = -I$(HDR_DIR) -I$(CLASS_DIR)$(HDR_DIR) -I$(GNL_DIR) -I./libs/libft/ -I./libs/minilibx
 FLAGS = $(INCLUDES) -D BUFFER_SIZE=50 -Wall -Wextra -Werror -Wfloat-equal -O2
 
 GNL_DIR = libs/get_next_line/
@@ -79,11 +79,13 @@ lft:
 
 .PHONY: lx
 lx:
-#	@$(MAKE) -C ./libs/minilibx
+	@$(MAKE) -s ./libs/minilibx
 
 $(NAME): $(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) $(PARSER_FILES.O) $(MAIN_FILES.O)
 	@echo -e "\e[34m[ END ]\e[0m"
-	$(CC) $(FLAGS) $(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) $(PARSER_FILES.O) $(MAIN_FILES.O) libs/libft/libft.a -o $(NAME)
+	$(CC) $(FLAGS)	$(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) \
+					$(PARSER_FILES.O) $(MAIN_FILES.O) -L./libs/libft -lft \
+					-L./libs/minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd -o $(NAME)
 
 $(GNL_FILES.O): $(OBJ_DIR)%.o: %.c
 	@echo -e "\e[32m[ GNL ]\e[0m"
