@@ -32,6 +32,7 @@ void		del_scene(t_scene *self)
 {
 	t_list			*tmp;
 
+	mlx_clear_window(self->mlx, self->window);
 	self->resolution->del(self->resolution);
 	self->ambient->del(self->ambient);
 	while (self->cameras)

@@ -14,6 +14,7 @@
 # define SCENE_H
 
 # include "libft.h"
+# include "mlx.h"
 
 # include "ambient.h"
 # include "camera.h"
@@ -32,6 +33,8 @@ typedef struct		s_scene
 	t_list			*cameras;
 	t_list			*lights;
 	t_list			*objects;
+	void			*mlx;
+	void			*window;
 	void			(*del)(struct s_scene *);
 }					t_scene;
 

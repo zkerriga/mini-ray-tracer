@@ -16,6 +16,15 @@
 
 void		del_scene(t_scene *self);
 
+static void	start_mlx(t_scene *self)
+{
+	if (!(self->mlx = mlx_init()))
+		ft_exit(WINDOW_ERROR);
+	if (!(self->window = mlx_new_window(self->mlx, self->resolution->x_size,
+			self->resolution->y_size, MAINTAINER)))
+		ft_exit(WINDOW_ERROR);
+}
+
 t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_obj)
 {
 	t_scene			*scene;
@@ -39,6 +48,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 			ft_lstadd_front(&scene->objects, ft_lstnew(all_obj->content));
 		all_obj = all_obj->next;
 	}
+	start_mlx(scene);
 	scene->del = &del_scene;
 	return (scene);
 }
