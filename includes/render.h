@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/17 16:36:27 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/17 16:38:17 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/06/26 11:06:03 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/06/26 11:06:09 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "render.h"
-#include "parser.h"
+#ifndef RENDER_H
+# define RENDER_H
 
-int	main(int ac, char **av)
-{
-	int		x;
-	int		y;
-	t_scene	*scene;
+void	render(t_scene *scene, t_camera *camera, int x_size, int y_size);
 
-	if (ac > 1)
-	{
-		scene = parser(av[1], NULL);
-		render(scene, (scene->cameras ? scene->cameras->content : NULL),
-			   scene->resolution->x_size, scene->resolution->y_size);
-		system("pause");
-		scene->del(scene);
-		free_gc(NULL);
-	}
-	return (0);
-}
+#endif

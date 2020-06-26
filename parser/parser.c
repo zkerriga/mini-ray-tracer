@@ -36,7 +36,6 @@ static void	manager(t_list **all_obj, char *line)
 
 t_scene		*parser(char *path, char *line)
 {
-	t_scene			*scene;
 	t_resolution	*resolution;
 	t_ambient		*ambient;
 	t_list			*all_obj;
@@ -64,6 +63,5 @@ t_scene		*parser(char *path, char *line)
 	free(line);
 	if (!ambient || !resolution)
 		ft_exit(INVALID_INPUT);
-	scene = new_scene(resolution, ambient, all_obj);
-	return (scene);
+	return (new_scene(resolution, ambient, all_obj));
 }
