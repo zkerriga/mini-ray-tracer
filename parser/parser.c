@@ -13,7 +13,15 @@
 #include "parser.h"
 #include "minirt.h"
 
-static void	manager(t_list **all_obj, char *line)
+static t_scene	*check_and_get_scene(t_resolution *resolution,
+										t_ambient *ambient, t_list *all_obj)
+{
+	if (!ambient || !resolution)
+		ft_exit(INVALID_INPUT);
+	return(new_scene(resolution, ambient, all_obj));
+}
+
+static void		manager(t_list **all_obj, char *line)
 {
 	if (line[0] == 's' && line[1] == 'p')
 		ft_lstadd_front(all_obj, ft_lstnew(new_sphere(line)));
@@ -34,19 +42,23 @@ static void	manager(t_list **all_obj, char *line)
 
 }
 
-t_scene		*parser(char *path, char *line)
+static void		to_zeroes(t_resolution **resol, t_ambient **amb, t_list **all)
+{
+	*resol = NULL;
+	*amb = NULL;
+	*all = NULL;
+}
+
+t_scene			*parser(char *path, char *line)
 {
 	t_resolution	*resolution;
 	t_ambient		*ambient;
 	t_list			*all_obj;
 	int				fd;
 
-	fd = open(path, O_RDONLY);
-	if (fd < 3)
+	if ((fd = open(path, O_RDONLY)) < 3)
 		ft_exit(INVALID_DESCRIPTOR);
-	all_obj = NULL;
-	ambient = NULL;
-	resolution = NULL;
+	to_zeroes(&resolution, &ambient, &all_obj);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ft_strlen(line) > 3)
@@ -61,7 +73,5 @@ t_scene		*parser(char *path, char *line)
 		free(line);
 	}
 	free(line);
-	if (!ambient || !resolution)
-		ft_exit(INVALID_INPUT);
-	return (new_scene(resolution, ambient, all_obj));
+	return (check_and_get_scene(resolution, ambient, all_obj));
 }

@@ -29,6 +29,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 {
 	t_scene			*scene;
 	t_any_object	*any;
+	void			*tmp;
 
 	if (!(scene = (t_scene *)malloc_gc(sizeof(t_scene))))
 		ft_exit(ENOMEM);
@@ -39,14 +40,15 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 	scene->objects = NULL;
 	while (all_obj)
 	{
+		tmp = all_obj->next;
 		any = all_obj->content;
 		if (any->identifier[0] == 'c' && any->identifier[1] == '\0')
-			ft_lstadd_front(&scene->cameras, ft_lstnew(all_obj->content));
+			ft_lstadd_front(&scene->cameras, all_obj);
 		else if (any->identifier[0] == 'l' && any->identifier[1] == '\0')
-			ft_lstadd_front(&scene->lights, ft_lstnew(all_obj->content));
+			ft_lstadd_front(&scene->lights, all_obj);
 		else
-			ft_lstadd_front(&scene->objects, ft_lstnew(all_obj->content));
-		all_obj = all_obj->next;
+			ft_lstadd_front(&scene->objects, all_obj);
+		all_obj = tmp;
 	}
 	start_mlx(scene);
 	scene->del = &del_scene;

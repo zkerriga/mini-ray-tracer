@@ -25,7 +25,7 @@ GNL_FILES = $(addprefix $(GNL_DIR), get_next_line get_next_line_utils)
 GNL_FILES.O = $(addprefix $(OBJ_DIR), $(GNL_FILES:=.o))
 
 EXIT_DIR = exit/
-EXIT_FILES = $(addprefix $(EXIT_DIR)ft_, exit exit_invalid_descriptor exit_invalid_input exit_memerror)
+EXIT_FILES = $(addprefix $(EXIT_DIR)ft_, exit exit_invalid_descriptor exit_invalid_input exit_memerror exit_window_error )
 EXIT_FILES.O = $(addprefix $(OBJ_DIR), $(EXIT_FILES:=.o))
 
 CLASS_DIR = classes/
@@ -53,13 +53,19 @@ PARSER_DIR = parser/
 PARSER_FILES = $(addprefix $(PARSER_DIR), parser )
 PARSER_FILES.O = $(addprefix $(OBJ_DIR), $(PARSER_FILES:=.o))
 
+
+RENDER_DIR = render/
+RENDER_FILES = $(addprefix $(RENDER_DIR), render )
+RENDER_FILES.O = $(addprefix $(OBJ_DIR), $(RENDER_FILES:=.o))
+
 #TODO: добавить флаг -MD для контроля хедеров
 .PHONY: all
 all: $(OBJ_DIR) lft lx $(NAME)
 	@echo -e "\n\e[32m[+] $(NAME) is assembled!\e[0m"
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)/$(GNL_DIR) $(OBJ_DIR)/$(EXIT_DIR) $(OBJ_DIR)/$(PARSER_DIR)
+	@mkdir -p	$(OBJ_DIR)/$(GNL_DIR) $(OBJ_DIR)/$(EXIT_DIR) \
+				$(OBJ_DIR)/$(PARSER_DIR) $(OBJ_DIR)/$(RENDER_DIR)
 	@mkdir -p $(OBJ_DIR)/$(CLASS_DIR)/basic_functions/
 	@mkdir -p $(OBJ_DIR)/$(CLASS_DIR)/ambient/
 	@mkdir -p $(OBJ_DIR)/$(CLASS_DIR)/camera/
@@ -81,11 +87,12 @@ lft:
 lx:
 	@$(MAKE) -s ./libs/minilibx
 
-$(NAME): $(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) $(PARSER_FILES.O) $(MAIN_FILES.O)
+$(NAME): $(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) $(PARSER_FILES.O) $(RENDER_FILES.O) $(MAIN_FILES.O)
 	@echo -e "\e[34m[ END ]\e[0m"
 	$(CC) $(FLAGS)	$(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) \
-					$(PARSER_FILES.O) $(MAIN_FILES.O) -L./libs/libft -lft \
-					-L./libs/minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd -o $(NAME)
+					$(PARSER_FILES.O) $(RENDER_FILES.O) $(MAIN_FILES.O) \
+					-L./libs/libft -lft -L./libs/minilibx -lmlx \
+					-L/usr/include/../lib -lXext -lX11 -lm -lbsd -o $(NAME)
 
 $(GNL_FILES.O): $(OBJ_DIR)%.o: %.c
 	@echo -e "\e[32m[ GNL ]\e[0m"
@@ -103,6 +110,10 @@ $(PARSER_FILES.O): $(OBJ_DIR)%.o: %.c
 	@echo -e "\e[32m[ PARSER ]\e[0m"
 	$(CC) $(FLAGS) -c $< -o $@
 
+$(RENDER_FILES.O): $(OBJ_DIR)%.o: %.c
+	@echo -e "\e[32m[ RENDER ]\e[0m"
+	$(CC) $(FLAGS) -c $< -o $@
+
 $(MAIN_FILES.O): $(OBJ_DIR)%.o: %.c
 	@echo -e "\e[32m[ MAIN ]\e[0m"
 	$(CC) $(FLAGS) -c $< -o $@
@@ -117,3 +128,11 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: te
+te: all
+	./$(NAME) test.rt
+
+.PHONY: va
+va: all
+	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) test_mini.rt
