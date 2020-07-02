@@ -15,6 +15,6 @@
 
 #include "minirt.h"
 
-int		color_to_int(t_color *color);
+int		color_to_int(t_color color);
 
 #endif

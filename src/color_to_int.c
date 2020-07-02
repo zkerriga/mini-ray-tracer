@@ -12,14 +12,12 @@
 
 #include "minirt.h"
 
-int		color_to_int(t_color *color)
-{
-	int	rgb;
+/*
+** This function converts a structure containing colors to a single integer,
+** which is used by the minilibx library to determine the color.
+*/
 
-	rgb = color->r;
-	rgb = rgb << 8;
-	rgb += color->g;
-	rgb = rgb << 8;
-	rgb += color->b;
-	return (rgb);
+int		color_to_int(t_color color)
+{
+	return ((color.r << 16) + (color.g << 8) + color.b);
 }
