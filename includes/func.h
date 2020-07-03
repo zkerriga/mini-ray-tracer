@@ -17,6 +17,6 @@
 
 int			color_to_int(t_color color);
 t_color		bright(t_color *color, float brightness);
-float		vdot(t_3dvector a, t_3dvector b);
+float		vdot(t_3dvector *a, t_3dvector *b);
 
 #endif

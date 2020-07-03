@@ -19,6 +19,6 @@
 # include "math.h"
 
 void	render(t_scene *scene, t_camera *camera, int x_size, int y_size);
-int		trace_ray(t_scene *scene, t_point camera, t_3dvector *ray);
+int		trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray);
 
 #endif

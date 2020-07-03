@@ -19,7 +19,7 @@ typedef struct	s_sphere
 {
 	char		identifier[2];
 	void		(*del)(struct s_sphere *);
-	float		(*solve)(struct s_sphere *, t_point, t_3dvector);
+	float		(*solve)(struct s_sphere *, t_point *, t_3dvector *);
 	t_color		color;
 	t_point		center;
 	float		diameter;
