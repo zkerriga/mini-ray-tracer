@@ -15,6 +15,7 @@
 #include "minirt.h"
 
 void		del_scene(t_scene *self);
+float		get_d(t_scene *self, int fov);
 
 static void	start_mlx(t_scene *self)
 {
@@ -51,6 +52,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 		all_obj = tmp;
 	}
 	start_mlx(scene);
+	scene->get_d = &get_d;
 	scene->del = &del_scene;
 	return (scene);
 }

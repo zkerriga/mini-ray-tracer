@@ -35,6 +35,7 @@ typedef struct		s_scene
 	t_list			*objects;
 	void			*mlx;
 	void			*window;
+	float			(*get_d)(struct s_scene *, int);
 	void			(*del)(struct s_scene *);
 }					t_scene;
 

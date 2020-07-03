@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   get_d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/26 11:06:03 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/26 11:06:09 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/03 14:04:27 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/03 14:04:28 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "scene.h"
+#include "math.h"
 
-void	render(t_scene *scene, t_camera *camera, int x_size, int y_size);
-int		trace_ray(t_scene *scene, t_point camera, t_3dvector *ray);
-
-#endif
+float	get_d(t_scene *self, int fov)
+{
+	return (self->resolution->x_size / (2 * tan(M_PI * fov / 360)));
+}
