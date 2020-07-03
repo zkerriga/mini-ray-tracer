@@ -19,11 +19,11 @@ typedef struct	s_cylinder
 {
 	char		identifier[2];
 	void		(*del)(struct s_cylinder *);
+	t_color		color;
 	t_point		point;
 	t_3dvector	vector;
 	float		diameter;
 	float		height;
-	t_color		color;
 }				t_cylinder;
 
 t_cylinder		*new_cylinder(char *line);

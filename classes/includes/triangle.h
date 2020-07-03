@@ -19,10 +19,10 @@ typedef struct	s_triangle
 {
 	char		identifier[2];
 	void		(*del)(struct s_triangle *);
+	t_color		color;
 	t_point		first;
 	t_point		second;
 	t_point		third;
-	t_color		color;
 }				t_triangle;
 
 t_triangle		*new_triangle(char *line);

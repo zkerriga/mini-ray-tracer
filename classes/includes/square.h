@@ -19,10 +19,10 @@ typedef struct	s_square
 {
 	char		identifier[2];
 	void		(*del)(struct s_square *);
+	t_color		color;
 	t_point		center;
 	t_3dvector	vector;
 	float		side_size;
-	t_color		color;
 }				t_square;
 
 t_square		*new_square(char *line);

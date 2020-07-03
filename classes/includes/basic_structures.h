@@ -43,6 +43,8 @@ typedef struct	s_any_object
 {
 	char		identifier[2];
 	void		(*del)(struct s_any_object *);
+	float		(*solve)(struct s_any_object *, t_point, t_3dvector);
+	t_color		color;
 }				t_any_object;
 
 char	*ft_next(char *line);

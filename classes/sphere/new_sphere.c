@@ -16,6 +16,7 @@
 
 void		del_sphere(t_sphere *self);
 t_bool		sphere_is_valid(char *line);
+float		solve(t_sphere *self, t_point camera, t_3dvector ray);
 
 t_sphere	*new_sphere(char *line)
 {
@@ -35,5 +36,6 @@ t_sphere	*new_sphere(char *line)
 	sphere->color.g = ft_atoi((line = ft_next(line)));
 	sphere->color.b = ft_atoi((line = ft_next(line)));
 	sphere->del = &del_sphere;
+	sphere->solve = &solve;
 	return (sphere);
 }
