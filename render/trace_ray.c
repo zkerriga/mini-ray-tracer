@@ -21,25 +21,25 @@ int		trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
 	t_any_object	*any;
 	float			t;
 	float			t_min;
-	t_color			*color;
+	t_any_object	*found;
 
 	objects = scene->objects;
 	if (objects)
 	{
 		t_min = MAX_T;
-		color = NULL;
+		found = NULL;
 		while (objects)
 		{
 			any = objects->content;
 			if ((t = any->solve(any, camera, ray)) > 0 && t < t_min)
 			{
 				t_min = t;
-				color = &any->color;
+				found = any;
 			}
 			objects = objects->next;
 		}
-		if (color)
-			return (color_to_int(*color));
+		if (found)
+			return (color_to_int(found->color));
 	}
 	if (background < 0)
 		background = color_to_int(bright(&scene->ambient->color, scene->ambient->light_ratio));
