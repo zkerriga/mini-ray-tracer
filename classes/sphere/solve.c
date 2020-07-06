@@ -51,10 +51,9 @@ float			solve(t_sphere *self, t_point *camera, t_3dvector *ray)
 	t1 = solution_of_equation(vdot(ray, ray), 2 * vdot(&oc, ray),
 				vdot(&oc, &oc) - pow(self->diameter / 2, 2), TRUE);
 	t2 = solution_of_equation(0,0,0, FALSE);
-	if (t1 > MIN_T && t1 < MAX_T &&
-		(t2 > MIN_T && t2 < MAX_T && t1 < t2 || t2 < MIN_T || t2 > MAX_T))
+	if (t1 > MIN_T && (t2 > MIN_T && t1 < t2 || t2 < MIN_T))
 		return (t1);
-	else if (t2 > MIN_T && t2 < MAX_T)
+	else if (t2 > MIN_T)
 		return (t2);
 	else
 		return (-1.0f);

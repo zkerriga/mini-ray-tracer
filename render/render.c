@@ -40,7 +40,6 @@ void	render(t_scene *scene, t_camera *camera, int x_size, int y_size)
 	int			y;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			background;
 	int			color;
 	t_3dvector	*ray;
 	float		d;
@@ -49,7 +48,6 @@ void	render(t_scene *scene, t_camera *camera, int x_size, int y_size)
 	win_ptr = scene->window;
 	if (camera)
 	{
-		background = color_to_int(bright(&scene->ambient->color, scene->ambient->light_ratio));
 		d = scene->get_d(scene, camera->fov);
 		y = 0;
 		while (y < y_size)
@@ -58,7 +56,8 @@ void	render(t_scene *scene, t_camera *camera, int x_size, int y_size)
 			while (x < x_size)
 			{
 				ray = create_ray(&camera->point, x - x_size / 2, y - y_size / 2, d);
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, trace_ray(scene, &camera->point, ray));
+				if ((color = trace_ray(scene, &camera->point, ray)))
+					mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
 				free(ray);
 				++x;
 			}

@@ -3,7 +3,7 @@ project(miniRT C)
 
 set(CMAKE_C_STANDARD 11)
 
-set(MYCOMPILE_FLAGS "-O2 -D BUFFER_SIZE=50 -L/usr/include/X11/ -lXext -lX11 -lx -lm -lbsd")
+set(MYCOMPILE_FLAGS "-D BUFFER_SIZE=50 -L/usr/include/X11/ -lXext -lX11 -lx -lm -lbsd")
 add_definitions(${MYCOMPILE_FLAGS})
 
 include_directories(libs/get_next_line)
@@ -128,7 +128,6 @@ set(LIBS_SRC
         )
 
 set(SRC_FILES
-
         classes/basic_functions/ft_next.c
         classes/basic_functions/ft_float_between.c
         classes/basic_functions/check_color.c
@@ -139,6 +138,7 @@ set(SRC_FILES
 
         classes/scene/del_scene.c
         classes/scene/new_scene.c
+        classes/scene/get_d.c
 
         classes/resolution/new_resolution.c
         classes/resolution/del_resolution.c
@@ -159,6 +159,8 @@ set(SRC_FILES
         classes/sphere/new_sphere.c
         classes/sphere/del_sphere.c
         classes/sphere/sphere_is_valid.c
+        classes/sphere/get_n.c
+        classes/sphere/solve.c
 
         classes/plane/new_plane.c
         classes/plane/del_plane.c
@@ -178,6 +180,7 @@ set(SRC_FILES
 
         parser/parser.c
         render/render.c
+        render/trace_ray.c
         minirt.c
 
         exit/ft_exit.c
@@ -187,9 +190,12 @@ set(SRC_FILES
         exit/ft_exit_window_error.c
 
         src/color_to_int.c
+        src/vdot.c
+        src/bright.c
         )
 
 add_executable(miniRT
+        ${HEADER_FILES}
         ${LIBS_SRC}
         ${SRC_FILES}
         )

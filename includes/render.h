@@ -16,6 +16,8 @@
 # define MIN_T 1
 # define MAX_T 9999
 
+# define BLACK 0
+
 # include "math.h"
 
 void	render(t_scene *scene, t_camera *camera, int x_size, int y_size);

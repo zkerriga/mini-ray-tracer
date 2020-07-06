@@ -16,7 +16,6 @@
 
 int		trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
 {
-	static int		background = -1;
 	t_list			*objects;
 	t_any_object	*any;
 	float			t;
@@ -41,7 +40,5 @@ int		trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
 		if (found)
 			return (color_to_int(found->color));
 	}
-	if (background < 0)
-		background = color_to_int(bright(&scene->ambient->color, scene->ambient->light_ratio));
-	return (background);
+	return (BLACK);
 }
