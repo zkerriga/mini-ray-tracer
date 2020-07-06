@@ -179,8 +179,11 @@ set(SRC_FILES
         classes/triangle/triangle_is_valid.c
 
         parser/parser.c
+
         render/render.c
         render/trace_ray.c
+        render/color_definition.c
+
         minirt.c
 
         exit/ft_exit.c
@@ -192,6 +195,8 @@ set(SRC_FILES
         src/color_to_int.c
         src/vdot.c
         src/bright.c
+        src/color_sum.c
+        src/color_copy.c
         )
 
 add_executable(miniRT
