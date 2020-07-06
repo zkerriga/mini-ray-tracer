@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func.h                                             :+:      :+:    :+:   */
+/*   color_copy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/29 17:47:35 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/29 17:47:49 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/07 00:48:16 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/07 00:48:19 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNC_H
-#define FUNC_H
-
 #include "minirt.h"
 
-int			color_to_int(t_color color);
-//t_color		bright(t_color *color, float brightness);
-void		color_sum(t_color *dest, t_color one, t_color two, float bright);
-void		color_copy(t_color *dest, t_color src);
-float		vdot(t_3dvector *a, t_3dvector *b);
+/*
+** Just copies the color structure to dest.
+*/
 
-#endif
+void	color_copy(t_color *dest, t_color src)
+{
+	dest->r = src.r;
+	dest->g = src.g;
+	dest->b = src.b;
+}

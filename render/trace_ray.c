@@ -14,7 +14,19 @@
 #include "render.h"
 #include "func.h"
 
-int		trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
+static t_point	*get_point(t_point *camera, t_3dvector *ray, float t)
+{
+	t_point		*point;
+
+	if (!(point = (t_point *)malloc(sizeof(t_point))))
+		ft_exit(ENOMEM);
+	point->x = camera->x + ray->x * t;
+	point->y = camera->y + ray->y * t;
+	point->z = camera->z + ray->z * t;
+	return (point);
+}
+
+int				trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
 {
 	t_list			*objects;
 	t_any_object	*any;
@@ -38,7 +50,7 @@ int		trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
 			objects = objects->next;
 		}
 		if (found)
-			return (color_to_int(found->color));
+			return (color_definition(scene, found, get_point(camera, ray, t)));
 	}
 	return (BLACK);
 }
