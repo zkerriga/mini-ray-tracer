@@ -33,9 +33,9 @@ t_sphere	*new_sphere(char *line)
 	sphere->center.y = ft_atof((line = ft_next(line)));
 	sphere->center.z = ft_atof((line = ft_next(line)));
 	sphere->diameter = ft_atof((line = ft_next(line)));
-	sphere->color.r = ft_atoi((line = ft_next(line)));
-	sphere->color.g = ft_atoi((line = ft_next(line)));
-	sphere->color.b = ft_atoi((line = ft_next(line)));
+	sphere->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	sphere->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	sphere->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	sphere->del = &del_sphere;
 	sphere->solve = &solve;
 	sphere->get_n = &get_n;

@@ -14,50 +14,12 @@
 #include "render.h"
 #include "func.h"
 
-static void		setup_ambient(t_color *color, t_color found, t_color ambient, float bright)
+static void		setup_ambient(t_rgbvec *dest, t_rgbvec obj_color, t_rgbvec ambient, float bright)
 {
-	short	tmp;
-
-	if ((tmp = found.r * (ambient.r * bright / 255)) > 255)
-		color->r = 255;
-	else
-		color->r = tmp;
-	if ((tmp = found.g * (ambient.g * bright / 255)) > 255)
-		color->g = 255;
-	else
-		color->g = tmp;
-	if ((tmp = found.b * (ambient.b * bright / 255)) > 255)
-		color->b = 255;
-	else
-		color->b = tmp;
+	dest->r = bright * ambient.r * obj_color.r;
+	dest->g = bright * ambient.g * obj_color.g;
+	dest->b = bright * ambient.b * obj_color.b;
 }
-
-/*static void		setup_color(t_color *color, t_color found, t_color ambient, float bright)
-{
-	short	tmp;
-
-	if ((short)(ambient.r * bright) + (short)(ambient.g * bright) + (short)(ambient.b * bright) > 0)
-	{
-		if ((tmp = (found.r + ambient.r) * bright) > 255)
-			color->r = 255;
-		else
-			color->r = tmp;
-		if ((tmp = (found.g + ambient.g) * bright) > 255)
-			color->g = 255;
-		else
-			color->g = tmp;
-		if ((tmp = (found.b + ambient.b) * bright) > 255)
-			color->b = 255;
-		else
-			color->b = tmp;
-	}
-	else
-	{
-		color->r = 0;
-		color->g = 0;
-		color->b = 0;
-	}
-}*/
 
 /*
 ** The function gets the point where the ray collides with the object and
@@ -66,13 +28,14 @@ static void		setup_ambient(t_color *color, t_color found, t_color ambient, float
 ** The function must clear the point that was created for it!
 */
 
-int		color_definition(t_scene *scene, t_any_object *found, t_point *point)
+int		color_definition(t_scene *scene, t_any_object *obj, t_point *point)
 {
-	t_color		color;
+	t_rgbvec	ambient;
+	t_rgbvec	diffuse;
 	t_light		*light;
 	t_list		*list;
 
-	setup_ambient(&color, found->color, scene->ambient->color, scene->ambient->light_ratio);
+	setup_ambient(&color, obj->color, scene->ambient->color, scene->ambient->light_ratio);
 	list = scene->lights;
 	while (list)
 	{

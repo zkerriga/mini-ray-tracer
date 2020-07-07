@@ -35,9 +35,9 @@ t_cylinder	*new_cylinder(char *line)
 	cylinder->vector.z = ft_atof((line = ft_next(line)));
 	cylinder->diameter = ft_atof((line = ft_next(line)));
 	cylinder->height = ft_atof((line = ft_next(line)));
-	cylinder->color.r = ft_atoi((line = ft_next(line)));
-	cylinder->color.g = ft_atoi((line = ft_next(line)));
-	cylinder->color.b = ft_atoi((line = ft_next(line)));
+	cylinder->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	cylinder->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	cylinder->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	cylinder->del = &del_cylinder;
 	return (cylinder);
 }

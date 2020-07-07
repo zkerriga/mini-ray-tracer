@@ -20,7 +20,7 @@ typedef struct	s_light
 	char		identifier[2];
 	t_point		point;
 	float		light_ratio;
-	t_color		color;
+	t_rgbvec	color;
 	void		(*del)(struct s_light *);
 }				t_light;
 

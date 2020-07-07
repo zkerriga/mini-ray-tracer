@@ -27,9 +27,9 @@ t_ambient	*new_ambient(char *line)
 		ft_exit(ENOMEM);
 	ambient->identifier[0] = 'A';
 	ambient->light_ratio = ft_atof((line = ft_next(line)));
-	ambient->color.r = ft_atoi((line = ft_next(line)));
-	ambient->color.g = ft_atoi((line = ft_next(line)));
-	ambient->color.b = ft_atoi((line = ft_next(line)));
+	ambient->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	ambient->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	ambient->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	ambient->del = &del_ambient;
 	return (ambient);
 }

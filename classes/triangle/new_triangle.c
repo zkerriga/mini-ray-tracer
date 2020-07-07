@@ -36,9 +36,9 @@ t_triangle	*new_triangle(char *line)
 	triangle->third.x = ft_atof((line = ft_next(line)));
 	triangle->third.y = ft_atof((line = ft_next(line)));
 	triangle->third.z = ft_atof((line = ft_next(line)));
-	triangle->color.r = ft_atoi((line = ft_next(line)));
-	triangle->color.g = ft_atoi((line = ft_next(line)));
-	triangle->color.b = ft_atoi((line = ft_next(line)));
+	triangle->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	triangle->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	triangle->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	triangle->del = &del_triangle;
 	return (triangle);
 }

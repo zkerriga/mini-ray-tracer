@@ -17,7 +17,12 @@
 ** which is used by the minilibx library to determine the color.
 */
 
-int		color_to_int(t_color color)
+int		color_to_int(t_rgbvec color)
+{
+	return (((char)(color.r * 255) << 16) + ((char)(color.g * 255) << 8) + (char)(color.b * 255));
+}
+
+/*int		color_to_int(t_color color)
 {
 	return ((color.r << 16) + (color.g << 8) + color.b);
-}
+}*/

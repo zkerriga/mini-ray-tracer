@@ -31,9 +31,9 @@ t_light	*new_light(char *line)
 	light->point.y = ft_atof((line = ft_next(line)));
 	light->point.z = ft_atof((line = ft_next(line)));
 	light->light_ratio = ft_atof((line = ft_next(line)));
-	light->color.r = ft_atoi((line = ft_next(line)));
-	light->color.g = ft_atoi((line = ft_next(line)));
-	light->color.b = ft_atoi((line = ft_next(line)));
+	light->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	light->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	light->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	light->del = &del_light;
 	return (light);
 }

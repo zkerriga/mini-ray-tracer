@@ -19,7 +19,7 @@ typedef struct	s_cylinder
 {
 	char		identifier[2];
 	void		(*del)(struct s_cylinder *);
-	t_color		color;
+	t_rgbvec	color;
 	t_point		point;
 	t_3dvector	vector;
 	float		diameter;

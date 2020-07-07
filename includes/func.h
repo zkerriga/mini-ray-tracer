@@ -15,7 +15,7 @@
 
 #include "minirt.h"
 
-int			color_to_int(t_color color);
+int			color_to_int(t_rgbvec color);
 //t_color		bright(t_color *color, float brightness);
 void		color_sum(t_color *dest, t_color one, t_color two, float bright);
 void		color_copy(t_color *dest, t_color src);

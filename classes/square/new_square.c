@@ -34,9 +34,9 @@ t_square	*new_square(char *line)
 	square->vector.y = ft_atof((line = ft_next(line)));
 	square->vector.z = ft_atof((line = ft_next(line)));
 	square->side_size = ft_atof((line = ft_next(line)));
-	square->color.r = ft_atoi((line = ft_next(line)));
-	square->color.g = ft_atoi((line = ft_next(line)));
-	square->color.b = ft_atoi((line = ft_next(line)));
+	square->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	square->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	square->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	square->del = &del_square;
 	return (square);
 }

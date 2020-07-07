@@ -19,7 +19,7 @@ typedef struct	s_plane
 {
 	char		identifier[2];
 	void		(*del)(struct s_plane *);
-	t_color		color;
+	t_rgbvec	color;
 	t_point		point;
 	t_3dvector	vector;
 }				t_plane;

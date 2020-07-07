@@ -21,7 +21,7 @@ typedef struct	s_sphere
 	void		(*del)(struct s_sphere *);
 	float		(*solve)(struct s_sphere *, t_point *, t_3dvector *);
 	t_3dvector	*(*get_n)(struct s_sphere *, t_point *);
-	t_color		color;
+	t_rgbvec	color;
 	t_point		center;
 	float		diameter;
 }				t_sphere;

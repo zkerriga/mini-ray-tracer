@@ -33,9 +33,9 @@ t_plane	*new_plane(char *line)
 	plane->vector.x = ft_atof((line = ft_next(line)));
 	plane->vector.y = ft_atof((line = ft_next(line)));
 	plane->vector.z = ft_atof((line = ft_next(line)));
-	plane->color.r = ft_atoi((line = ft_next(line)));
-	plane->color.g = ft_atoi((line = ft_next(line)));
-	plane->color.b = ft_atoi((line = ft_next(line)));
+	plane->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
+	plane->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
+	plane->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
 	plane->del = &del_plane;
 	return (plane);
 }
