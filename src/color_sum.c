@@ -13,24 +13,26 @@
 #include "minirt.h"
 
 /*
-** The function writes the sum of two colors to dest,
-** taking into account the brightness of the second color.
+** The function sums the values for all channels from two vectors
+** (the maximum value is 1.0).
+** The Function returns a pointer to dest without changes.
 */
 
-void	color_sum(t_color *dest, t_color one, t_color two, float bright)
+t_rgbvec	*color_sum(t_rgbvec *dest, t_rgbvec one, t_rgbvec two)
 {
-	short tmp;
+	float	tmp;
 
-	if ((tmp = one.r + two.r * bright) > 255)
-		dest->r = 255;
+	if ((tmp = one.r + two.r) > 1.0f)
+		dest->r = 1.0f;
 	else
 		dest->r = tmp;
-	if ((tmp = one.g + two.g * bright) > 255)
-		dest->g = 255;
+	if ((tmp = one.g + two.g) > 1.0f)
+		dest->g = 1.0f;
 	else
 		dest->g = tmp;
-	if ((tmp = one.b + two.b * bright) > 255)
-		dest->b = 255;
+	if ((tmp = one.b + two.b) > 1.0f)
+		dest->b = 1.0f;
 	else
 		dest->b = tmp;
+	return (dest);
 }

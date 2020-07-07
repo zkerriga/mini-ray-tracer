@@ -194,9 +194,8 @@ set(SRC_FILES
 
         src/color_to_int.c
         src/vdot.c
-        src/bright.c
         src/color_sum.c
-        src/color_copy.c
+        src/color_multi.c
         src/module.c
         )
 

@@ -14,11 +14,18 @@
 #include "render.h"
 #include "func.h"
 
-static void		setup_ambient(t_rgbvec *dest, t_rgbvec obj_color, t_rgbvec ambient, float bright)
+static void		set_ambient(t_rgbvec *dest, t_rgbvec ambient, float bright)
 {
-	dest->r = bright * ambient.r * obj_color.r;
-	dest->g = bright * ambient.g * obj_color.g;
-	dest->b = bright * ambient.b * obj_color.b;
+	dest->r = bright * ambient.r;
+	dest->g = bright * ambient.g;
+	dest->b = bright * ambient.b;
+}
+
+static void		zero_color(t_rgbvec *color)
+{
+	color->r = 0.0f;
+	color->g = 0.0f;
+	color->b = 0.0f;
 }
 
 /*
@@ -30,18 +37,22 @@ static void		setup_ambient(t_rgbvec *dest, t_rgbvec obj_color, t_rgbvec ambient,
 
 int		color_definition(t_scene *scene, t_any_object *obj, t_point *point)
 {
-	t_rgbvec	ambient;
-	t_rgbvec	diffuse;
-	t_light		*light;
-	t_list		*list;
+	t_rgbvec		ambient;
+	t_rgbvec		diffuse;
+	t_rgbvec		result_color;
+	t_light			*light;
+	t_list			*list;
 
-	setup_ambient(&color, obj->color, scene->ambient->color, scene->ambient->light_ratio);
+	zero_color(&result_color);
+	zero_color(&diffuse);
+	set_ambient(&ambient, scene->ambient->color, scene->ambient->light_ratio);
 	list = scene->lights;
 	while (list)
 	{
-		//color find work
+		//diffuse definition
 		list = list->next;
 	}
 	free(point);
-	return (color_to_int(color));
+	color_multi(&result_color, *color_sum(&result_color, ambient, diffuse), obj->color);
+	return (color_to_int(result_color));
 }

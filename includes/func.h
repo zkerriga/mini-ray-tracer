@@ -16,9 +16,8 @@
 #include "minirt.h"
 
 int			color_to_int(t_rgbvec color);
-//t_color		bright(t_color *color, float brightness);
-void		color_sum(t_color *dest, t_color one, t_color two, float bright);
-void		color_copy(t_color *dest, t_color src);
+t_rgbvec	*color_sum(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
+t_rgbvec	*color_multi(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
 float		vdot(t_3dvector *a, t_3dvector *b);
 float		module(t_3dvector vector);
 
