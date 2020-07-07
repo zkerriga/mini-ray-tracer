@@ -40,7 +40,6 @@ int		color_definition(t_scene *scene, t_any_object *obj, t_point *point)
 	t_rgbvec		ambient;
 	t_rgbvec		diffuse;
 	t_rgbvec		result_color;
-	t_light			*light;
 	t_list			*list;
 
 	zero_color(&result_color);
@@ -49,7 +48,7 @@ int		color_definition(t_scene *scene, t_any_object *obj, t_point *point)
 	list = scene->lights;
 	while (list)
 	{
-		//diffuse definition
+		get_diffuse(&diffuse, list->content, obj, point);
 		list = list->next;
 	}
 	free(point);

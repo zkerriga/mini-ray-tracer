@@ -183,6 +183,7 @@ set(SRC_FILES
         render/render.c
         render/trace_ray.c
         render/color_definition.c
+        render/get_diffuse.c
 
         minirt.c
 
