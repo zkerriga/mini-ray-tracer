@@ -39,6 +39,13 @@ typedef struct		s_color
 	unsigned char	b;
 }					t_color;
 
+typedef struct	s_rgbvec
+{
+	float		r;
+	float		g;
+	float		b;
+}				t_rgbvec;
+
 typedef struct	s_any_object
 {
 	char		identifier[2];

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func.h                                             :+:      :+:    :+:   */
+/*   module.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/29 17:47:35 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/29 17:47:49 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/07 10:07:37 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/07 10:07:40 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNC_H
-#define FUNC_H
-
 #include "minirt.h"
+#include "math.h"
 
-int			color_to_int(t_color color);
-//t_color		bright(t_color *color, float brightness);
-void		color_sum(t_color *dest, t_color one, t_color two, float bright);
-void		color_copy(t_color *dest, t_color src);
-float		vdot(t_3dvector *a, t_3dvector *b);
-float		module(t_3dvector vector);
+/*
+** Calculates the length of the vector.
+*/
 
-#endif
+float	module(t_3dvector vector)
+{
+	return (sqrt(pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2)));
+}

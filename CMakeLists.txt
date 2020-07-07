@@ -197,6 +197,7 @@ set(SRC_FILES
         src/bright.c
         src/color_sum.c
         src/color_copy.c
+        src/module.c
         )
 
 add_executable(miniRT
