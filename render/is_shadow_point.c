@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   is_shadow_point.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 14:30:06 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 14:30:19 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/08 12:32:39 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/08 12:32:41 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "minirt.h"
+#include "render.h"
 
-# include "basic_structures.h"
-
-typedef struct	s_sphere
+t_bool	is_shadow_point(t_list *objects, t_light *light, t_point *point, t_3dvector *ray)
 {
-	char		identifier[2];
-	void		(*del)(struct s_sphere *);
-	float		(*solve)(struct s_sphere *, t_point *, t_3dvector *, float, float);
-	t_3dvector	*(*get_n)(struct s_sphere *, t_point *);
-	t_rgbvec	color;
-	t_point		center;
-	float		diameter;
-}				t_sphere;
-
-t_sphere		*new_sphere(char *line);
-
-#endif
+	return (FALSE);
+}

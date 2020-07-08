@@ -48,7 +48,7 @@ int		color_definition(t_scene *scene, t_any_object *obj, t_point *point)
 	list = scene->lights;
 	while (list)
 	{
-		get_diffuse(&diffuse, list->content, obj, point);
+		get_diffuse(scene, &diffuse, list->content, obj, point);
 		list = list->next;
 	}
 	free(point);

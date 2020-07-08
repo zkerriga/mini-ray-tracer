@@ -14,13 +14,13 @@
 #include "func.h"
 #include "render.h"
 
-static float	solution_of_equation(float k1, float k2, float k3, t_bool flag)
+static float	solution_of_equation(float k1, float k2, float k3, t_bool get1)
 {
 	float			discriminant;
 	float			t1;
 	static float	t2;
 
-	if (flag)
+	if (get1)
 	{
 		discriminant = k2 * k2 - 4 * k1 * k3;
 		if (discriminant < 0)
@@ -39,7 +39,7 @@ static float	solution_of_equation(float k1, float k2, float k3, t_bool flag)
 		return (t2);
 }
 
-float			solve(t_sphere *self, t_point *camera, t_3dvector *ray)
+float			solve(t_sphere *self, t_point *camera, t_3dvector *ray, float min_t, float max_t)
 {
 	float		t1;
 	float		t2;
@@ -51,9 +51,9 @@ float			solve(t_sphere *self, t_point *camera, t_3dvector *ray)
 	t1 = solution_of_equation(vdot(ray, ray), 2 * vdot(&oc, ray),
 				vdot(&oc, &oc) - pow(self->diameter / 2, 2), TRUE);
 	t2 = solution_of_equation(0,0,0, FALSE);
-	if (t1 > MIN_T && (t2 > MIN_T && t1 < t2 || t2 < MIN_T))
+	if (fbetween(t1, min_t, max_t) && !(fbetween(t2, min_t, max_t) && t1 > t2))
 		return (t1);
-	else if (t2 > MIN_T)
+	else if (fbetween(t2, min_t, max_t))
 		return (t2);
 	else
 		return (-1.0f);
