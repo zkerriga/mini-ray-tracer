@@ -53,7 +53,7 @@ int				trace_ray(t_scene *scene, t_point *camera, t_3dvector *ray)
 			objects = objects->next;
 		}
 		if (found)
-			return (color_definition(scene, found, get_point(camera, ray, t)));
+			return (color_definition(scene, found, get_point(camera, ray, t_min)));
 	}
 	return (BLACK);
 }
