@@ -61,7 +61,7 @@ t_scene			*parser(char *path, char *line)
 	to_zeroes(&resolution, &ambient, &all_obj);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (ft_strlen(line) > 3)
+		if (ft_strlen(line) > 3 && line[0] != '#')
 		{
 			if (line[0] == 'R')
 				resolution = new_resolution(line);

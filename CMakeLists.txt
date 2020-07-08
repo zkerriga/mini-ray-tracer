@@ -184,6 +184,7 @@ set(SRC_FILES
         render/trace_ray.c
         render/color_definition.c
         render/get_diffuse.c
+        render/is_shadow_point.c
 
         minirt.c
 
@@ -198,6 +199,7 @@ set(SRC_FILES
         src/color_sum.c
         src/color_multi.c
         src/module.c
+        src/fbetween.c
         )
 
 add_executable(miniRT

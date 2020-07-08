@@ -14,5 +14,5 @@
 
 t_bool	fbetween(float nbr, float down, float up)
 {
-	return (!(nbr < down || nbr > up));
+	return (nbr > down && nbr < up);
 }

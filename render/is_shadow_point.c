@@ -13,7 +13,22 @@
 #include "minirt.h"
 #include "render.h"
 
-t_bool	is_shadow_point(t_list *objects, t_light *light, t_point *point, t_3dvector *ray)
+t_bool	is_shadow_point(t_scene *scene, t_point *light_point, t_3dvector *ray)
 {
+	t_any_object	*any;
+	t_list			*objects;
+	t_3dvector		reverse_ray;
+
+	reverse_ray.x = ray->x * (-1.0f);
+	reverse_ray.y = ray->y * (-1.0f);
+	reverse_ray.z = ray->z * (-1.0f);
+	objects = scene->objects;
+	while (objects)
+	{
+		any = objects->content;
+		if (any->solve(any, light_point, &reverse_ray, 0.0f, NOT_ONE) > 0.0f)
+			return (TRUE);
+		objects = objects->next;
+	}
 	return (FALSE);
 }
