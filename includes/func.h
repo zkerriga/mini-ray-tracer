@@ -18,7 +18,7 @@
 int			color_to_int(t_rgbvec color);
 t_rgbvec	*color_sum(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
 t_rgbvec	*color_multi(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
-float		vdot(t_3dvector *a, t_3dvector *b);
+float		vdot(t_3dvector a, t_3dvector b);
 float		module(t_3dvector vector);
 t_bool		fbetween(float nbr, float down, float up);
 

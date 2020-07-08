@@ -36,7 +36,7 @@ void	get_diffuse(t_scene *scene, t_rgbvec *diffuse, t_light *light, t_any_object
 	if (!is_shadow_point(scene, &light->point, &light_vec))
 	{
 		norm = obj->get_n(obj, point);
-		if ((diff = maxf(vdot(norm, &light_vec) / module(light_vec), 0.0f)))
+		if ((diff = maxf(vdot(*norm, light_vec) / module(light_vec), 0.0f)))
 		{
 			color.r = diff * light->color.r;
 			color.g = diff * light->color.g;

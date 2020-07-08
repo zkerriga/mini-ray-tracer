@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 #include "sphere.h"
-#include "math.h"
+#include "func.h"
 
 t_3dvector	*get_n(t_sphere *self, t_point *point)
 {
@@ -27,7 +27,7 @@ t_3dvector	*get_n(t_sphere *self, t_point *point)
 	vec->x = point->x - self->center.x;
 	vec->y = point->y - self->center.y;
 	vec->z = point->z - self->center.z;
-	divider = sqrt(pow(vec->x, 2) + pow(vec->y, 2) + pow(vec->z, 2));
+	divider = module(*vec);
 	vec->x /= divider;
 	vec->y /= divider;
 	vec->z /= divider;
