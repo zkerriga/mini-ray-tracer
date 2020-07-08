@@ -19,7 +19,10 @@ static t_point	*get_point(t_point *camera, t_3dvector *ray, float t)
 	t_point		*point;
 
 	if (!(point = (t_point *)malloc(sizeof(t_point))))
+	{
+		free_gc(NULL);
 		ft_exit(ENOMEM);
+	}
 	point->x = camera->x + ray->x * t;
 	point->y = camera->y + ray->y * t;
 	point->z = camera->z + ray->z * t;
