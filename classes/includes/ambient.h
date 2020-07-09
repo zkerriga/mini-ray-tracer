@@ -24,5 +24,7 @@ typedef struct	s_ambient
 }				t_ambient;
 
 t_ambient		*new_ambient(char *line);
+void			del_ambient(t_ambient *self);
+t_bool			ambient_is_valid(char *line);
 
 #endif

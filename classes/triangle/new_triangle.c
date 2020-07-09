@@ -14,8 +14,22 @@
 #include "minirt.h"
 #include "triangle.h"
 
-void		del_triangle(t_triangle *self);
-t_bool		triangle_is_valid(char *line);
+static void	set_another(t_triangle *triangle, char *line)
+{
+	line = ft_next(line);
+	triangle->third.x = ft_atof(line);
+	line = ft_next(line);
+	triangle->third.y = ft_atof(line);
+	line = ft_next(line);
+	triangle->third.z = ft_atof(line);
+	line = ft_next(line);
+	triangle->color.r = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	triangle->color.g = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	triangle->color.b = (float)ft_atoi(line) / 255;
+	triangle->del = &del_triangle;
+}
 
 t_triangle	*new_triangle(char *line)
 {
@@ -27,18 +41,18 @@ t_triangle	*new_triangle(char *line)
 		ft_exit(ENOMEM);
 	triangle->identifier[0] = 't';
 	triangle->identifier[1] = 'r';
-	triangle->first.x = ft_atof((line = ft_next(line)));
-	triangle->first.y = ft_atof((line = ft_next(line)));
-	triangle->first.z = ft_atof((line = ft_next(line)));
-	triangle->second.x = ft_atof((line = ft_next(line)));
-	triangle->second.y = ft_atof((line = ft_next(line)));
-	triangle->second.z = ft_atof((line = ft_next(line)));
-	triangle->third.x = ft_atof((line = ft_next(line)));
-	triangle->third.y = ft_atof((line = ft_next(line)));
-	triangle->third.z = ft_atof((line = ft_next(line)));
-	triangle->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
-	triangle->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
-	triangle->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
-	triangle->del = &del_triangle;
+	line = ft_next(line);
+	triangle->first.x = ft_atof(line);
+	line = ft_next(line);
+	triangle->first.y = ft_atof(line);
+	line = ft_next(line);
+	triangle->first.z = ft_atof(line);
+	line = ft_next(line);
+	triangle->second.x = ft_atof(line);
+	line = ft_next(line);
+	triangle->second.y = ft_atof(line);
+	line = ft_next(line);
+	triangle->second.z = ft_atof(line);
+	set_another(triangle, line);
 	return (triangle);
 }

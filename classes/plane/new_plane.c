@@ -14,10 +14,18 @@
 #include "minirt.h"
 #include "plane.h"
 
-void	del_plane(t_plane *self);
-t_bool	plane_is_valid(char *line);
+static void	set_another(t_plane *plane, char *line)
+{
+	line = ft_next(line);
+	plane->color.r = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	plane->color.g = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	plane->color.b = (float)ft_atoi(line) / 255;
+	plane->del = &del_plane;
+}
 
-t_plane	*new_plane(char *line)
+t_plane		*new_plane(char *line)
 {
 	t_plane	*plane;
 
@@ -27,15 +35,18 @@ t_plane	*new_plane(char *line)
 		ft_exit(ENOMEM);
 	plane->identifier[0] = 'p';
 	plane->identifier[1] = 'l';
-	plane->point.x = ft_atof((line = ft_next(line)));
-	plane->point.y = ft_atof((line = ft_next(line)));
-	plane->point.z = ft_atof((line = ft_next(line)));
-	plane->vector.x = ft_atof((line = ft_next(line)));
-	plane->vector.y = ft_atof((line = ft_next(line)));
-	plane->vector.z = ft_atof((line = ft_next(line)));
-	plane->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
-	plane->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
-	plane->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
-	plane->del = &del_plane;
+	line = ft_next(line);
+	plane->point.x = ft_atof(line);
+	line = ft_next(line);
+	plane->point.y = ft_atof(line);
+	line = ft_next(line);
+	plane->point.z = ft_atof(line);
+	line = ft_next(line);
+	plane->vector.x = ft_atof(line);
+	line = ft_next(line);
+	plane->vector.y = ft_atof(line);
+	line = ft_next(line);
+	plane->vector.z = ft_atof(line);
+	set_another(plane, line);
 	return (plane);
 }

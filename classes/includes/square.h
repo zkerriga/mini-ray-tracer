@@ -26,5 +26,7 @@ typedef struct	s_square
 }				t_square;
 
 t_square		*new_square(char *line);
+void			del_square(t_square *self);
+t_bool			square_is_valid(char *line);
 
 #endif

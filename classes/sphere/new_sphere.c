@@ -14,10 +14,12 @@
 #include "sphere.h"
 #include "minirt.h"
 
-void		del_sphere(t_sphere *self);
-t_bool		sphere_is_valid(char *line);
-float		solve(t_sphere *self, t_point *camera, t_3dvector *ray, float min_t, float max_t);
-t_3dvector	*get_n(t_sphere *self, t_point *point);
+static void	set_another(t_sphere *sphere)
+{
+	sphere->del = &del_sphere;
+	sphere->solve = &solve;
+	sphere->get_n = &get_n;
+}
 
 t_sphere	*new_sphere(char *line)
 {
@@ -29,15 +31,20 @@ t_sphere	*new_sphere(char *line)
 		ft_exit(ENOMEM);
 	sphere->identifier[0] = 's';
 	sphere->identifier[1] = 'p';
-	sphere->center.x = ft_atof((line = ft_next(line)));
-	sphere->center.y = ft_atof((line = ft_next(line)));
-	sphere->center.z = ft_atof((line = ft_next(line)));
-	sphere->diameter = ft_atof((line = ft_next(line)));
-	sphere->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
-	sphere->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
-	sphere->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
-	sphere->del = &del_sphere;
-	sphere->solve = &solve;
-	sphere->get_n = &get_n;
+	line = ft_next(line);
+	sphere->center.x = ft_atof(line);
+	line = ft_next(line);
+	sphere->center.y = ft_atof(line);
+	line = ft_next(line);
+	sphere->center.z = ft_atof(line);
+	line = ft_next(line);
+	sphere->diameter = ft_atof(line);
+	line = ft_next(line);
+	sphere->color.r = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	sphere->color.g = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	sphere->color.b = (float)ft_atoi(line) / 255;
+	set_another(sphere);
 	return (sphere);
 }

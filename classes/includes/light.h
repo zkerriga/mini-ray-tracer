@@ -25,5 +25,7 @@ typedef struct	s_light
 }				t_light;
 
 t_light			*new_light(char *line);
+void			del_light(t_light *self);
+t_bool			light_is_valid(char *line);
 
 #endif

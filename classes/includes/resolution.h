@@ -24,5 +24,7 @@ typedef struct	s_resolution
 }				t_resolution;
 
 t_resolution	*new_resolution(char *line);
+void			del_resolution(t_resolution *self);
+t_bool			resolution_is_valid(char *line);
 
 #endif

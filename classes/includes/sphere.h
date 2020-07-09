@@ -27,5 +27,10 @@ typedef struct	s_sphere
 }				t_sphere;
 
 t_sphere		*new_sphere(char *line);
+void			del_sphere(t_sphere *self);
+t_bool			sphere_is_valid(char *line);
+float			solve(t_sphere *self, t_point *camera, t_3dvector *ray,
+						float min_t, float max_t);
+t_3dvector		*get_n(t_sphere *self, t_point *point);
 
 #endif

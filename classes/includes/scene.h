@@ -41,5 +41,7 @@ typedef struct		s_scene
 
 t_scene				*new_scene(t_resolution *resolution, t_ambient *ambient,
 								t_list *all_obj);
+void				del_scene(t_scene *self);
+float				get_d(t_scene *self, int fov);
 
 #endif

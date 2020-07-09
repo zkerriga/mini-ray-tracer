@@ -25,5 +25,7 @@ typedef struct	s_camera
 }				t_camera;
 
 t_camera		*new_camera(char *line);
+void			del_camera(t_camera *self);
+t_bool			camera_is_valid(char *line);
 
 #endif

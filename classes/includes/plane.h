@@ -25,5 +25,7 @@ typedef struct	s_plane
 }				t_plane;
 
 t_plane			*new_plane(char *line);
+void			del_plane(t_plane *self);
+t_bool			plane_is_valid(char *line);
 
 #endif

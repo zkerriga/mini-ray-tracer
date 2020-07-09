@@ -32,13 +32,6 @@ typedef struct	s_3dvector
 	float		z;
 }				t_3dvector;
 
-typedef struct		s_color
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}					t_color;
-
 typedef struct	s_rgbvec
 {
 	float		r;

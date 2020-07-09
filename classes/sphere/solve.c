@@ -45,12 +45,10 @@ float			solve(t_sphere *self, t_point *camera, t_3dvector *ray, float min_t, flo
 	float		t2;
 	t_3dvector	oc;
 
-	oc.x = camera->x - self->center.x;
-	oc.y = camera->y - self->center.y;
-	oc.z = camera->z - self->center.z;
+	set_vector(&oc, *camera, self->center);
 	t1 = solution_of_equation(vdot(*ray, *ray), 2 * vdot(oc, *ray),
 				vdot(oc, oc) - pow(self->diameter / 2, 2), TRUE);
-	t2 = solution_of_equation(0,0,0, FALSE);
+	t2 = solution_of_equation(0, 0, 0, FALSE);
 	if (fbetween(t1, min_t, max_t) && !(fbetween(t2, min_t, max_t) && t1 > t2))
 		return (t1);
 	else if (fbetween(t2, min_t, max_t))

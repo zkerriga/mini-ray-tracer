@@ -27,5 +27,7 @@ typedef struct	s_cylinder
 }				t_cylinder;
 
 t_cylinder		*new_cylinder(char *line);
+void			del_cylinder(t_cylinder *self);
+t_bool			cylinder_is_valid(char *line);
 
 #endif

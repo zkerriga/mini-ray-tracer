@@ -14,9 +14,6 @@
 #include "minirt.h"
 #include "light.h"
 
-void	del_light(t_light *self);
-t_bool	light_is_valid(char *line);
-
 t_light	*new_light(char *line)
 {
 	t_light	*light;
@@ -27,13 +24,20 @@ t_light	*new_light(char *line)
 		ft_exit(ENOMEM);
 	light->identifier[0] = 'l';
 	light->identifier[1] = '\0';
-	light->point.x = ft_atof((line = ft_next(line)));
-	light->point.y = ft_atof((line = ft_next(line)));
-	light->point.z = ft_atof((line = ft_next(line)));
-	light->light_ratio = ft_atof((line = ft_next(line)));
-	light->color.r = (float)ft_atoi((line = ft_next(line))) / 255;
-	light->color.g = (float)ft_atoi((line = ft_next(line))) / 255;
-	light->color.b = (float)ft_atoi((line = ft_next(line))) / 255;
+	line = ft_next(line);
+	light->point.x = ft_atof(line);
+	line = ft_next(line);
+	light->point.y = ft_atof(line);
+	line = ft_next(line);
+	light->point.z = ft_atof(line);
+	line = ft_next(line);
+	light->light_ratio = ft_atof(line);
+	line = ft_next(line);
+	light->color.r = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	light->color.g = (float)ft_atoi(line) / 255;
+	line = ft_next(line);
+	light->color.b = (float)ft_atoi(line) / 255;
 	light->del = &del_light;
 	return (light);
 }

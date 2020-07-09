@@ -14,9 +14,6 @@
 #include "libft.h"
 #include "minirt.h"
 
-void		del_scene(t_scene *self);
-float		get_d(t_scene *self, int fov);
-
 static void	start_mlx(t_scene *self)
 {
 	if (!(self->mlx = mlx_init()))
@@ -26,7 +23,15 @@ static void	start_mlx(t_scene *self)
 		ft_exit(WINDOW_ERROR);
 }
 
-t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_obj)
+static void	zeroes(t_scene *self)
+{
+	self->cameras = NULL;
+	self->lights = NULL;
+	self->objects = NULL;
+}
+
+t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient,
+						t_list *all_obj)
 {
 	t_scene			*scene;
 	t_any_object	*any;
@@ -36,9 +41,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient, t_list *all_ob
 		ft_exit(ENOMEM);
 	scene->resolution = resolution;
 	scene->ambient = ambient;
-	scene->cameras = NULL;
-	scene->lights = NULL;
-	scene->objects = NULL;
+	zeroes(scene);
 	while (all_obj)
 	{
 		tmp = all_obj->next;
