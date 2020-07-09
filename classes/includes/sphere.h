@@ -19,7 +19,7 @@ typedef struct	s_sphere
 {
 	char		identifier[2];
 	void		(*del)(struct s_sphere *);
-	float		(*solve)(struct s_sphere *, t_point *, t_3dvector *, t_range);
+	float		(*solve)(struct s_sphere *, t_point *, t_3dvector *, float, float);
 	t_3dvector	*(*get_n)(struct s_sphere *, t_point *);
 	t_rgbvec	color;
 	t_point		center;
@@ -30,7 +30,7 @@ t_sphere		*new_sphere(char *line);
 void			del_sphere(t_sphere *self);
 t_bool			sphere_is_valid(char *line);
 float			solve(t_sphere *self, t_point *camera, t_3dvector *ray,
-						t_range r);
+						float min_t, float max_t);
 t_3dvector		*get_n(t_sphere *self, t_point *point);
 
 #endif
