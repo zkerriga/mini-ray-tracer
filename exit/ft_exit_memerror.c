@@ -18,4 +18,3 @@ void	ft_exit_memerror(int error_code)
 	perror("An error occurred during memory allocation");
 	exit(error_code);
 }
-

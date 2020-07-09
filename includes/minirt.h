@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # define MAINTAINER "zkerriga"
-# define ENOMEM 12 /* Out of memory */ //TODO: delete the comment
+# define ENOMEM 12
 # define INVALID_INPUT -1
 # define INVALID_DESCRIPTOR -2
 # define WINDOW_ERROR -3
@@ -27,5 +27,9 @@
 # include "mlx.h"
 
 void	ft_exit(int error_code);
+void	ft_exit_memerror(int error_code);
+void	ft_exit_invalid_input();
+void	ft_exit_invalid_descriptor();
+void	ft_exit_window_error();
 
 #endif

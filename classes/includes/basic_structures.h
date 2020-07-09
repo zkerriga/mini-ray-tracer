@@ -39,21 +39,28 @@ typedef struct	s_rgbvec
 	float		b;
 }				t_rgbvec;
 
+typedef struct	s_range
+{
+	float		min;
+	float		max;
+}				t_range;
+
 typedef struct	s_any_object
 {
 	char		identifier[2];
 	void		(*del)(struct s_any_object *);
-	float		(*solve)(struct s_any_object *, t_point *, t_3dvector *, float, float);
+	float		(*solve)(struct s_any_object *, t_point *,
+							t_3dvector *, t_range);
 	t_3dvector	*(*get_n)(struct s_any_object *, t_point *);
 	t_rgbvec	color;
 }				t_any_object;
 
-char	*ft_next(char *line);
-t_bool	ft_float_between(float nbr, float down, float up);
-t_bool	check_float(char *line);
-t_bool	check_int(char *line);
-t_bool	check_vector(char **line);
-t_bool	check_color(char **line);
-t_bool	check_coordinates(char **line);
+char			*ft_next(char *line);
+t_bool			ft_float_between(float nbr, float down, float up);
+t_bool			check_float(char *line);
+t_bool			check_int(char *line);
+t_bool			check_vector(char **line);
+t_bool			check_color(char **line);
+t_bool			check_coordinates(char **line);
 
 #endif

@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "libft.h"
 
-void	ft_exit_window_error()
+void	ft_exit_window_error(void)
 {
 	ft_putendl_fd("The X-window error!", 1);
 	free_gc(NULL);

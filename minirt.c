@@ -22,9 +22,8 @@ int	main(int ac, char **av)
 	{
 		scene = parser(av[1], NULL);
 		render(scene, (scene->cameras ? scene->cameras->content : NULL),
-			   scene->resolution->x_size, scene->resolution->y_size);
+				scene->resolution->x_size, scene->resolution->y_size);
 		system("sleep 5");
-//		system("read -rs -n 1 key");
 		scene->del(scene);
 		free_gc(NULL);
 	}

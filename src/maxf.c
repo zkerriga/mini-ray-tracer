@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_invalid_input.c                            :+:      :+:    :+:   */
+/*   maxf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 23:41:25 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/20 23:41:32 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/09 16:33:05 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/09 16:33:07 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "libft.h"
+/*
+** Returns a larger float number.
+*/
 
-void	ft_exit_invalid_input(void)
+float	maxf(float one, float two)
 {
-	ft_putendl_fd("The scene description from the file is incorrect!", 1);
-	free_gc(NULL);
-	exit(0);
+	return ((one > two) ? one : two);
 }

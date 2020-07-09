@@ -18,7 +18,7 @@ static t_scene	*check_and_get_scene(t_resolution *resolution,
 {
 	if (!ambient || !resolution)
 		ft_exit(INVALID_INPUT);
-	return(new_scene(resolution, ambient, all_obj));
+	return (new_scene(resolution, ambient, all_obj));
 }
 
 static void		manager(t_list **all_obj, char *line)
@@ -39,7 +39,6 @@ static void		manager(t_list **all_obj, char *line)
 		ft_lstadd_front(all_obj, ft_lstnew(new_light(line)));
 	else
 		ft_exit(INVALID_INPUT);
-
 }
 
 static void		to_zeroes(t_resolution **resol, t_ambient **amb, t_list **all)

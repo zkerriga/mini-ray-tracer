@@ -26,7 +26,7 @@ typedef struct	s_triangle
 }				t_triangle;
 
 t_triangle		*new_triangle(char *line);
-void		del_triangle(t_triangle *self);
-t_bool		triangle_is_valid(char *line);
+void			del_triangle(t_triangle *self);
+t_bool			triangle_is_valid(char *line);
 
 #endif

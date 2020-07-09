@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "libft.h"
 
-void	ft_exit_invalid_descriptor()
+void	ft_exit_invalid_descriptor(void)
 {
 	ft_putendl_fd("The file path is incorrect!", 1);
 	free_gc(NULL);

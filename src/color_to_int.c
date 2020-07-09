@@ -19,5 +19,6 @@
 
 int		color_to_int(t_rgbvec color)
 {
-	return (((char)(color.r * 255) << 16) + ((char)(color.g * 255) << 8) + (char)(color.b * 255));
+	return (((char)(color.r * 255) << 16) + ((char)(color.g * 255) << 8) +
+			(char)(color.b * 255));
 }

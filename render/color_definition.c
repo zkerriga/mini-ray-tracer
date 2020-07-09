@@ -35,23 +35,30 @@ static void		zero_color(t_rgbvec *color)
 ** The function must clear the point that was created for it!
 */
 
-int		color_definition(t_scene *scene, t_any_object *obj, t_point *point)
+int				color_definition(t_scene *scene, t_any_object *obj,
+									t_point *point)
 {
 	t_rgbvec		ambient;
 	t_rgbvec		diffuse;
-	t_rgbvec		result_color;
+	t_rgbvec		result;
 	t_list			*list;
+	t_3dvector		light_vec;
 
-	zero_color(&result_color);
+	zero_color(&result);
 	zero_color(&diffuse);
 	set_ambient(&ambient, scene->ambient->color, scene->ambient->light_ratio);
 	list = scene->lights;
 	while (list)
 	{
-		get_diffuse(scene, &diffuse, list->content, obj, point);
+		set_vector(&light_vec, ((t_light *)list->content)->point, *point);
+		if (!is_shadow_point(scene, &((t_light *)list->content)->point,
+								&light_vec))
+		{
+			get_diffuse(&diffuse, list->content, obj, point);
+		}
 		list = list->next;
 	}
 	free(point);
-	color_multi(&result_color, *color_sum(&result_color, ambient, diffuse), obj->color);
-	return (color_to_int(result_color));
+	color_multi(&result, *color_sum(&result, ambient, diffuse), obj->color);
+	return (color_to_int(result));
 }
