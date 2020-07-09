@@ -200,6 +200,7 @@ set(SRC_FILES
         src/color_multi.c
         src/module.c
         src/fbetween.c
+        src/set_vector.c
         )
 
 add_executable(miniRT
