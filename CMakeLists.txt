@@ -202,6 +202,7 @@ set(SRC_FILES
         src/fbetween.c
         src/set_vector.c
         src/maxf.c
+        src/ray_lim.c
         )
 
 add_executable(miniRT

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_range.c                                        :+:      :+:    :+:   */
+/*   ray_lim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/09 17:24:21 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/07/09 17:24:24 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/10 14:26:39 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/10 14:33:50 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@
 ** and the second time to delete it.
 */
 
-t_range	*ray_range(float min, float max)
+t_limits	*ray_lim(float min, float max)
 {
-	static t_range	*range = NULL;
+	static t_limits	*limits = NULL;
 
-	if (!range)
+	if (!limits)
 	{
-		if (!(range = (t_range *)malloc(sizeof(t_range))))
+		if (!(limits = (t_limits *)malloc(sizeof(t_limits))))
 		{
 			free_gc(NULL);
 			ft_exit(ENOMEM);
 		}
-		range->min = min;
-		range->max = max;
+		limits->min = min;
+		limits->max = max;
 	}
 	else
 	{
-		free(range);
-		range = NULL;
+		free(limits);
+		limits = NULL;
 	}
-	return (range);
+	return (limits);
 }

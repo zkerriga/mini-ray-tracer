@@ -39,7 +39,7 @@ static float	solution_of_equation(float k1, float k2, float k3, t_bool get1)
 		return (t2);
 }
 
-float			solve(t_sphere *self, t_point *cam, t_3dvector *ray, float min_t, float max_t)
+float			solve(t_sphere *self, t_point *cam, t_3dvector *ray, t_limits l)
 {
 	float		t1;
 	float		t2;
@@ -49,9 +49,9 @@ float			solve(t_sphere *self, t_point *cam, t_3dvector *ray, float min_t, float 
 	t1 = solution_of_equation(vdot(*ray, *ray), 2 * vdot(oc, *ray),
 				vdot(oc, oc) - pow(self->diameter / 2, 2), TRUE);
 	t2 = solution_of_equation(0, 0, 0, FALSE);
-	if (fbetween(t1, min_t, max_t) && !(fbetween(t2, min_t, max_t) && t1 > t2))
+	if (fbetween(t1, l.min, l.max) && !(fbetween(t2, l.min, l.max) && t1 > t2))
 		return (t1);
-	else if (fbetween(t2, min_t, max_t))
+	else if (fbetween(t2, l.min, l.max))
 		return (t2);
 	else
 		return (-1.0f);

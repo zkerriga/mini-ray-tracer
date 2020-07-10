@@ -27,10 +27,13 @@ t_bool	is_shadow_point(t_scene *scene, t_point *light_point, t_3dvector *ray)
 	while (objects)
 	{
 		any = objects->content;
-		if (any->solve(any, light_point, &reverse_ray, 0.0f, NOT_ONE) > 0.0f)
+		if (any->solve(any, light_point, &reverse_ray,
+			*ray_lim(0.0f, NOT_ONE)) > 0.0f)
 		{
+			ray_lim(0, 0);
 			return (TRUE);
 		}
+		ray_lim(0, 0);
 		objects = objects->next;
 	}
 	return (FALSE);

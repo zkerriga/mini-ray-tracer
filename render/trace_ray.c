@@ -44,11 +44,13 @@ int				trace_ray(t_scene *scene, t_point *cam, t_3dvector *ray)
 	while (objects)
 	{
 		any = objects->content;
-		if ((t = any->solve(any, cam, ray, 1.f, MAX_T)) > 0 && t < t_min)
+		if ((t = any->solve(any, cam, ray, *ray_lim(1.f, MAX_T))) > 0
+			&& t < t_min)
 		{
 			t_min = t;
 			found = any;
 		}
+		ray_lim(0, 0);
 		objects = objects->next;
 	}
 	if (found)
