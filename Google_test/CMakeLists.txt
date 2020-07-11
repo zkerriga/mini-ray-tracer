@@ -4,7 +4,9 @@ add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(TEST_FILES
-        color_test.cpp)
+        vectors_test.cpp
+#        color_test.cpp
+        )
 
 #set(LBSD_DIR /usr/lib/x86_64-linux-gnu/libbsd.so)
 

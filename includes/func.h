@@ -24,5 +24,6 @@ t_bool		fbetween(float nbr, float down, float up);
 void		set_vector(t_3dvector *dest, t_point to, t_point from);
 float		maxf(float one, float two);
 t_limits	*ray_lim(float min, float max);
+t_3dvector	*vprod(t_3dvector *dest, t_3dvector a, t_3dvector b);
 
 #endif
