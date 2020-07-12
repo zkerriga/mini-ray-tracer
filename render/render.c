@@ -27,10 +27,42 @@ static t_3dvector	*create_ray(t_point *camera, int x, int y, float d)
 	ray->x = x - camera->x;
 	ray->y = y - camera->y;
 	ray->z = d - camera->z;
-	divider = sqrt(pow(ray->x, 2) + pow(ray->y, 2) + pow(ray->z, 2));
+	divider = module(*ray);
 	ray->x /= divider;
 	ray->y /= divider;
 	ray->z /= divider;
+	return (ray);
+}
+
+/*
+** A call without a ray prepares the transformation matrix. A call from a ray applies the matrix to a ray.
+** [x]   [xR(x) + yR(y) + zR(z) + R(x)P(x) + R(y)P(y) + R(z)P(z)]
+** [y] = [xU(x) + yU(y) + zU(z) + U(x)P(x) + U(y)P(y) + U(z)P(z)]
+** [z]   [xD(x) + yD(y) + zD(z) + D(x)P(x) + D(y)P(y) + D(z)P(z)]
+** R - a right vector, U - an up vector, D - a camera's direction
+** P - a camera's point
+*/
+
+static t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *direction, t_point *camera)
+{
+	t_3dvector			tmp;
+	static t_3dvector	right;
+	static t_3dvector	up;
+	static t_3dvector	add;
+
+	if (ray)
+	{
+		set_point(&tmp, ray->x, ray->y, ray->z);
+		set_point(ray, vdot(tmp, right), vdot(tmp, up), vdot(tmp, *direction));
+		normalize(ray);
+	}
+	else
+	{
+		set_point(&tmp, 0.f, 1.f, 0.f);
+		vprod(&right, *normalize(direction), tmp);
+		vprod(&up, right, *direction);
+		set_point(&add, vdot(right, *(t_3dvector *)camera), vdot(up, *(t_3dvector *)camera), vdot(*direction, *(t_3dvector *)camera));
+	}
 	return (ray);
 }
 
@@ -46,14 +78,17 @@ void				render(t_scene *scene, t_camera *camera,
 	if (camera)
 	{
 		d = scene->get_d(scene, camera->fov);
+		rotate_ray(NULL, &camera->vector, &camera->point);
 		y = 0;
 		while (y < y_size)
 		{
 			x = 0;
 			while (x < x_size)
 			{
-				ray = create_ray(&camera->point, x - x_size / 2,
-								y - y_size / 2, d);
+				ray = rotate_ray(create_ray(&camera->point, x - x_size / 2,
+								y - y_size / 2, d), &camera->vector, NULL);
+//				ray = create_ray(&camera->point, x - x_size / 2,
+//								y - y_size / 2, d);
 				if ((color = trace_ray(scene, &camera->point, ray)))
 					mlx_pixel_put(scene->mlx, scene->window, x, y, color);
 				free(ray);
