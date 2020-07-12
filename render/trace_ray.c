@@ -44,7 +44,7 @@ int				trace_ray(t_scene *scene, t_point *cam, t_3dvector *ray)
 	while (objects)
 	{
 		any = objects->content;
-		if ((t = any->solve(any, cam, ray, *ray_lim(1.f, MAX_T))) > 0
+		if ((t = any->solve(any, cam, ray, ray_lim(1.f, MAX_T))) > 0
 			&& t < t_min)
 		{
 			t_min = t;

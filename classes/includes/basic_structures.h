@@ -50,7 +50,7 @@ typedef struct	s_any_object
 	char		identifier[2];
 	void		(*del)(struct s_any_object *);
 	float		(*solve)(struct s_any_object *, t_point *,
-							t_3dvector *, t_limits);
+							t_3dvector *, t_limits *);
 	t_3dvector	*(*get_n)(struct s_any_object *, t_point *);
 	t_rgbvec	color;
 }				t_any_object;

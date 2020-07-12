@@ -23,6 +23,8 @@ static void	set_another(t_plane *plane, char *line)
 	line = ft_next(line);
 	plane->color.b = (float)ft_atoi(line) / 255;
 	plane->del = &del_plane;
+	plane->solve = &pl_solve;
+	plane->get_n = &pl_get_n;
 }
 
 t_plane		*new_plane(char *line)

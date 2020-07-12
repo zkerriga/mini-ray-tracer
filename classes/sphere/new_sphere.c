@@ -6,7 +6,7 @@
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 09:23:36 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/21 09:23:42 by zkerriga         ###   ########.fr       */
+/*   Updated: 2020/07/12 18:30:52 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 static void	set_another(t_sphere *sphere)
 {
 	sphere->del = &del_sphere;
-	sphere->solve = &solve;
-	sphere->get_n = &get_n;
+	sphere->solve = &sp_solve;
+	sphere->get_n = &sp_get_n;
 }
 
 t_sphere	*new_sphere(char *line)

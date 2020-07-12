@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_n.c                                            :+:      :+:    :+:   */
+/*   pl_get_n.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 16:34:41 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/07/04 16:34:44 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/12 18:11:57 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/12 18:33:26 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "sphere.h"
+#include "plane.h"
 #include "func.h"
 
-t_3dvector	*get_n(t_sphere *self, t_point *point)
+t_3dvector	*pl_get_n(t_plane *self, t_point *point)
 {
-	t_3dvector	*vec;
-	float		divider;
+	t_3dvector	*norm;
 
-	if (!(vec = (t_3dvector *)malloc(sizeof(t_3dvector))))
+	if (!(norm = (t_3dvector *)malloc(sizeof(t_3dvector))))
 	{
 		free_gc(NULL);
 		ft_exit(ENOMEM);
 	}
-	vec->x = point->x - self->center.x;
-	vec->y = point->y - self->center.y;
-	vec->z = point->z - self->center.z;
-	divider = module(vec);
-	vec->x /= divider;
-	vec->y /= divider;
-	vec->z /= divider;
-	return (vec);
+	norm->x = self->vector.x;
+	norm->y = self->vector.y;
+	norm->z = self->vector.z;
+	return (normalize(norm));
 }
