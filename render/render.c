@@ -71,12 +71,14 @@ void				render(t_scene *scene, t_camera *camera,
 {
 	int			x;
 	int			y;
-	int			color;
+//	int			color;
 	t_3dvector	*ray;
 	float		d;
+	int			*image;
 
 	if (camera)
 	{
+		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x);
 		d = scene->get_d(scene, camera->fov);
 		rotate_ray(NULL, &camera->vector, &camera->point);
 		y = 0;
@@ -87,14 +89,14 @@ void				render(t_scene *scene, t_camera *camera,
 			{
 				ray = rotate_ray(create_ray(&camera->point, x - x_size / 2,
 								y - y_size / 2, d), &camera->vector, NULL);
-//				ray = create_ray(&camera->point, x - x_size / 2,
-//								y - y_size / 2, d);
-				if ((color = trace_ray(scene, &camera->point, ray)))
-					mlx_pixel_put(scene->mlx, scene->window, x, y, color);
+//				if ((color = trace_ray(scene, &camera->point, ray)))
+//					mlx_pixel_put(scene->mlx, scene->window, x, y, color);
+				image[y * x_size + x] = trace_ray(scene, &camera->point, ray);
 				free(ray);
 				++x;
 			}
 			++y;
 		}
+		mlx_put_image_to_window(scene->mlx, scene->window, scene->img, 0, 0);
 	}
 }

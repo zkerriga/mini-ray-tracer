@@ -159,12 +159,14 @@ set(SRC_FILES
         classes/sphere/new_sphere.c
         classes/sphere/del_sphere.c
         classes/sphere/sphere_is_valid.c
-        classes/sphere/get_n.c
-        classes/sphere/solve.c
+        classes/sphere/sp_get_n.c
+        classes/sphere/sp_solve.c
 
         classes/plane/new_plane.c
         classes/plane/del_plane.c
         classes/plane/plane_is_valid.c
+        classes/plane/pl_solve.c
+        classes/plane/pl_get_n.c
 
         classes/square/new_square.c
         classes/square/del_square.c
@@ -203,6 +205,10 @@ set(SRC_FILES
         src/set_vector.c
         src/maxf.c
         src/ray_lim.c
+        src/vprod.c
+        src/set_point.c
+        src/normalize.c
+        src/reverse_vec.c
         )
 
 add_executable(miniRT
