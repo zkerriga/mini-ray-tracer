@@ -14,9 +14,10 @@
 #include "plane.h"
 #include "func.h"
 
-t_3dvector	*pl_get_n(t_plane *self, t_point *point)
+t_3dvector	*pl_get_n(t_plane *self, t_point *point, t_point *camera)
 {
 	t_3dvector	*norm;
+	t_3dvector	camera_to_point;
 
 	if (!(norm = (t_3dvector *)malloc(sizeof(t_3dvector))))
 	{
@@ -26,5 +27,8 @@ t_3dvector	*pl_get_n(t_plane *self, t_point *point)
 	norm->x = self->vector.x;
 	norm->y = self->vector.y;
 	norm->z = self->vector.z;
+	set_vector(&camera_to_point, point, camera); //TODO: определить с какой стороны свет
+	if (vdot(norm, &camera_to_point) > 0.f)
+		reverse_vec(norm);
 	return (normalize(norm));
 }

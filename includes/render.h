@@ -21,9 +21,9 @@
 
 void	render(t_scene *scene, t_camera *camera, int x_size, int y_size);
 int		trace_ray(t_scene *scene, t_point *cam, t_3dvector *ray);
-int		color_definition(t_scene *scene, t_any_object *obj, t_point *point);
+int		color_definition(t_scene *scene, t_point *camera, t_any_object *obj, t_point *point);
 void	get_diffuse(t_rgbvec *diffuse, t_light *light,
-					t_any_object *obj, t_point *point);
+					t_any_object *obj, t_point *point, t_point *camera);
 t_bool	is_shadow_point(t_scene *scene, t_point *point, t_3dvector *ray);
 
 #endif

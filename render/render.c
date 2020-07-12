@@ -52,7 +52,7 @@ static t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *direction, t_point *c
 
 	if (ray)
 	{
-		set_point(&tmp, ray->x, ray->y, ray->z);
+		set_point(&tmp, -ray->x, ray->y, ray->z);
 		set_point(ray, vdot(&tmp, &right), vdot(&tmp, &up), vdot(&tmp, direction));
 		normalize(ray);
 	}

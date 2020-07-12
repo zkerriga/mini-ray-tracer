@@ -21,7 +21,7 @@ typedef struct	s_sphere
 	void		(*del)(struct s_sphere *);
 	float		(*solve)(struct s_sphere *, t_point *,
 							t_3dvector *, t_limits *);
-	t_3dvector	*(*get_n)(struct s_sphere *, t_point *);
+	t_3dvector	*(*get_n)(struct s_sphere *, t_point *, t_point *);
 	t_rgbvec	color;
 	t_point		center;
 	float		diameter;
@@ -32,6 +32,6 @@ void			del_sphere(t_sphere *self);
 t_bool			sphere_is_valid(char *line);
 float			sp_solve(t_sphere *self, t_point *camera, t_3dvector *ray,
 						t_limits *l);
-t_3dvector		*sp_get_n(t_sphere *self, t_point *point);
+t_3dvector		*sp_get_n(t_sphere *self, t_point *point, t_point *camera);
 
 #endif

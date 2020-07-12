@@ -35,8 +35,8 @@ static void		zero_color(t_rgbvec *color)
 ** The function must clear the point that was created for it!
 */
 
-int				color_definition(t_scene *scene, t_any_object *obj,
-									t_point *point)
+int				color_definition(t_scene *scene, t_point *camera,
+									t_any_object *obj, t_point *point)
 {
 	t_rgbvec		ambient;
 	t_rgbvec		diffuse;
@@ -54,7 +54,7 @@ int				color_definition(t_scene *scene, t_any_object *obj,
 		if (!is_shadow_point(scene, &((t_light *)list->content)->point,
 								&light_vec))
 		{
-			get_diffuse(&diffuse, list->content, obj, point);
+			get_diffuse(&diffuse, list->content, obj, point, camera);
 		}
 		list = list->next;
 	}

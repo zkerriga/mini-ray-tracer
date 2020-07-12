@@ -19,7 +19,7 @@
 */
 
 void	get_diffuse(t_rgbvec *diffuse, t_light *light,
-					t_any_object *obj, t_point *point)
+					t_any_object *obj, t_point *point, t_point *camera)
 {
 	float		diff;
 	t_3dvector	*norm;
@@ -27,8 +27,9 @@ void	get_diffuse(t_rgbvec *diffuse, t_light *light,
 	t_rgbvec	color;
 
 	set_vector(&light_vec, &light->point, point);
-	norm = obj->get_n(obj, point);
-	if ((diff = maxf(vdot(norm, &light_vec) / module(&light_vec), 0.0f)))
+	norm = obj->get_n(obj, point, camera);
+	normalize(&light_vec);
+	if ((diff = maxf(vdot(norm, &light_vec), 0.f)))
 	{
 		color.r = diff * light->color.r;
 		color.g = diff * light->color.g;
