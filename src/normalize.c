@@ -21,7 +21,7 @@ t_3dvector	*normalize(t_3dvector *vector)
 {
 	float	divider;
 
-	divider = module(*vector);
+	divider = module(vector);
 	vector->x /= divider;
 	vector->y /= divider;
 	vector->z /= divider;

@@ -14,11 +14,11 @@
 #include "render.h"
 #include "func.h"
 
-static void		set_ambient(t_rgbvec *dest, t_rgbvec ambient, float bright)
+static void		set_ambient(t_rgbvec *dest, t_rgbvec *ambient, float bright)
 {
-	dest->r = bright * ambient.r;
-	dest->g = bright * ambient.g;
-	dest->b = bright * ambient.b;
+	dest->r = bright * ambient->r;
+	dest->g = bright * ambient->g;
+	dest->b = bright * ambient->b;
 }
 
 static void		zero_color(t_rgbvec *color)
@@ -46,11 +46,11 @@ int				color_definition(t_scene *scene, t_any_object *obj,
 
 	zero_color(&result);
 	zero_color(&diffuse);
-	set_ambient(&ambient, scene->ambient->color, scene->ambient->light_ratio);
+	set_ambient(&ambient, &scene->ambient->color, scene->ambient->light_ratio);
 	list = scene->lights;
 	while (list)
 	{
-		set_vector(&light_vec, ((t_light *)list->content)->point, *point);
+		set_vector(&light_vec, &((t_light *)list->content)->point, point);
 		if (!is_shadow_point(scene, &((t_light *)list->content)->point,
 								&light_vec))
 		{

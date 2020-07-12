@@ -17,9 +17,9 @@
 ** Example: vec.x = to.x - from.x;
 */
 
-void	set_vector(t_3dvector *dest, t_point to, t_point from)
+void	set_vector(t_3dvector *dest, t_point *to, t_point *from)
 {
-	dest->x = to.x - from.x;
-	dest->y = to.y - from.y;
-	dest->z = to.z - from.z;
+	dest->x = to->x - from->x;
+	dest->y = to->y - from->y;
+	dest->z = to->z - from->z;
 }

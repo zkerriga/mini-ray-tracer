@@ -27,7 +27,7 @@ static t_3dvector	*create_ray(t_point *camera, int x, int y, float d)
 	ray->x = x - camera->x;
 	ray->y = y - camera->y;
 	ray->z = d - camera->z;
-	divider = module(*ray);
+	divider = module(ray);
 	ray->x /= divider;
 	ray->y /= divider;
 	ray->z /= divider;
@@ -53,15 +53,15 @@ static t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *direction, t_point *c
 	if (ray)
 	{
 		set_point(&tmp, ray->x, ray->y, ray->z);
-		set_point(ray, vdot(tmp, right), vdot(tmp, up), vdot(tmp, *direction));
+		set_point(ray, vdot(&tmp, &right), vdot(&tmp, &up), vdot(&tmp, direction));
 		normalize(ray);
 	}
 	else
 	{
 		set_point(&tmp, 0.f, 1.f, 0.f);
-		vprod(&right, *normalize(direction), tmp);
-		vprod(&up, right, *direction);
-		set_point(&add, vdot(right, *(t_3dvector *)camera), vdot(up, *(t_3dvector *)camera), vdot(*direction, *(t_3dvector *)camera));
+		vprod(&right, normalize(direction), &tmp);
+		vprod(&up, &right, direction);
+		set_point(&add, vdot(&right, camera), vdot(&up, camera), vdot(direction, camera));
 	}
 	return (ray);
 }

@@ -19,10 +19,10 @@
 ** (!) `dest` must not be equal to `a` or `b`
 */
 
-t_3dvector	*vprod(t_3dvector *dest, t_3dvector a, t_3dvector b)
+t_3dvector	*vprod(t_3dvector *dest, t_3dvector *a, t_3dvector *b)
 {
-	dest->x = a.y * b.z - a.z * b.y;
-	dest->y = a.z * b.x - a.x * b.z;
-	dest->z = a.x * b.y - a.y * b.x;
+	dest->x = a->y * b->z - a->z * b->y;
+	dest->y = a->z * b->x - a->x * b->z;
+	dest->z = a->x * b->y - a->y * b->x;
 	return (dest);
 }

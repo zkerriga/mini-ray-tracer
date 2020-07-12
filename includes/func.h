@@ -18,15 +18,14 @@
 int			color_to_int(t_rgbvec color);
 t_rgbvec	*color_sum(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
 t_rgbvec	*color_multi(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
-float		vdot(t_3dvector a, t_3dvector b);
-float		module(t_3dvector vector);
+float		vdot(t_3dvector *a, t_3dvector *b);
+float		module(t_3dvector *vector);
 t_bool		fbetween(float nbr, float down, float up);
-void		set_vector(t_3dvector *dest, t_point to, t_point from);
+void		set_vector(t_3dvector *dest, t_point *to, t_point *from);
 float		maxf(float one, float two);
 t_limits	*ray_lim(float min, float max);
-t_3dvector	*vprod(t_3dvector *dest, t_3dvector a, t_3dvector b);
+t_3dvector	*vprod(t_3dvector *dest, t_3dvector *a, t_3dvector *b);
 void		set_point(t_3dvector *dest, float x, float y, float z);
 t_3dvector	*normalize(t_3dvector *vector);
-
 
 #endif
