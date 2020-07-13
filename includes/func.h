@@ -20,6 +20,7 @@ t_rgbvec	*color_sum(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
 t_rgbvec	*color_multi(t_rgbvec *dest, t_rgbvec one, t_rgbvec two);
 float		vdot(t_3dvector *a, t_3dvector *b);
 float		module(t_3dvector *vector);
+float		modulep(t_point *a, t_point *b);
 t_bool		fbetween(float nbr, float down, float up);
 void		set_vector(t_3dvector *dest, t_point *to, t_point *from);
 float		maxf(float one, float two);

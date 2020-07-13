@@ -23,3 +23,14 @@ float	module(t_3dvector *vector)
 					pow(vector->y, 2) +
 					pow(vector->z, 2)));
 }
+
+/*
+** Calculates the length between two points.
+*/
+
+float	modulep(t_point *a, t_point *b)
+{
+	return (sqrt(pow(a->x - b->x, 2) +
+				 pow(a->y - b->y, 2) +
+				 pow(a->z - b->z, 2)));
+}

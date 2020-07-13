@@ -26,5 +26,7 @@ t_3dvector	*sp_get_n(t_sphere *self, t_point *point, t_point *camera)
 	norm->x = point->x - self->center.x;
 	norm->y = point->y - self->center.y;
 	norm->z = point->z - self->center.z;
+	if (2 * modulep(camera, &self->center) < self->diameter)
+		reverse_vec(norm);
 	return (normalize(norm));
 }
