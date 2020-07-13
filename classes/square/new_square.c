@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "minirt.h"
 #include "square.h"
+#include "func.h"
 
 static void	set_another(t_square *square, char *line)
 {
@@ -25,6 +26,9 @@ static void	set_another(t_square *square, char *line)
 	line = ft_next(line);
 	square->color.b = (float)ft_atoi(line) / 255;
 	square->del = &del_square;
+	square->get_n = &sq_get_n;
+	square->solve = &sq_solve;
+	normalize(&square->vector);
 }
 
 t_square	*new_square(char *line)

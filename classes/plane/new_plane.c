@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "minirt.h"
 #include "plane.h"
+#include "func.h"
 
 static void	set_another(t_plane *plane, char *line)
 {
@@ -25,6 +26,7 @@ static void	set_another(t_plane *plane, char *line)
 	plane->del = &del_plane;
 	plane->solve = &pl_solve;
 	plane->get_n = &pl_get_n;
+	normalize(&plane->vector);
 }
 
 t_plane		*new_plane(char *line)
