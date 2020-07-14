@@ -28,13 +28,12 @@ static void	start_mlx(t_scene *self)
 
 static void	zeroes(t_scene *self)
 {
-	self->cameras = NULL;
 	self->lights = NULL;
 	self->objects = NULL;
 }
 
 t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient,
-						t_list *all_obj)
+						t_dlist *cameras, t_list *all_obj)
 {
 	t_scene			*scene;
 	t_any_object	*any;
@@ -44,14 +43,13 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient,
 		ft_exit(ENOMEM);
 	scene->resolution = resolution;
 	scene->ambient = ambient;
+	scene->cameras = cameras;
 	zeroes(scene);
 	while (all_obj)
 	{
 		tmp = all_obj->next;
 		any = all_obj->content;
-		if (any->identifier[0] == 'c' && any->identifier[1] == '\0')
-			ft_lstadd_front(&scene->cameras, all_obj);
-		else if (any->identifier[0] == 'l' && any->identifier[1] == '\0')
+		if (any->identifier[0] == 'l' && any->identifier[1] == '\0')
 			ft_lstadd_front(&scene->lights, all_obj);
 		else
 			ft_lstadd_front(&scene->objects, all_obj);

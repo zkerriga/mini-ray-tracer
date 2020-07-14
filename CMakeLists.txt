@@ -58,6 +58,9 @@ set(LIBS_SRC
         libs/libft/src/lst/ft_lstmap.c
         libs/libft/src/lst/ft_lstnew.c
         libs/libft/src/lst/ft_lstsize.c
+        libs/libft/src/dlst/ft_dlstclear.c
+        libs/libft/src/dlst/ft_dlstadd_front.c
+        libs/libft/src/dlst/ft_dlstnew.c
         libs/libft/src/mem/ft_bzero.c
         libs/libft/src/mem/ft_calloc.c
         libs/libft/src/mem/ft_memccpy.c
@@ -139,6 +142,7 @@ set(SRC_FILES
         classes/scene/del_scene.c
         classes/scene/new_scene.c
         classes/scene/get_d.c
+        classes/scene/get_active_camera.c
 
         classes/resolution/new_resolution.c
         classes/resolution/del_resolution.c

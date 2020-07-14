@@ -36,7 +36,7 @@ static void	del_objects(t_list *objects)
 
 void		del_scene(t_scene *self)
 {
-	t_list			*tmp;
+	void	*tmp;
 
 	destroy_mlx(self);
 	self->resolution->del(self->resolution);

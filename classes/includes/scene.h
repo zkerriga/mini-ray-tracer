@@ -30,7 +30,7 @@ typedef struct		s_scene
 {
 	t_resolution	*resolution;
 	t_ambient		*ambient;
-	t_list			*cameras;
+	t_dlist			*cameras;
 	t_list			*lights;
 	t_list			*objects;
 	void			*mlx;
@@ -41,7 +41,7 @@ typedef struct		s_scene
 }					t_scene;
 
 t_scene				*new_scene(t_resolution *resolution, t_ambient *ambient,
-								t_list *all_obj);
+								t_dlist *cameras, t_list *all_obj);
 void				del_scene(t_scene *self);
 float				get_d(t_scene *self, int fov);
 
