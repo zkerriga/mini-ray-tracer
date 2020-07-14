@@ -18,8 +18,8 @@ static void	start_mlx(t_scene *self)
 {
 	if (!(self->mlx = mlx_init()))
 		ft_exit(WINDOW_ERROR);
-	if (!(self->window = mlx_new_window(self->mlx, self->resolution->x_size,
-			self->resolution->y_size, MAINTAINER)))
+	if (!(self->win = mlx_new_window(self->mlx, self->resolution->x_size,
+									 self->resolution->y_size, MAINTAINER)))
 		ft_exit(WINDOW_ERROR);
 	if (!(self->img = mlx_new_image(self->mlx, self->resolution->x_size,
 										self->resolution->y_size)))

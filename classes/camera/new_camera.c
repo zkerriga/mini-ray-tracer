@@ -13,6 +13,15 @@
 #include "libft.h"
 #include "camera.h"
 #include "minirt.h"
+#include "func.h"
+
+static void	set_another(t_camera *camera, char *line)
+{
+	line = ft_next(line);
+	camera->fov = ft_atoi(line);
+	camera->del = &del_camera;
+	normalize(&camera->vector);
+}
 
 t_camera	*new_camera(char *line)
 {
@@ -36,8 +45,6 @@ t_camera	*new_camera(char *line)
 	camera->vector.y = ft_atof(line);
 	line = ft_next(line);
 	camera->vector.z = ft_atof(line);
-	line = ft_next(line);
-	camera->fov = ft_atoi(line);
-	camera->del = &del_camera;
+	set_another(camera, line);
 	return (camera);
 }

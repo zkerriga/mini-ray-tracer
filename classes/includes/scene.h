@@ -34,7 +34,7 @@ typedef struct		s_scene
 	t_list			*lights;
 	t_list			*objects;
 	void			*mlx;
-	void			*window;
+	void			*win;
 	void			*img;
 	float			(*get_d)(struct s_scene *, int);
 	void			(*del)(struct s_scene *);

@@ -62,6 +62,6 @@ void				render(t_scene *scene, t_camera *camera,
 			}
 			++y;
 		}
-		mlx_put_image_to_window(scene->mlx, scene->window, scene->img, 0, 0);
+		mlx_put_image_to_window(scene->mlx, scene->win, scene->img, 0, 0);
 	}
 }

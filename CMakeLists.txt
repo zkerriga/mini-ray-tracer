@@ -171,14 +171,20 @@ set(SRC_FILES
         classes/square/new_square.c
         classes/square/del_square.c
         classes/square/square_is_valid.c
+        classes/square/sq_get_n.c
+        classes/square/sq_solve.c
 
         classes/cylinder/new_cylinder.c
         classes/cylinder/del_cylinder.c
         classes/cylinder/cylinder_is_valid.c
+        classes/cylinder/cy_solve.c
+        classes/cylinder/cy_get_n.c
 
         classes/triangle/new_triangle.c
         classes/triangle/del_triangle.c
         classes/triangle/triangle_is_valid.c
+        classes/triangle/tr_get_n.c
+        classes/triangle/tr_solve.c
 
         parser/parser.c
 
@@ -187,6 +193,7 @@ set(SRC_FILES
         render/color_definition.c
         render/get_diffuse.c
         render/is_shadow_point.c
+        render/rotate.c
 
         minirt.c
 

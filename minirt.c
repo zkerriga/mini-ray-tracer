@@ -14,6 +14,16 @@
 #include "render.h"
 #include "parser.h"
 
+int key_handler(int keycode, t_scene *scene)
+{
+	if (keycode == ESCAPE)
+	{
+		scene->del(scene);
+		free_gc(NULL);
+		exit(0);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_scene	*scene;
@@ -23,9 +33,12 @@ int	main(int ac, char **av)
 		scene = parser(av[1], NULL);
 		render(scene, (scene->cameras ? scene->cameras->content : NULL),
 				scene->resolution->x_size, scene->resolution->y_size);
-		system("sleep 2");
-		scene->del(scene);
-		free_gc(NULL);
+		mlx_hook(scene->win, 2, 1L << 0, key_handler, scene);
+		mlx_loop(scene->mlx);
+	}
+	else
+	{
+		//TODO: show help
 	}
 	return (0);
 }

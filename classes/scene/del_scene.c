@@ -13,6 +13,12 @@
 #include "scene.h"
 #include "libft.h"
 
+static void	destroy_mlx(t_scene *self)
+{
+	mlx_destroy_image(self->mlx, self->img);
+	mlx_destroy_window(self->mlx, self->win);
+}
+
 static void	del_objects(t_list *objects)
 {
 	t_list			*tmp;
@@ -32,8 +38,7 @@ void		del_scene(t_scene *self)
 {
 	t_list			*tmp;
 
-	mlx_destroy_image(self->mlx, self->img);
-//	mlx_clear_window(self->mlx, self->window);
+	destroy_mlx(self);
 	self->resolution->del(self->resolution);
 	self->ambient->del(self->ambient);
 	while (self->cameras)

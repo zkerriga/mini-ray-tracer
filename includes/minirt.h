@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # define MAINTAINER "zkerriga"
+# define ESCAPE 0xff1b
 # define ENOMEM 12
 # define INVALID_INPUT -1
 # define INVALID_DESCRIPTOR -2
