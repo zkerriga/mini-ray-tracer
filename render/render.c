@@ -45,7 +45,7 @@ void				render(t_scene *scene, t_camera *camera,
 
 	if (camera)
 	{
-		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x);
+		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x); //TODO: создать структуру для этих дел
 		d = scene->get_d(scene, camera->fov);
 		rotate_ray(NULL, &camera->vector, &camera->point);
 		y = 0;

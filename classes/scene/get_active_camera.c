@@ -10,14 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "scene.h"
 
-t_camera	*get_camera(t_scene *self, t_bool get_next)
+static t_dlist	*dlast(t_dlist *cameras)
 {
-	static t_list	*active_camera = NULL;
+	while (cameras->next)
+		cameras = cameras->next;
+	return (cameras);
+}
 
-	if (active_camera)
+t_camera		*get_active_camera(t_scene *self, t_bool mode)
+{
+	static t_dlist	*active = NULL;
+
+	if (!self->cameras)
+		return (NULL);
+	if (active)
 	{
-
+		if (mode == RIGHT)
+			active = (active->next) ? active->next : self->cameras;
+		else if (mode == LEFT)
+			active = (active->prev) ? active->prev : dlast(self->cameras);
 	}
+	else
+		active = self->cameras;
+	return (active->content);
 }

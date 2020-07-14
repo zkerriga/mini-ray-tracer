@@ -14,11 +14,19 @@
 # define MINIRT_H
 
 # define MAINTAINER "zkerriga"
-# define ESCAPE 0xff1b
+# define K_ESCAPE 0xff1b
+# define K_RIGHT 0xff53
+# define K_LEFT 0xff51
+
+# define RIGHT 2
+# define LEFT 1
+# define NONE 0
+
 # define ENOMEM 12
 # define INVALID_INPUT -1
 # define INVALID_DESCRIPTOR -2
 # define WINDOW_ERROR -3
+
 # define FALSE 0
 # define TRUE 1
 

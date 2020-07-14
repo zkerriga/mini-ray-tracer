@@ -14,13 +14,23 @@
 #include "render.h"
 #include "parser.h"
 
-int key_handler(int keycode, t_scene *scene)
+int	key_handler(int keycode, t_scene *scene)
 {
-	if (keycode == ESCAPE)
+	if (keycode == K_ESCAPE)
 	{
 		scene->del(scene);
 		free_gc(NULL);
 		exit(0);
+	}
+	else if (keycode == K_RIGHT)
+	{
+		render(scene, scene->get_cam(scene, RIGHT),
+				scene->resolution->x_size, scene->resolution->y_size);
+	}
+	else if (keycode == K_LEFT)
+	{
+		render(scene, scene->get_cam(scene, LEFT),
+				scene->resolution->x_size, scene->resolution->y_size);
 	}
 }
 
@@ -31,7 +41,7 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		scene = parser(av[1], NULL);
-		render(scene, (scene->cameras ? scene->cameras->content : NULL),
+		render(scene, scene->get_cam(scene, NONE),
 				scene->resolution->x_size, scene->resolution->y_size);
 		mlx_hook(scene->win, 2, 1L << 0, key_handler, scene);
 		mlx_loop(scene->mlx);
