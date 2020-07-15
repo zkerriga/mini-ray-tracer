@@ -12,57 +12,36 @@
 
 #include "minirt.h"
 #include "func.h"
+#include "math.h"
 
-static void	create_ort_vec(t_3dvector *dest, t_3dvector *dir)
+t_3dvector	*rotate_x(t_3dvector *dest, float x)
 {
-	float	sign;
+	t_3dvector	tmp;
 
-	if (dir->x != 0.f)
-	{
-		sign = (dir->x > 0) ? -1.f : 1.f;
-		set_point(dest, sign * dir->z / dir->x, 0.f, sign);
-	}
-	else if (dir->y != 0.f)
-	{
-		sign = (dir->y > 0) ? -1.f : 1.f;
-		set_point(dest, 0.f, sign * dir->z / dir->y, sign);
-	}
-	else
-	{
-		sign = (dir->z > 0) ? 1.f : -1.f;
-		set_point(dest, sign, 0.f, sign * dir->x / dir->z);
-	}
-	normalize(dest);
+	set_point(&tmp, dest->x, dest->y, dest->z);
+	dest->y = tmp.y * cos(x) - tmp.z * sin(x);
+	dest->z = tmp.y * sin(x) + tmp.z * cos(x);
 }
 
-/*
-** A call without a ray prepares the transformation matrix.
-** A call from a ray applies the matrix to a ray.
-** [x]   [xR(x) + yU(x) + zD(x)]
-** [y] = [xR(y) + yU(y) + zD(y)]
-** [z]   [xR(z) + yU(z) + zD(z)]
-** R - a right vector, U - an up vector, D - a camera's direction
-*/
-
-t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir, t_point *camera)
+t_3dvector	*rotate_y(t_3dvector *dest, float y)
 {
-	t_3dvector			tmp;
-	static t_3dvector	right;
-	static t_3dvector	up;
+	t_3dvector	tmp;
 
-	if (ray)
-	{
-		set_point(&tmp, ray->x, ray->y, ray->z);
-		set_point(ray, right.x * ray->x + up.x * ray->y + dir->x * ray->z,
-					right.y * ray->x + up.y * ray->y + dir->y * ray->z,
-					right.z * ray->x + up.z * ray->y + dir->z * ray->z);
-		normalize(ray);
-	}
-	else
-	{
-		create_ort_vec(&right, dir);
-		vprod(&up, dir, &right);
-		vprod(&right, &up, dir);
-	}
-	return (ray);
+	set_point(&tmp, dest->x, dest->y, dest->z);
+	dest->x = tmp.x * cos(y) + tmp.z * sin(y);
+	dest->z = tmp.x * -sin(y) + tmp.z * cos(y);
+}
+
+t_3dvector	*rotate_z(t_3dvector *dest, float z)
+{
+	t_3dvector	tmp;
+
+	set_point(&tmp, dest->x, dest->y, dest->z);
+	dest->x = tmp.x * cos(z) - tmp.y * sin(z);
+	dest->y = tmp.x * sin(z) + tmp.y * cos(z);
+}
+
+t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir)
+{
+	return (rotate_z(rotate_y(rotate_x(ray, dir->x), dir->y), dir->z));
 }

@@ -14,8 +14,18 @@
 #include "render.h"
 #include "parser.h"
 
+void	print_camera(t_camera *camera)
+{
+	puts("CAMERA:");
+	printf("point={%.1f,%.1f,%.1f} dir={%.1f,%.1f,%.1f}, fov=%d\n",
+			camera->point.x, camera->point.y, camera->point.z, camera->vector.x,
+			camera->vector.y, camera->vector.z, camera->fov);
+}
+
 int	key_handler(int keycode, t_scene *scene)
 {
+	t_camera	*camera;
+
 	if (keycode == K_ESCAPE)
 	{
 		scene->del(scene);
@@ -24,12 +34,16 @@ int	key_handler(int keycode, t_scene *scene)
 	}
 	else if (keycode == K_RIGHT)
 	{
-		render(scene, scene->get_cam(scene, RIGHT),
+		camera = scene->get_cam(scene, RIGHT);
+		print_camera(camera);
+		render(scene, camera,
 				scene->resolution->x_size, scene->resolution->y_size);
 	}
 	else if (keycode == K_LEFT)
 	{
-		render(scene, scene->get_cam(scene, LEFT),
+		camera = scene->get_cam(scene, LEFT);
+		print_camera(camera);
+		render(scene, camera,
 				scene->resolution->x_size, scene->resolution->y_size);
 	}
 }

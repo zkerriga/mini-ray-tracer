@@ -14,10 +14,9 @@
 #include "render.h"
 #include "func.h"
 
-static t_3dvector	*create_ray(t_point *camera, int x, int y, float d)
+static t_3dvector	*create_ray(t_point *camera, float x, float y, float z)
 {
 	t_3dvector	*ray;
-	float		divider;
 
 	if (!(ray = (t_3dvector *)malloc(sizeof(t_3dvector))))
 	{
@@ -26,12 +25,8 @@ static t_3dvector	*create_ray(t_point *camera, int x, int y, float d)
 	}
 	ray->x = x - camera->x;
 	ray->y = y - camera->y;
-	ray->z = d - camera->z;
-	divider = module(ray);
-	ray->x /= divider;
-	ray->y /= divider;
-	ray->z /= divider;
-	return (ray);
+	ray->z = z - camera->z;
+	return (normalize(ray));
 }
 
 void				render(t_scene *scene, t_camera *camera,
@@ -47,15 +42,15 @@ void				render(t_scene *scene, t_camera *camera,
 	{
 		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x); //TODO: создать структуру для этих дел
 		d = scene->get_d(scene, camera->fov);
-		rotate_ray(NULL, &camera->vector, &camera->point);
 		y = 0;
 		while (y < y_size)
 		{
 			x = 0;
 			while (x < x_size)
 			{
-				ray = rotate_ray(create_ray(&camera->point, x - x_size / 2,
-								y - y_size / 2, d), &camera->vector, NULL);
+				ray = rotate_ray(create_ray(&camera->point,
+(float)x - (float)x_size / 2, (float)y - (float)y_size / 2, d),
+&camera->vector); //TODO: не тот вектор крутишь, лошара!
 				image[y * x_size + x] = trace_ray(scene, &camera->point, ray);
 				free(ray);
 				++x;
