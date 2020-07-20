@@ -17,15 +17,12 @@
 
 static void	set_another(t_triangle *triangle, char *line)
 {
-	t_3dvector	ab;
-	t_3dvector	ac;
-
 	line = ft_next(line);
-	triangle->third.x = ft_atof(line);
+	triangle->c_point.x = ft_atof(line);
 	line = ft_next(line);
-	triangle->third.y = ft_atof(line);
+	triangle->c_point.y = ft_atof(line);
 	line = ft_next(line);
-	triangle->third.z = ft_atof(line);
+	triangle->c_point.z = ft_atof(line);
 	line = ft_next(line);
 	triangle->color.r = (float)ft_atoi(line) / 255;
 	line = ft_next(line);
@@ -36,9 +33,10 @@ static void	set_another(t_triangle *triangle, char *line)
 	triangle->del = &del_triangle;
 	triangle->solve = &tr_solve;
 	triangle->get_n = &tr_get_n;
-	set_vector(&ab, &triangle->second, &triangle->first);
-	set_vector(&ac, &triangle->third, &triangle->first);
-	vprod(&triangle->norm, &ab, &ac);
+	set_vector(&triangle->ab_edge, &triangle->b_point, &triangle->a_point);
+	set_vector(&triangle->ac_edge, &triangle->c_point, &triangle->a_point);
+	vprod(&triangle->norm, &triangle->ab_edge, &triangle->ac_edge);
+	normalize(&triangle->norm);
 }
 
 t_triangle	*new_triangle(char *line)
@@ -52,17 +50,17 @@ t_triangle	*new_triangle(char *line)
 	triangle->identifier[0] = 't';
 	triangle->identifier[1] = 'r';
 	line = ft_next(line);
-	triangle->first.x = ft_atof(line);
+	triangle->a_point.x = ft_atof(line);
 	line = ft_next(line);
-	triangle->first.y = ft_atof(line);
+	triangle->a_point.y = ft_atof(line);
 	line = ft_next(line);
-	triangle->first.z = ft_atof(line);
+	triangle->a_point.z = ft_atof(line);
 	line = ft_next(line);
-	triangle->second.x = ft_atof(line);
+	triangle->b_point.x = ft_atof(line);
 	line = ft_next(line);
-	triangle->second.y = ft_atof(line);
+	triangle->b_point.y = ft_atof(line);
 	line = ft_next(line);
-	triangle->second.z = ft_atof(line);
+	triangle->b_point.z = ft_atof(line);
 	set_another(triangle, line);
 	return (triangle);
 }

@@ -23,9 +23,11 @@ typedef struct	s_triangle
 							t_3dvector *, t_limits *);
 	t_3dvector	*(*get_n)(struct s_triangle *, t_point *, t_point *);
 	t_rgbvec	color;
-	t_point		first;
-	t_point		second;
-	t_point		third;
+	t_point		a_point;
+	t_point		b_point;
+	t_point		c_point;
+	t_3dvector	ab_edge;
+	t_3dvector	ac_edge;
 	t_3dvector	norm;
 }				t_triangle;
 

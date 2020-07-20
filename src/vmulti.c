@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vdot.c                                             :+:      :+:    :+:   */
+/*   vmulti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/03 17:26:41 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/07/03 17:26:49 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/20 12:37:32 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/20 12:37:42 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /*
-** Scalar multiplication of two vectors
+** Multiplying a vector by a number.
+** Returns the original pointer to dest.
 */
 
-float	vdot(t_3dvector *vec1, t_3dvector *vec2)
+t_3dvector	*vmulti(t_3dvector *dest, t_3dvector *vec, float multiplier)
 {
-	return (vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z);
+	dest->x = vec->x * multiplier;
+	dest->y = vec->y * multiplier;
+	dest->z = vec->z * multiplier;
+	return (dest);
 }
