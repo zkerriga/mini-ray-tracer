@@ -14,34 +14,57 @@
 #include "func.h"
 #include "math.h"
 
-t_3dvector	*rotate_x(t_3dvector *dest, float x)
+t_3dvector	*rotate_x(t_3dvector *dest, t_3dvector tmp, float angle)
 {
-	t_3dvector	tmp;
-
-	set_point(&tmp, dest->x, dest->y, dest->z);
-	dest->y = tmp.y * cos(x) - tmp.z * sin(x);
-	dest->z = tmp.y * sin(x) + tmp.z * cos(x);
+	dest->y = tmp.y * cos(angle) - tmp.z * sin(angle);
+	dest->z = tmp.y * sin(angle) + tmp.z * cos(angle);
 }
 
-t_3dvector	*rotate_y(t_3dvector *dest, float y)
+t_3dvector	*rotate_y(t_3dvector *dest, t_3dvector tmp, float angle)
 {
-	t_3dvector	tmp;
-
-	set_point(&tmp, dest->x, dest->y, dest->z);
-	dest->x = tmp.x * cos(y) + tmp.z * sin(y);
-	dest->z = tmp.x * -sin(y) + tmp.z * cos(y);
+	dest->x = tmp.x * cos(angle) + tmp.z * sin(angle);
+	dest->z = -(tmp.x * sin(angle)) + tmp.z * cos(angle);
 }
 
-t_3dvector	*rotate_z(t_3dvector *dest, float z)
+t_3dvector	*rotate_z(t_3dvector *dest, t_3dvector tmp, float angle)
 {
-	t_3dvector	tmp;
-
-	set_point(&tmp, dest->x, dest->y, dest->z);
-	dest->x = tmp.x * cos(z) - tmp.y * sin(z);
-	dest->y = tmp.x * sin(z) + tmp.y * cos(z);
+	dest->x = tmp.x * cos(angle) - tmp.y * sin(angle);
+	dest->y = tmp.x * sin(angle) + tmp.y * cos(angle);
 }
+/*
+float	get_first_angle(t_3dvector *dir)
+{
+	if (dir->x < 0)
+		return (-acos(dir->z));
+	else
+		return (acos(dir->z));
+}*/
 
 t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir)
 {
-	return (rotate_z(rotate_y(rotate_x(ray, dir->x), dir->y), dir->z));
+	static double		si;
+	static double		co;
+	static float		first_angle;
+	static t_3dvector	r;
+	t_3dvector			cp;
+
+	if (!ray)
+	{
+		set_point(&cp, 0.f, 0.f, 1.f);
+		first_angle = (dir->x < 0) ? -acos(dir->z) : acos(dir->z);
+		rotate_y(&cp, cp, first_angle);
+		set_point(&r, cp.z, 0.f, cp.x);
+		si = dir->y;
+		co = cos(asin(dir->y));
+	}
+	else
+	{
+		rotate_y(ray, *ray, first_angle);
+		set_point(&cp, ray->x, ray->y, ray->z);
+		set_point(ray, cp.x * r.x * r.x * (1 - co) + cp.x * co - cp.y * r.z * si + cp.z * r.x * r.z * (1 - co),
+				  cp.x * r.z * si + cp.y * co - cp.z * r.x * si,
+				  cp.x * r.x * r.z * (1 - co) + cp.y * r.x * si + cp.z * r.z * r.z * (1 - co) + cp.z * co);
+	}
+//	rotate_z(ray, *ray, asin(dir->y));
+	return (ray);
 }

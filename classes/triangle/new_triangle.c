@@ -13,9 +13,13 @@
 #include "libft.h"
 #include "minirt.h"
 #include "triangle.h"
+#include "func.h"
 
 static void	set_another(t_triangle *triangle, char *line)
 {
+	t_3dvector	ab;
+	t_3dvector	ac;
+
 	line = ft_next(line);
 	triangle->third.x = ft_atof(line);
 	line = ft_next(line);
@@ -28,7 +32,13 @@ static void	set_another(t_triangle *triangle, char *line)
 	triangle->color.g = (float)ft_atoi(line) / 255;
 	line = ft_next(line);
 	triangle->color.b = (float)ft_atoi(line) / 255;
+	set_point(&triangle->norm, 0.f, 0.f, 0.f);
 	triangle->del = &del_triangle;
+	triangle->solve = &tr_solve;
+	triangle->get_n = &tr_get_n;
+	set_vector(&ab, &triangle->second, &triangle->first);
+	set_vector(&ac, &triangle->third, &triangle->first);
+	vprod(&triangle->norm, &ab, &ac);
 }
 
 t_triangle	*new_triangle(char *line)

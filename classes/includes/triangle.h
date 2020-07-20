@@ -26,6 +26,7 @@ typedef struct	s_triangle
 	t_point		first;
 	t_point		second;
 	t_point		third;
+	t_3dvector	norm;
 }				t_triangle;
 
 t_triangle		*new_triangle(char *line);

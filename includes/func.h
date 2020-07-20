@@ -29,5 +29,6 @@ t_3dvector	*vprod(t_3dvector *dest, t_3dvector *a, t_3dvector *b);
 void		set_point(t_3dvector *dest, float x, float y, float z);
 t_3dvector	*normalize(t_3dvector *vector);
 t_3dvector	*reverse_vec(t_3dvector *vector);
+float		rad_to_deg(float radians);
 
 #endif

@@ -23,7 +23,9 @@ t_3dvector		*tr_get_n(t_triangle *self, t_point *point, t_point *camera)
 		free_gc(NULL);
 		ft_exit(ENOMEM);
 	}
-//	if (vdot(norm, &camera_to_point) < 0.f)
-//		reverse_vec(norm);
+	*norm = self->norm;
+	set_vector(&camera_to_point, point, camera);
+	if (vdot(norm, &camera_to_point) > 0.f)
+		reverse_vec(norm);
 	return (normalize(norm));
 }

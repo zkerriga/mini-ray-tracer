@@ -220,6 +220,7 @@ set(SRC_FILES
         src/set_point.c
         src/normalize.c
         src/reverse_vec.c
+        src/rad_to_deg.c
         )
 
 add_executable(miniRT
