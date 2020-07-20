@@ -24,9 +24,7 @@ t_3dvector	*pl_get_n(t_plane *self, t_point *point, t_point *camera)
 		free_gc(NULL);
 		ft_exit(ENOMEM);
 	}
-	norm->x = self->vector.x;
-	norm->y = self->vector.y;
-	norm->z = self->vector.z;
+	*norm = self->norm;
 	set_vector(&camera_to_point, point, camera);
 	if (vdot(norm, &camera_to_point) > 0.f)
 		reverse_vec(norm);

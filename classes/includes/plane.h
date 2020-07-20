@@ -24,7 +24,7 @@ typedef struct	s_plane
 	t_3dvector	*(*get_n)(struct s_plane *, t_point *, t_point *);
 	t_rgbvec	color;
 	t_point		point;
-	t_3dvector	vector;
+	t_3dvector	norm;
 }				t_plane;
 
 t_plane			*new_plane(char *line);

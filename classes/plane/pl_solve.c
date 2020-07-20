@@ -19,10 +19,10 @@ float	pl_solve(t_plane *self, t_point *camera, t_3dvector *ray, t_limits *l)
 	float		t;
 	t_3dvector	op;
 
-	if ((t = vdot(&self->vector, ray)) == 0.f)
+	if ((t = vdot(&self->norm, ray)) == 0.f)
 		return (-1.f);
 	set_vector(&op, camera, &self->point);
-	t = -vdot(&self->vector, &op) / t;
+	t = -vdot(&self->norm, &op) / t;
 	if (fbetween(t, l->min, l->max))
 		return (t);
 	else

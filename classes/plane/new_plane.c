@@ -26,7 +26,7 @@ static void	set_another(t_plane *plane, char *line)
 	plane->del = &del_plane;
 	plane->solve = &pl_solve;
 	plane->get_n = &pl_get_n;
-	normalize(&plane->vector);
+	normalize(&plane->norm);
 }
 
 t_plane		*new_plane(char *line)
@@ -46,11 +46,11 @@ t_plane		*new_plane(char *line)
 	line = ft_next(line);
 	plane->point.z = ft_atof(line);
 	line = ft_next(line);
-	plane->vector.x = ft_atof(line);
+	plane->norm.x = ft_atof(line);
 	line = ft_next(line);
-	plane->vector.y = ft_atof(line);
+	plane->norm.y = ft_atof(line);
 	line = ft_next(line);
-	plane->vector.z = ft_atof(line);
+	plane->norm.z = ft_atof(line);
 	set_another(plane, line);
 	return (plane);
 }
