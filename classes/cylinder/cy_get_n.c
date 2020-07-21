@@ -15,16 +15,28 @@
 
 t_3dvector		*cy_get_n(t_cylinder *self, t_point *point, t_point *camera)
 {
-	t_3dvector	*norm;
+	t_3dvector *norm;
+	t_3dvector camera_to_point;
+	t_3dvector point_to_center;
+	t_3dvector orthogonal;
 
-	if (!(norm = (t_3dvector *)malloc(sizeof(t_3dvector))))
+	if (!(norm = (t_3dvector *) malloc(sizeof(t_3dvector))))
 	{
 		free_gc(NULL);
 		ft_exit(ENOMEM);
 	}
-	set_vector(norm, point, &self->point);
-	if (2 * modulep(camera, &self->point) < self->diameter)
+	set_vector(&point_to_center, point, &self->point);
+	if (abs(vdot(&camera_to_point, &self->vector)) == self->height / 2)
+	{
+		*norm = self->vector;
+	}
+	else
+	{
+		vprod(&orthogonal, &point_to_center, &self->vector);
+		vprod(norm, &orthogonal, &self->vector);
+	}
+	set_vector(&camera_to_point, point, camera);
+	if (vdot(norm, &camera_to_point) > 0.f)
 		reverse_vec(norm);
 	return (normalize(norm));
-
 }
