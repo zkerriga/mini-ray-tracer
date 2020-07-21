@@ -58,7 +58,7 @@ t_scene			*parser(char *path, char *line)
 	t_dlist			*cameras;
 	int				fd;
 
-	if ((fd = open(path, O_RDONLY)) < 3)
+	if ((fd = open(path, O_RDONLY)) < 3) //TODO: файл обязательно должен иметь расширение .rt (взять match&match с басссейна)
 		ft_exit(INVALID_DESCRIPTOR);
 	to_zeroes(&resolution, &ambient, &all_obj, &cameras);
 	while (get_next_line(fd, &line) > 0)

@@ -13,7 +13,7 @@
 #ifndef RENDER_H
 # define RENDER_H
 
-# define MAX_T 9999
+# define MAX_T 999
 # define NOT_ONE 0.9999f
 # define BLACK 0
 

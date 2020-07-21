@@ -221,6 +221,9 @@ set(SRC_FILES
         src/normalize.c
         src/reverse_vec.c
         src/rad_to_deg.c
+        src/vmulti.c
+        src/vaddition.c
+        src/vsubtract.c
         )
 
 add_executable(miniRT

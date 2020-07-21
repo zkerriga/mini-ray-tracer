@@ -86,6 +86,7 @@ lft:
 .PHONY: lx
 lx:
 	@$(MAKE) -s ./libs/minilibx
+#TODO: сделать перекомпиляцию библиотек дополнительных при вызове "re"
 
 $(NAME): $(GNL_FILES.O) $(EXIT_FILES.O) $(CLASS_FILES.O) $(PARSER_FILES.O) $(RENDER_FILES.O) $(MAIN_FILES.O)
 	@echo -e "\e[34m[ END ]\e[0m"

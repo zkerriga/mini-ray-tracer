@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "minirt.h"
 #include "cylinder.h"
+#include "func.h"
 
 static void	set_another(t_cylinder *cylinder, char *line)
 {
@@ -27,6 +28,9 @@ static void	set_another(t_cylinder *cylinder, char *line)
 	line = ft_next(line);
 	cylinder->color.b = (float)ft_atoi(line) / 255;
 	cylinder->del = &del_cylinder;
+	cylinder->solve = &cy_solve;
+	cylinder->get_n = &cy_get_n;
+	normalize(&cylinder->vector);
 }
 
 t_cylinder	*new_cylinder(char *line)
