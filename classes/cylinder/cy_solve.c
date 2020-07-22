@@ -14,7 +14,7 @@
 #include "func.h"
 #include "math.h"
 
-void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
+static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 {
 	float discriminant;
 	float t1;
@@ -45,31 +45,26 @@ void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 	}
 }
 
-t_bool			check_intersection(t_cylinder *self, t_point *intersection)
+static t_bool			check_intersection(t_cylinder *self, t_point *intersection)
 {
-	t_3dvector	center_to_intersection;
-	float		proj;
-
-	set_vector(&center_to_intersection, intersection, &self->point);
-	proj = abs(vdot(&center_to_intersection, &self->vector));
-	if (proj > self->height / 2)
+	if (pow(modulep(intersection, &self->point), 2) * 4 > self->diameter * self->diameter + self->height * self->height)
 		return (FALSE);
 	else
 		return (TRUE);
 }
 
-float			check_circle(t_point *circle_center, t_point *camera, t_3dvector *ray, float t, float diameter)
+static float			check_circle(t_cylinder *self, t_point *camera, t_3dvector *ray, float t)
 {
 	t_point		point;
 
 	set_point(&point, camera->x + t * ray->x, camera->y + t * ray->y, camera->z + t * ray->z);
-	if (modulep(&point, circle_center) > diameter / 2.f)
-		return (-1.f);
-	else
+	if (pow(modulep(&point, &self->point), 2) * 4 < self->diameter * self->diameter + self->height * self->height)
 		return (t);
+	else
+		return (-1.f);
 }
 
-float			check_plane(t_cylinder *self, t_point *camera, t_3dvector *ray,
+static float			check_plane(t_cylinder *self, t_point *camera, t_3dvector *ray,
 							t_limits *l)
 {
 	float		t[2];
@@ -92,9 +87,9 @@ float			check_plane(t_cylinder *self, t_point *camera, t_3dvector *ray,
 	t[1] = -vdot(&self->vector, &op) / denominator;
 	if (fbetween(t[0], l->min, l->max) &&
 		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
-		return (check_circle(&up, camera, ray, t[0], self->diameter));
+		return (check_circle(self, camera, ray, t[0]));
 	else if (fbetween(t[1], l->min, l->max))
-		return (check_circle(&down, camera, ray, t[1], self->diameter));
+		return (check_circle(self, camera, ray, t[1]));
 	else
 		return (-1.f);
 }
@@ -102,7 +97,7 @@ float			check_plane(t_cylinder *self, t_point *camera, t_3dvector *ray,
 float			cy_solve(t_cylinder *self, t_point *camera, t_3dvector *ray,
 							t_limits *l)
 {
-	float		t[2]; //TODO: сделать t[4] и внести туда решение плоскостей
+	float		t[3];
 	t_3dvector	oc;
 	float		k[3];
 	t_point		intersection;
@@ -114,11 +109,12 @@ float			cy_solve(t_cylinder *self, t_point *camera, t_3dvector *ray,
 	k[0] = vdot(ray, ray) - k[0] * k[0];
 	k[2] = vdot(&oc, &oc) - k[2] * k[2] - self->diameter * self->diameter / 4;
 	min_solution_of_equation(t, k, l);
-	if (t[0] > 0.f)
+	t[2] = check_plane(self, camera, ray, l);
+	if (t[0] > 0.f && (t[2] > 0.f && t[2] > t[0]) || t[2] < 0)
 	{
 		set_point(&intersection, camera->x + t[0] * ray->x, camera->y + t[0] * ray->y, camera->z + t[0] * ray->z);
 		if (check_intersection(self, &intersection))
 			return (t[0]);
 	}
-	return (check_plane(self, camera, ray, l));
+	return (t[2]);
 }

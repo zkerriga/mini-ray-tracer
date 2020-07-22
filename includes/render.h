@@ -13,9 +13,10 @@
 #ifndef RENDER_H
 # define RENDER_H
 
-# define MAX_T 999
-# define NOT_ONE 0.9999f
-# define BLACK 0
+# define INACCURACY (0.00001f)
+# define MAX_T (999)
+# define NOT_ONE (0.9999f)
+# define BLACK (0)
 
 # include "math.h"
 
