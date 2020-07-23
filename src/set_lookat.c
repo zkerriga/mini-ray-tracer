@@ -21,8 +21,15 @@ static void	set_default_lookat(t_matrix *lookat, t_3dvector *norm)
 	set_point(&fake_up, 0.f, 1.f, 0.f);
 	lookat->z_f = *norm;
 	vprod(&lookat->x_r, &fake_up, norm);
+	normalize(&lookat->x_r);
 	vprod(&lookat->y_u, norm, &lookat->x_r);
+	normalize(&lookat->y_u);
 }
+
+/*
+** The function creates a stripped-down version of the look at matrix
+** that contains only three dimensions.
+*/
 
 void		set_lookat(t_matrix *lookat, t_3dvector *norm)
 {
@@ -43,7 +50,4 @@ void		set_lookat(t_matrix *lookat, t_3dvector *norm)
 	}
 	else
 		set_default_lookat(lookat, norm);
-//	normalize(&lookat->x_r);
-//	normalize(&lookat->y_u);
-//	normalize(&lookat->z_f);
 }
