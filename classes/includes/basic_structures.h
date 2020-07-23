@@ -18,19 +18,21 @@
 
 typedef char	t_bool;
 
-typedef struct	s_point
-{
-	float		x;
-	float		y;
-	float		z;
-}				t_point;
-
 typedef struct	s_3dvector
 {
 	float		x;
 	float		y;
 	float		z;
 }				t_3dvector;
+
+typedef struct	s_3dvector	t_point;
+
+typedef struct	s_matrix
+{
+	t_3dvector	x_r;
+	t_3dvector	y_u;
+	t_3dvector	z_f;
+}				t_matrix;
 
 typedef struct	s_rgbvec
 {

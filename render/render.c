@@ -49,7 +49,7 @@ void				render(t_scene *scene, t_camera *camera,
 {
 	int			x;
 	int			y;
-	t_3dvector	*ray;
+	t_3dvector	ray;
 	float		d;
 	int			*image;
 
@@ -57,16 +57,15 @@ void				render(t_scene *scene, t_camera *camera,
 	{
 		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x); //TODO: создать структуру для этих дел
 		d = scene->get_d(scene, camera->fov);
-		rotate_ray(NULL, &camera->vector);
 		y = 0;
 		while (y < y_size)
 		{
 			x = 0;
 			while (x < x_size)
 			{
-				ray = rotate_ray(create_ray((float)x - (float)x_size / 2, (float)y - (float)y_size / 2, d), &camera->vector);
-				image[y * x_size + x] = trace_ray(scene, &camera->point, ray);
-				free(ray);
+				set_point(&ray, (float)x - (float)x_size / 2, (float)y - (float)y_size / 2, d);
+				rotate_ray(&ray, &camera->matrix);
+				image[y * x_size + x] = trace_ray(scene, &camera->point, &ray);
 				++x;
 			}
 			++y;

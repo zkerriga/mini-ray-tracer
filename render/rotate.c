@@ -14,6 +14,18 @@
 #include "func.h"
 #include "math.h"
 
+t_3dvector	*rotate_ray(t_3dvector *ray, t_matrix *lookat)
+{
+	t_3dvector	cp;
+
+	cp = *normalize(ray);
+	ray->x = cp.x * lookat->x_r.x + cp.y * lookat->y_u.x + cp.z * lookat->z_f.x;
+	ray->y = cp.x * lookat->x_r.y + cp.y * lookat->y_u.y + cp.z * lookat->z_f.y;
+	ray->z = cp.x * lookat->x_r.z + cp.y * lookat->y_u.z + cp.z * lookat->z_f.z;
+	return (ray);
+}
+
+/*
 t_3dvector	*rotate_x(t_3dvector *dest, t_3dvector tmp, float angle)
 {
 	dest->y = tmp.y * cos(angle) - tmp.z * sin(angle);
@@ -31,6 +43,7 @@ t_3dvector	*rotate_z(t_3dvector *dest, t_3dvector tmp, float angle)
 	dest->x = tmp.x * cos(angle) - tmp.y * sin(angle);
 	dest->y = tmp.x * sin(angle) + tmp.y * cos(angle);
 }
+*/
 /*
 float	get_first_angle(t_3dvector *dir)
 {
@@ -39,6 +52,7 @@ float	get_first_angle(t_3dvector *dir)
 	else
 		return (acos(dir->z));
 }*/
+/*
 
 t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir)
 {
@@ -68,3 +82,4 @@ t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir)
 //	rotate_z(ray, *ray, asin(dir->y));
 	return (ray);
 }
+*/

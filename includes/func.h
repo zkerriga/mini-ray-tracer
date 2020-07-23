@@ -33,5 +33,6 @@ float		rad_to_deg(float radians);
 t_3dvector	*vmulti(t_3dvector *dest, t_3dvector *vec, float multiplier);
 t_3dvector	*vaddition(t_3dvector *dest, t_3dvector *vec1, t_3dvector *vec2);
 t_3dvector	*vsubtract(t_3dvector *dest, t_3dvector *vec1, t_3dvector *vec2);
+void		set_lookat(t_matrix *lookat, t_3dvector *norm);
 
 #endif

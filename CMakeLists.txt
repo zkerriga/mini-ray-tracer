@@ -224,6 +224,7 @@ set(SRC_FILES
         src/vmulti.c
         src/vaddition.c
         src/vsubtract.c
+        src/set_lookat.c
         )
 
 add_executable(miniRT

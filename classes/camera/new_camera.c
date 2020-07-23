@@ -21,6 +21,7 @@ static void	set_another(t_camera *camera, char *line)
 	camera->fov = ft_atoi(line);
 	camera->del = &del_camera;
 	normalize(&camera->vector);
+	set_lookat(&camera->matrix, &camera->vector);
 }
 
 t_camera	*new_camera(char *line)

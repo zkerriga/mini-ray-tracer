@@ -26,6 +26,7 @@ int		color_definition(t_scene *scene, t_point *camera, t_any_object *obj, t_poin
 void	get_diffuse(t_rgbvec *diffuse, t_light *light,
 					t_any_object *obj, t_point *point, t_point *camera);
 t_bool	is_shadow_point(t_scene *scene, t_point *point, t_3dvector *ray);
-t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir);
+//t_3dvector	*rotate_ray(t_3dvector *ray, t_3dvector *dir);
+t_3dvector	*rotate_ray(t_3dvector *ray, t_matrix *lookat);
 
 #endif
