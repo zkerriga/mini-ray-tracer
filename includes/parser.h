@@ -18,5 +18,6 @@
 # include "get_next_line.h"
 
 t_scene	*parser(char *path, char *line);
+t_bool	match(char *str, char *format);
 
 #endif
