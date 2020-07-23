@@ -28,7 +28,7 @@ t_3dvector	*sq_get_n(t_square *self, t_point *point, t_point *camera)
 	norm->y = self->vector.y;
 	norm->z = self->vector.z;
 	set_vector(&camera_to_point, point, camera);
-	if (vdot(norm, &camera_to_point) < 0.f)
+	if (vdot(norm, &camera_to_point) > 0.f)
 		reverse_vec(norm);
 	return (normalize(norm));
 }

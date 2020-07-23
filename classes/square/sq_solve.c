@@ -17,11 +17,11 @@
 static void	create_ort_vec(t_3dvector *dest, t_3dvector *norm)
 {
 	if (norm->x != 0.f)
-		set_point(dest, -(norm->z + norm->y) / norm->x, 1.f, 1.f);
+		set_point(dest, -(norm->y) / norm->x, 1.f, 0.f);
 	else if (norm->y != 0.f)
-		set_point(dest, 1.f, -(norm->z + norm->x) / norm->y, 1.f);
+		set_point(dest, 1.f, -(norm->x) / norm->y, 0.f);
 	else
-		set_point(dest, 1.f, 1.f, -(norm->y + norm->x) / norm->z);
+		set_point(dest, 0.f, 1.f, -(norm->y) / norm->z);
 	normalize(dest);
 }
 
