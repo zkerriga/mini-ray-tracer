@@ -14,10 +14,10 @@
 #include "render.h"
 #include "parser.h"
 
-void	print_camera(t_camera *camera)
+void	print_camera(t_camera *camera) //TODO: delete this function
 {
 	puts("CAMERA:");
-	printf("point={%.1f,%.1f,%.1f} dir={%.1f,%.1f,%.1f}, fov=%d\n",
+	printf("point={%.1f,%.1f,%.1f} dir={%.2f,%.2f,%.2f}, fov=%d\n",
 			camera->point.x, camera->point.y, camera->point.z, camera->vector.x,
 			camera->vector.y, camera->vector.z, camera->fov);
 }
@@ -48,21 +48,56 @@ int	key_handler(int keycode, t_scene *scene)
 	}
 }
 
+void	argparse(t_args *args, int ac, char **av)
+{
+	args->path = NULL;
+	args->save = FALSE;
+	args->help = FALSE;
+
+	if (ac == 1)
+		args->help = TRUE;
+	else
+	{
+		while (--ac > 0)
+		{
+			if (ft_memcmp(av[ac], "--help", 7) == 0
+				|| ft_memcmp(av[ac], "-h", 3) == 0)
+				args->help = TRUE;
+			else if (ft_memcmp(av[ac], "--save", 7) == 0
+					|| ft_memcmp(av[ac], "-s", 3) == 0)
+				args->save = TRUE;
+			else if (args->path == NULL)
+				args->path = av[ac];
+			else
+				args->help = TRUE;
+		}
+	}
+	if (args->path == NULL)
+		args->help = TRUE;
+}
+
 int	main(int ac, char **av)
 {
 	t_scene	*scene;
+	t_args	args;
 
-	if (ac > 1)
-	{
-		scene = parser(av[1], NULL);
-		render(scene, scene->get_cam(scene, NONE),
-				scene->resolution->x_size, scene->resolution->y_size);
-		mlx_hook(scene->win, 2, 1L << 0, key_handler, scene);
-		mlx_loop(scene->mlx);
-	}
+	argparse(&args, ac, av);
+	if (args.help)
+		show_help();
 	else
 	{
-		//TODO: show help
+		scene = parser(av[1], NULL);
+		if (args.save)
+		{
+			//TODO: обработка сохранения
+		}
+		else
+		{
+			render(scene, scene->get_cam(scene, NONE),
+					scene->resolution->x_size, scene->resolution->y_size);
+			mlx_hook(scene->win, 2, 1L << 0, key_handler, scene);
+			mlx_loop(scene->mlx);
+		}
 	}
 	return (0);
 }

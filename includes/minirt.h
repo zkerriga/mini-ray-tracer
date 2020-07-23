@@ -35,10 +35,18 @@
 # include "stdio.h"
 # include "mlx.h"
 
+typedef struct	s_args
+{
+	t_bool		help;
+	t_bool		save;
+	const char	*path;
+}				t_args;
+
 void	ft_exit(int error_code);
 void	ft_exit_memerror(int error_code);
-void	ft_exit_invalid_input();
-void	ft_exit_invalid_descriptor();
-void	ft_exit_window_error();
+void	ft_exit_invalid_input(void);
+void	ft_exit_invalid_descriptor(void);
+void	ft_exit_window_error(void);
+void	show_help(void);
 
 #endif
