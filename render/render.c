@@ -44,8 +44,7 @@ static t_3dvector	*create_ray(t_3dvector *to)
 	return (normalize(ray));
 }*/
 
-void				render(t_scene *scene, t_camera *camera,
-							int x_size, int y_size)
+void				render(t_scene *scene, int x_size, int y_size)
 {
 	int			x;
 	int			y;
@@ -53,10 +52,10 @@ void				render(t_scene *scene, t_camera *camera,
 	float		d;
 	int			*image;
 
-	if (camera)
+	if (scene->act_cam)
 	{
 		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x); //TODO: создать структуру для этих дел
-		d = scene->get_d(scene, camera->fov);
+		d = scene->get_d(scene, scene->act_cam->fov);
 		y = 0;
 		while (y < y_size)
 		{
@@ -64,8 +63,8 @@ void				render(t_scene *scene, t_camera *camera,
 			while (x < x_size)
 			{
 				set_point(&ray, (float)x - (float)x_size / 2, (float)y - (float)y_size / 2, d);
-				rotate_ray(&ray, &camera->matrix);
-				image[y * x_size + x] = trace_ray(scene, &camera->point, &ray);
+				rotate_ray(&ray, &scene->act_cam->matrix);
+				image[y * x_size + x] = trace_ray(scene, &scene->act_cam->point, &ray);
 				++x;
 			}
 			++y;

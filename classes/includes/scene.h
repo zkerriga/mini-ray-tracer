@@ -31,6 +31,7 @@ typedef struct		s_scene
 	t_resolution	*resolution;
 	t_ambient		*ambient;
 	t_dlist			*cameras;
+	t_camera		*act_cam;
 	t_list			*lights;
 	t_list			*objects;
 	void			*mlx;

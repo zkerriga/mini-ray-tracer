@@ -30,6 +30,7 @@ static void	zeroes(t_scene *self)
 {
 	self->lights = NULL;
 	self->objects = NULL;
+	self->act_cam = NULL;
 }
 
 t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient,

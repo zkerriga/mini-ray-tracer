@@ -22,10 +22,8 @@ void	print_camera(t_camera *camera) //TODO: delete this function
 			camera->vector.y, camera->vector.z, camera->fov);
 }
 
-int	key_handler(int keycode, t_scene *scene)
+int		key_handler(int keycode, t_scene *scene)
 {
-	t_camera	*camera;
-
 	if (keycode == K_ESCAPE)
 	{
 		scene->del(scene);
@@ -34,17 +32,15 @@ int	key_handler(int keycode, t_scene *scene)
 	}
 	else if (keycode == K_RIGHT)
 	{
-		camera = scene->get_cam(scene, RIGHT);
-		print_camera(camera);
-		render(scene, camera,
-				scene->resolution->x_size, scene->resolution->y_size);
+		scene->act_cam = scene->get_cam(scene, RIGHT);
+		print_camera(scene->act_cam);
+		render(scene, scene->resolution->x_size, scene->resolution->y_size);
 	}
 	else if (keycode == K_LEFT)
 	{
-		camera = scene->get_cam(scene, LEFT);
-		print_camera(camera);
-		render(scene, camera,
-				scene->resolution->x_size, scene->resolution->y_size);
+		scene->act_cam = scene->get_cam(scene, LEFT);
+		print_camera(scene->act_cam);
+		render(scene, scene->resolution->x_size, scene->resolution->y_size);
 	}
 }
 
@@ -76,7 +72,7 @@ void	argparse(t_args *args, int ac, char **av)
 		args->help = TRUE;
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_scene	*scene;
 	t_args	args;
@@ -93,8 +89,8 @@ int	main(int ac, char **av)
 		}
 		else
 		{
-			render(scene, scene->get_cam(scene, NONE),
-					scene->resolution->x_size, scene->resolution->y_size);
+			scene->act_cam = scene->get_cam(scene, NONE);
+			render(scene, scene->resolution->x_size, scene->resolution->y_size);
 			mlx_hook(scene->win, 2, 1L << 0, key_handler, scene);
 			mlx_loop(scene->mlx);
 		}
