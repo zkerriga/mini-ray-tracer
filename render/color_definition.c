@@ -54,7 +54,8 @@ int				color_definition(t_scene *scene, t_point *camera,
 		if (!is_shadow_point(scene, &((t_light *)list->content)->point,
 								&light_vec))
 		{
-			get_diffuse(&diffuse, list->content, obj, point, camera);
+			get_diffuse(&diffuse, list->content, obj->get_n(obj, point, camera),
+						point);
 		}
 		list = list->next;
 	}

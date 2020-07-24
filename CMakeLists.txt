@@ -34,6 +34,7 @@ set(HEADER_FILES
         classes/includes/square.h
         classes/includes/triangle.h
         classes/includes/basic_structures.h
+        classes/includes/dmlx.h
 
         )
 
@@ -107,6 +108,7 @@ set(LIBS_SRC
         libs/minilibx/mlx_flush_event.c
         libs/minilibx/mlx_get_color_value.c
         libs/minilibx/mlx_get_data_addr.c
+        libs/minilibx/mlx_get_screen_size.c
         libs/minilibx/mlx_hook.c
         libs/minilibx/mlx_init.c
         libs/minilibx/mlx_int_anti_resize_win.c
@@ -190,7 +192,14 @@ set(SRC_FILES
         classes/triangle/tr_get_n.c
         classes/triangle/tr_solve.c
 
+        classes/dmlx/new_dmlx.c
+        classes/dmlx/del_dmlx.c
+        classes/dmlx/create_window.c
+        classes/dmlx/put_image_to_bmp.c
+        classes/dmlx/put_image_to_win.c
+
         parser/parser.c
+        parser/match.c
 
         render/render.c
         render/trace_ray.c
@@ -207,6 +216,7 @@ set(SRC_FILES
         exit/ft_exit_invalid_descriptor.c
         exit/ft_exit_window_error.c
 
+        src/show_help.c
         src/color_to_int.c
         src/vdot.c
         src/color_sum.c

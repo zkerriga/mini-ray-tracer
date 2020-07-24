@@ -30,17 +30,13 @@ int		key_handler(int keycode, t_scene *scene)
 		free_gc(NULL);
 		exit(0);
 	}
-	else if (keycode == K_RIGHT)
+	else if (keycode == K_RIGHT || keycode == K_LEFT)
 	{
-		scene->act_cam = scene->get_cam(scene, RIGHT);
+		scene->act_cam = scene->get_cam(scene,
+										keycode == K_RIGHT ? RIGHT : LEFT);
 		print_camera(scene->act_cam);
 		render(scene, scene->resolution->x_size, scene->resolution->y_size);
-	}
-	else if (keycode == K_LEFT)
-	{
-		scene->act_cam = scene->get_cam(scene, LEFT);
-		print_camera(scene->act_cam);
-		render(scene, scene->resolution->x_size, scene->resolution->y_size);
+		scene->dmlx->put_win(scene->dmlx);
 	}
 }
 
@@ -83,16 +79,19 @@ int		main(int ac, char **av)
 	else
 	{
 		scene = parser(av[1], NULL);
+		scene->act_cam = scene->get_cam(scene, NONE);
 		if (args.save)
 		{
-			//TODO: обработка сохранения
+			render(scene, scene->resolution->x_size, scene->resolution->y_size);
+			scene->dmlx->put_bmp(scene->dmlx);
 		}
 		else
 		{
-			scene->act_cam = scene->get_cam(scene, NONE);
+			scene->dmlx->set_win(scene->dmlx, scene->resolution->x_size, scene->resolution->y_size);
 			render(scene, scene->resolution->x_size, scene->resolution->y_size);
-			mlx_hook(scene->win, 2, 1L << 0, key_handler, scene);
-			mlx_loop(scene->mlx);
+			scene->dmlx->put_win(scene->dmlx);
+			mlx_hook(scene->dmlx->win, 2, 1L << 0, key_handler, scene);
+			mlx_loop(scene->dmlx->mlx);
 		}
 	}
 	return (0);

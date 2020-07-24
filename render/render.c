@@ -14,37 +14,7 @@
 #include "render.h"
 #include "func.h"
 
-static t_3dvector	*create_ray(float x, float y, float z)
-{
-	t_3dvector	*ray;
-
-	if (!(ray = (t_3dvector *)malloc(sizeof(t_3dvector))))
-	{
-		free_gc(NULL);
-		ft_exit(ENOMEM);
-	}
-	ray->x = x;
-	ray->y = y;
-	ray->z = z;
-	return (normalize(ray));
-}
-/*
-static t_3dvector	*create_ray(t_3dvector *to)
-{
-	t_3dvector	*ray;
-
-	if (!(ray = (t_3dvector *)malloc(sizeof(t_3dvector))))
-	{
-		free_gc(NULL);
-		ft_exit(ENOMEM);
-	}
-	ray->x = to->x;
-	ray->y = to->y;
-	ray->z = to->z;
-	return (normalize(ray));
-}*/
-
-void				render(t_scene *scene, int x_size, int y_size)
+int		*render(t_scene *scene, int x_size, int y_size)
 {
 	int			x;
 	int			y;
@@ -52,9 +22,9 @@ void				render(t_scene *scene, int x_size, int y_size)
 	float		d;
 	int			*image;
 
+	image = scene->dmlx->addr;
 	if (scene->act_cam)
 	{
-		image = (int *)mlx_get_data_addr(scene->img, &x, &x, &x); //TODO: создать структуру для этих дел
 		d = scene->get_d(scene, scene->act_cam->fov);
 		y = 0;
 		while (y < y_size)
@@ -69,6 +39,6 @@ void				render(t_scene *scene, int x_size, int y_size)
 			}
 			++y;
 		}
-		mlx_put_image_to_window(scene->mlx, scene->win, scene->img, 0, 0);
 	}
+	return (image);
 }

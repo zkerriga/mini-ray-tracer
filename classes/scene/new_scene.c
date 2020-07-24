@@ -14,16 +14,9 @@
 #include "libft.h"
 #include "minirt.h"
 
-static void	start_mlx(t_scene *self)
+static void	mlx_setup(t_scene *self)
 {
-	if (!(self->mlx = mlx_init()))
-		ft_exit(WINDOW_ERROR);
-	if (!(self->win = mlx_new_window(self->mlx, self->resolution->x_size,
-									 self->resolution->y_size, MAINTAINER)))
-		ft_exit(WINDOW_ERROR);
-	if (!(self->img = mlx_new_image(self->mlx, self->resolution->x_size,
-										self->resolution->y_size)))
-		ft_exit(WINDOW_ERROR);
+	self->dmlx = new_dmlx(&self->resolution->x_size, &self->resolution->y_size);
 }
 
 static void	zeroes(t_scene *self)
@@ -56,7 +49,7 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient,
 			ft_lstadd_front(&scene->objects, all_obj);
 		all_obj = tmp;
 	}
-	start_mlx(scene);
+	mlx_setup(scene);
 	scene->get_d = &get_d;
 	scene->del = &del_scene;
 	scene->get_cam = &get_active_camera;
