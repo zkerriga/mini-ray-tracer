@@ -83,7 +83,7 @@ int		main(int ac, char **av)
 		if (args.save)
 		{
 			render(scene, scene->resolution->x_size, scene->resolution->y_size);
-			scene->dmlx->put_bmp(scene->dmlx);
+			scene->dmlx->put_bmp(scene->dmlx, scene->resolution->x_size, scene->resolution->y_size);
 		}
 		else
 		{
