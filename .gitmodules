@@ -10,3 +10,6 @@
 [submodule "libs/minilibx"]
 	path = libs/minilibx
 	url = https://github.com/ttshivhula/minilibx.git
+[submodule "libs/libgraphic_math"]
+	path = libs/libgraphic_math
+	url = https://github.com/zkerriga/libgraphic_math.git
