@@ -19,3 +19,15 @@ t_3dvector	*reverse_vec(t_3dvector *vector)
 	vector->z *= -1.f;
 	return (vector);
 }
+
+/*
+** Inverts the vector and writes the result to dest.
+*/
+
+t_3dvector	*vreverse(t_3dvector *dest, t_3dvector *vector)
+{
+	dest->x = vector->x * -1.f;
+	dest->y = vector->y * -1.f;
+	dest->z = vector->z * -1.f;
+	return (dest);
+}

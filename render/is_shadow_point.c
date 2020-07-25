@@ -19,21 +19,18 @@ t_bool	is_shadow_point(t_scene *scene, t_point *light_point, t_3dvector *ray)
 	t_any_object	*any;
 	t_list			*objects;
 	t_3dvector		reverse_ray;
+	t_limits		lim;
 
-	reverse_ray.x = ray->x * (-1.0f);
-	reverse_ray.y = ray->y * (-1.0f);
-	reverse_ray.z = ray->z * (-1.0f);
+	vreverse(&reverse_ray, ray);
 	objects = scene->objects;
 	while (objects)
 	{
 		any = objects->content;
 		if (any->solve(any, light_point, &reverse_ray,
-			ray_lim(0.0f, NOT_ONE)) > 0.0f)
+			ray_lim(&lim, 0.f, NOT_ONE)) > 0.f)
 		{
-			ray_lim(0, 0);
 			return (TRUE);
 		}
-		ray_lim(0, 0);
 		objects = objects->next;
 	}
 	return (FALSE);

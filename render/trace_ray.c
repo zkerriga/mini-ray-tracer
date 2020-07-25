@@ -29,28 +29,27 @@ static t_point	*get_point(t_point *camera, t_3dvector *ray, float t)
 	return (point);
 }
 
-int				trace_ray(t_scene *scene, t_point *cam, t_3dvector *ray)
+int				trace_ray(t_scene *scene, t_point *cam, t_list *objects, t_3dvector *ray)
 {
-	t_list			*objects;
 	t_any_object	*any;
+	t_any_object	*found;
+	t_limits		lim;
 	float			t;
 	float			t_min;
-	t_any_object	*found;
 
-	if (!(objects = scene->objects))
+	if (objects == NULL)
 		return (BLACK);
 	t_min = MAX_T;
 	found = NULL;
 	while (objects)
 	{
 		any = objects->content;
-		if ((t = any->solve(any, cam, ray, ray_lim(1.f, MAX_T))) > 0
+		if ((t = any->solve(any, cam, ray, ray_lim(&lim, 1.f, MAX_T))) > 0
 			&& t < t_min)
 		{
 			t_min = t;
 			found = any;
 		}
-		ray_lim(0, 0);
 		objects = objects->next;
 	}
 	if (found)

@@ -32,9 +32,9 @@ int		*render(t_scene *scene, int x_size, int y_size)
 			x = 0;
 			while (x < x_size)
 			{
-				set_point(&ray, (float)x - (float)x_size / 2, (float)y - (float)y_size / 2, d);
+				set_point(&ray, (float)x - (float)x_size / 2.f, (float)y - (float)y_size / 2.f, d);
 				rotate_ray(&ray, &scene->act_cam->matrix);
-				image[y * x_size + x] = trace_ray(scene, &scene->act_cam->point, &ray);
+				image[y * x_size + x] = trace_ray(scene, &scene->act_cam->point, scene->objects, &ray);
 				++x;
 			}
 			++y;

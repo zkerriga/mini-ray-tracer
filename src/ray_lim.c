@@ -18,24 +18,9 @@
 ** and the second time to delete it.
 */
 
-t_limits	*ray_lim(float min, float max)
+t_limits	*ray_lim(t_limits *dest, float min, float max)
 {
-	static t_limits	*limits = NULL;
-
-	if (!limits)
-	{
-		if (!(limits = (t_limits *)malloc(sizeof(t_limits))))
-		{
-			free_gc(NULL);
-			ft_exit(ENOMEM);
-		}
-		limits->min = min;
-		limits->max = max;
-	}
-	else
-	{
-		free(limits);
-		limits = NULL;
-	}
-	return (limits);
+	dest->min = min;
+	dest->max = max;
+	return (dest);
 }

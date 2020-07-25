@@ -24,7 +24,7 @@ float		modulep(t_point *a, t_point *b);
 t_bool		fbetween(float nbr, float down, float up);
 void		set_vector(t_3dvector *dest, t_point *to, t_point *from);
 float		maxf(float one, float two);
-t_limits	*ray_lim(float min, float max);
+t_limits	*ray_lim(t_limits *dest, float min, float max);
 t_3dvector	*vprod(t_3dvector *dest, t_3dvector *a, t_3dvector *b);
 void		set_point(t_3dvector *dest, float x, float y, float z);
 t_3dvector	*normalize(t_3dvector *vector);
@@ -34,5 +34,6 @@ t_3dvector	*vmulti(t_3dvector *dest, t_3dvector *vec, float multiplier);
 t_3dvector	*vaddition(t_3dvector *dest, t_3dvector *vec1, t_3dvector *vec2);
 t_3dvector	*vsubtract(t_3dvector *dest, t_3dvector *vec1, t_3dvector *vec2);
 void		set_lookat(t_matrix *lookat, t_3dvector *norm);
+t_3dvector	*vreverse(t_3dvector *dest, t_3dvector *vector);
 
 #endif
