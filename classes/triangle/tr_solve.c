@@ -19,11 +19,11 @@ t_bool			check_in_triangle(t_triangle *self, t_point *intersection)
 	float	b = vdot(&self->ab_edge, &self->ac_edge);
 	float	c = vdot(&self->ac_edge, &self->ac_edge);
 	float	D;
-	t_3dvector	tmp1;
-	t_3dvector	tmp2;
-	t_3dvector	u_beta;
-	t_3dvector	u_gama;
-	t_3dvector	r;
+	t_vec3	tmp1;
+	t_vec3	tmp2;
+	t_vec3	u_beta;
+	t_vec3	u_gama;
+	t_vec3	r;
 
 	D = a * c - b * b;
 	vsubtract(&u_beta, vmulti(&tmp1, &self->ab_edge, c / D), vmulti(&tmp2, &self->ac_edge, b / D));
@@ -34,11 +34,11 @@ t_bool			check_in_triangle(t_triangle *self, t_point *intersection)
 	return (TRUE);
 }
 
-float			tr_solve(t_triangle *self, t_point *camera, t_3dvector *ray,
-							t_limits *l)
+float			tr_solve(t_triangle *self, t_point *camera, t_vec3 *ray,
+						  t_limits *l)
 {
 	float		t;
-	t_3dvector	cam_to_first;
+	t_vec3	cam_to_first;
 	t_point		intersection;
 
 	if ((t = vdot(&self->norm, ray)) == 0.f)

@@ -16,7 +16,7 @@
 ** Write to `dest` x,y,z-coordinates.
 */
 
-void	set_point(t_3dvector *dest, float x, float y, float z)
+void	set_point(t_vec3 *dest, float x, float y, float z)
 {
 	dest->x = x;
 	dest->y = y;

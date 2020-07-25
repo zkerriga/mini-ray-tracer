@@ -18,11 +18,11 @@
 ** The function gets the light and should add its effect on the pixel.
 */
 
-void	get_diffuse(t_rgbvec *diffuse, t_light *light, t_3dvector *norm,
+void	get_diffuse(t_rgbvec *diffuse, t_light *light, t_vec3 *norm,
 					t_point *point)
 {
 	float		diff;
-	t_3dvector	light_vec;
+	t_vec3	light_vec;
 	t_rgbvec	color;
 
 	set_vector(&light_vec, &light->point, point);

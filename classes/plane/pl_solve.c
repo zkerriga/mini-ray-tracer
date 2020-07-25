@@ -14,10 +14,10 @@
 #include "plane.h"
 #include "func.h"
 
-float	pl_solve(t_plane *self, t_point *camera, t_3dvector *ray, t_limits *l)
+float	pl_solve(t_plane *self, t_point *camera, t_vec3 *ray, t_limits *l)
 {
 	float		t;
-	t_3dvector	op;
+	t_vec3	op;
 
 	if ((t = vdot(&self->norm, ray)) == 0.f)
 		return (-1.f);

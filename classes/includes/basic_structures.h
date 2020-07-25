@@ -18,20 +18,20 @@
 
 typedef char	t_bool;
 
-typedef struct	s_3dvector
+typedef struct	s_vec3
 {
 	float		x;
 	float		y;
 	float		z;
-}				t_3dvector;
+}				t_vec3;
 
-typedef struct	s_3dvector	t_point;
+typedef struct s_vec3	t_point;
 
 typedef struct	s_matrix
 {
-	t_3dvector	x_r;
-	t_3dvector	y_u;
-	t_3dvector	z_f;
+	t_vec3		x_r;
+	t_vec3		y_u;
+	t_vec3		z_f;
 }				t_matrix;
 
 typedef struct	s_rgbvec
@@ -52,8 +52,8 @@ typedef struct	s_any_object
 	char		identifier[2];
 	void		(*del)(struct s_any_object *);
 	float		(*solve)(struct s_any_object *, t_point *,
-							t_3dvector *, t_limits *);
-	t_3dvector	*(*get_n)(struct s_any_object *, t_point *, t_point *);
+						  t_vec3 *, t_limits *);
+	t_vec3		*(*get_n)(struct s_any_object *, t_point *, t_point *);
 	t_rgbvec	color;
 }				t_any_object;
 

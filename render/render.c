@@ -18,7 +18,7 @@ int		*render(t_scene *scene, int x_size, int y_size)
 {
 	int			x;
 	int			y;
-	t_3dvector	ray;
+	t_vec3	ray;
 	float		d;
 	int			*image;
 

@@ -19,7 +19,7 @@ typedef struct	s_camera
 {
 	char		identifier[2];
 	t_point		point;
-	t_3dvector	vector;
+	t_vec3		norm;
 	int			fov;
 	t_matrix	matrix;
 	void		(*del)(struct s_camera *);

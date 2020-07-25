@@ -19,12 +19,11 @@ typedef struct	s_cylinder
 {
 	char		identifier[2];
 	void		(*del)(struct s_cylinder *);
-	float		(*solve)(struct s_cylinder *, t_point *,
-							t_3dvector *, t_limits *);
-	t_3dvector	*(*get_n)(struct s_cylinder *, t_point *, t_point *);
+	float		(*solve)(struct s_cylinder *, t_point *, t_vec3 *, t_limits *);
+	t_vec3		*(*get_n)(struct s_cylinder *, t_point *, t_point *);
 	t_rgbvec	color;
 	t_point		point;
-	t_3dvector	vector;
+	t_vec3		vector;
 	float		diameter;
 	float		height;
 }				t_cylinder;
@@ -32,8 +31,8 @@ typedef struct	s_cylinder
 t_cylinder		*new_cylinder(char *line);
 void			del_cylinder(t_cylinder *self);
 t_bool			cylinder_is_valid(char *line);
-float			cy_solve(t_cylinder *self, t_point *camera, t_3dvector *ray,
+float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
 							t_limits *l);
-t_3dvector		*cy_get_n(t_cylinder *self, t_point *point, t_point *camera);
+t_vec3			*cy_get_n(t_cylinder *self, t_point *point, t_point *camera);
 
 #endif

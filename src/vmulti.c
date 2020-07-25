@@ -17,7 +17,7 @@
 ** Returns the original pointer to dest.
 */
 
-t_3dvector	*vmulti(t_3dvector *dest, t_3dvector *vec, float multiplier)
+t_vec3	*vmulti(t_vec3 *dest, t_vec3 *vec, float multiplier)
 {
 	dest->x = vec->x * multiplier;
 	dest->y = vec->y * multiplier;

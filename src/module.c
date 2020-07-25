@@ -17,7 +17,7 @@
 ** Calculates the length of the vector.
 */
 
-float	module(t_3dvector *vector)
+float	module(t_vec3 *vector)
 {
 	return (sqrt(pow(vector->x, 2) +
 					pow(vector->y, 2) +

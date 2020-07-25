@@ -17,7 +17,7 @@
 ** Normalizes the vector to a unit length.
 */
 
-t_3dvector	*normalize(t_3dvector *vector)
+t_vec3	*normalize(t_vec3 *vector)
 {
 	float	divider;
 

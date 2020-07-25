@@ -20,8 +20,8 @@ static void	set_another(t_camera *camera, char *line)
 	line = ft_next(line);
 	camera->fov = ft_atoi(line);
 	camera->del = &del_camera;
-	normalize(&camera->vector);
-	set_lookat(&camera->matrix, &camera->vector);
+	normalize(&camera->norm);
+	set_lookat(&camera->matrix, &camera->norm);
 }
 
 t_camera	*new_camera(char *line)
@@ -41,11 +41,11 @@ t_camera	*new_camera(char *line)
 	line = ft_next(line);
 	camera->point.z = ft_atof(line);
 	line = ft_next(line);
-	camera->vector.x = ft_atof(line);
+	camera->norm.x = ft_atof(line);
 	line = ft_next(line);
-	camera->vector.y = ft_atof(line);
+	camera->norm.y = ft_atof(line);
 	line = ft_next(line);
-	camera->vector.z = ft_atof(line);
+	camera->norm.z = ft_atof(line);
 	set_another(camera, line);
 	return (camera);
 }

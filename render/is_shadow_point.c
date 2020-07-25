@@ -14,11 +14,11 @@
 #include "render.h"
 #include "func.h"
 
-t_bool	is_shadow_point(t_scene *scene, t_point *light_point, t_3dvector *ray)
+t_bool	is_shadow_point(t_scene *scene, t_point *light_point, t_vec3 *ray)
 {
 	t_any_object	*any;
 	t_list			*objects;
-	t_3dvector		reverse_ray;
+	t_vec3		reverse_ray;
 	t_limits		lim;
 
 	vreverse(&reverse_ray, ray);

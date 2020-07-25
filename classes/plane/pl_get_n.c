@@ -14,12 +14,12 @@
 #include "plane.h"
 #include "func.h"
 
-t_3dvector	*pl_get_n(t_plane *self, t_point *point, t_point *camera)
+t_vec3	*pl_get_n(t_plane *self, t_point *point, t_point *camera)
 {
-	t_3dvector	*norm;
-	t_3dvector	camera_to_point;
+	t_vec3	*norm;
+	t_vec3	camera_to_point;
 
-	if (!(norm = (t_3dvector *)malloc(sizeof(t_3dvector))))
+	if (!(norm = (t_vec3 *)malloc(sizeof(t_vec3))))
 	{
 		free_gc(NULL);
 		ft_exit(ENOMEM);

@@ -53,7 +53,7 @@ static t_bool			check_intersection(t_cylinder *self, t_point *intersection)
 		return (TRUE);
 }
 
-static float			check_circle(t_cylinder *self, t_point *camera, t_3dvector *ray, float t)
+static float			check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, float t)
 {
 	t_point		point;
 
@@ -64,14 +64,14 @@ static float			check_circle(t_cylinder *self, t_point *camera, t_3dvector *ray, 
 		return (-1.f);
 }
 
-static float			check_plane(t_cylinder *self, t_point *camera, t_3dvector *ray,
-							t_limits *l)
+static float			check_plane(t_cylinder *self, t_point *camera, t_vec3 *ray,
+									t_limits *l)
 {
 	float		t[2];
 	float		denominator;
 	t_point		up;
 	t_point		down;
-	t_3dvector	op;
+	t_vec3	op;
 
 	if ((denominator = vdot(&self->vector, ray)) == 0.f)
 		return (-1.f);
@@ -94,11 +94,11 @@ static float			check_plane(t_cylinder *self, t_point *camera, t_3dvector *ray,
 		return (-1.f);
 }
 
-float			cy_solve(t_cylinder *self, t_point *camera, t_3dvector *ray,
-							t_limits *l)
+float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
+						  t_limits *l)
 {
 	float		t[3];
-	t_3dvector	oc;
+	t_vec3	oc;
 	float		k[3];
 	t_point		intersection;
 

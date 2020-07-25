@@ -20,8 +20,8 @@ void	print_camera(t_camera *camera)
 {
 	puts("CAMERA:");
 	printf("point={%.1f,%.1f,%.1f} dir={%.2f,%.2f,%.2f}, fov=%d\n",
-			camera->point.x, camera->point.y, camera->point.z, camera->vector.x,
-			camera->vector.y, camera->vector.z, camera->fov);
+			camera->point.x, camera->point.y, camera->point.z, camera->norm.x,
+			camera->norm.y, camera->norm.z, camera->fov);
 }
 
 #else

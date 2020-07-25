@@ -40,11 +40,11 @@ static float	solution_of_equation(float k1, float k2, float k3, t_bool get1)
 }
 
 float			sp_solve(t_sphere *self, t_point *cam,
-							t_3dvector *ray, t_limits *l)
+						  t_vec3 *ray, t_limits *l)
 {
 	float		t1;
 	float		t2;
-	t_3dvector	oc;
+	t_vec3	oc;
 
 	set_vector(&oc, cam, &self->center);
 	t1 = solution_of_equation(vdot(ray, ray), 2 * vdot(&oc, ray),

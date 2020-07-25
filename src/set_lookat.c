@@ -14,9 +14,9 @@
 #include "minirt.h"
 #include "math.h"
 
-static void	set_default_lookat(t_matrix *lookat, t_3dvector *norm)
+static void	set_default_lookat(t_matrix *lookat, t_vec3 *norm)
 {
-	t_3dvector	fake_up;
+	t_vec3	fake_up;
 
 	set_point(&fake_up, 0.f, 1.f, 0.f);
 	lookat->z_f = *norm;
@@ -31,7 +31,7 @@ static void	set_default_lookat(t_matrix *lookat, t_3dvector *norm)
 ** that contains only three dimensions.
 */
 
-void		set_lookat(t_matrix *lookat, t_3dvector *norm)
+void		set_lookat(t_matrix *lookat, t_vec3 *norm)
 {
 	if (norm->x == 0.f && norm->z == 0.f && fabs(norm->y) == 1.0)
 	{

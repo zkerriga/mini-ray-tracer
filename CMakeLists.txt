@@ -22,6 +22,7 @@ set(HEADER_FILES
         includes/render.h
         includes/minirt.h
         includes/func.h
+        includes/events.h
 
         classes/includes/ambient.h
         classes/includes/camera.h
@@ -215,6 +216,9 @@ set(SRC_FILES
         exit/ft_exit_invalid_input.c
         exit/ft_exit_invalid_descriptor.c
         exit/ft_exit_window_error.c
+
+        events/key_handler.c
+        events/close_handler.c
 
         src/show_help.c
         src/color_to_int.c

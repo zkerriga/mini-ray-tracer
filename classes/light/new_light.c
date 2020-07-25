@@ -33,11 +33,11 @@ t_light	*new_light(char *line)
 	line = ft_next(line);
 	light->light_ratio = ft_atof(line);
 	line = ft_next(line);
-	light->color.r = (float)ft_atoi(line) / 255;
+	light->color.r = light->light_ratio * ((float)ft_atoi(line) / 255.f);
 	line = ft_next(line);
-	light->color.g = (float)ft_atoi(line) / 255;
+	light->color.g = light->light_ratio * ((float)ft_atoi(line) / 255.f);
 	line = ft_next(line);
-	light->color.b = (float)ft_atoi(line) / 255;
+	light->color.b = light->light_ratio * ((float)ft_atoi(line) / 255.f);
 	light->del = &del_light;
 	return (light);
 }

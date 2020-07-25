@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_3dvector	*reverse_vec(t_3dvector *vector)
+t_vec3	*reverse_vec(t_vec3 *vector)
 {
 	vector->x *= -1.f;
 	vector->y *= -1.f;
@@ -24,7 +24,7 @@ t_3dvector	*reverse_vec(t_3dvector *vector)
 ** Inverts the vector and writes the result to dest.
 */
 
-t_3dvector	*vreverse(t_3dvector *dest, t_3dvector *vector)
+t_vec3	*vreverse(t_vec3 *dest, t_vec3 *vector)
 {
 	dest->x = vector->x * -1.f;
 	dest->y = vector->y * -1.f;

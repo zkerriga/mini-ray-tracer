@@ -14,7 +14,7 @@
 #include "render.h"
 #include "func.h"
 
-static t_point	*get_point(t_point *camera, t_3dvector *ray, float t)
+static t_point	*get_point(t_point *camera, t_vec3 *ray, float t)
 {
 	t_point		*point;
 
@@ -29,7 +29,7 @@ static t_point	*get_point(t_point *camera, t_3dvector *ray, float t)
 	return (point);
 }
 
-int				trace_ray(t_scene *scene, t_point *cam, t_list *objects, t_3dvector *ray)
+int				trace_ray(t_scene *scene, t_point *cam, t_list *objects, t_vec3 *ray)
 {
 	t_any_object	*any;
 	t_any_object	*found;

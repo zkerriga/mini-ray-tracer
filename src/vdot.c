@@ -16,7 +16,7 @@
 ** Scalar multiplication of two vectors
 */
 
-float	vdot(t_3dvector *vec1, t_3dvector *vec2)
+float	vdot(t_vec3 *vec1, t_vec3 *vec2)
 {
 	return (vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z);
 }

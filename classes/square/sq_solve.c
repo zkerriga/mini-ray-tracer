@@ -14,7 +14,7 @@
 #include "square.h"
 #include "func.h"
 
-static void	create_ort_vec(t_3dvector *dest, t_3dvector *norm)
+static void	create_ort_vec(t_vec3 *dest, t_vec3 *norm)
 {
 	if (norm->x != 0.f)
 		set_point(dest, -(norm->y) / norm->x, 1.f, 0.f);
@@ -25,13 +25,13 @@ static void	create_ort_vec(t_3dvector *dest, t_3dvector *norm)
 	normalize(dest);
 }
 
-float		sq_solve(t_square *self, t_point *camera, t_3dvector *ray, t_limits *l)
+float		sq_solve(t_square *self, t_point *camera, t_vec3 *ray, t_limits *l)
 {
 	float		t;
 	t_point		dot;
-	t_3dvector	tmp;
-	t_3dvector	right;
-	t_3dvector	up;
+	t_vec3	tmp;
+	t_vec3	right;
+	t_vec3	up;
 
 	if ((t = vdot(&self->vector, ray)) == 0.f)
 		return (-1.f);

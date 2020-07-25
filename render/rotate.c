@@ -17,9 +17,9 @@
 ** The function multiplies the beam vector by the camera transformation matrix.
 */
 
-t_3dvector	*rotate_ray(t_3dvector *ray, t_matrix *lookat)
+t_vec3	*rotate_ray(t_vec3 *ray, t_matrix *lookat)
 {
-	t_3dvector	cp;
+	t_vec3	cp;
 
 	cp = *normalize(ray);
 	ray->x = cp.x * lookat->x_r.x + cp.y * lookat->y_u.x + cp.z * lookat->z_f.x;

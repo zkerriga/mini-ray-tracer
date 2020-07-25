@@ -22,23 +22,23 @@ TEST (triangle, t1)
 	t_point	t;
 	t_point	p;
 	t_point	d;
-	t_3dvector	fs;
-	t_3dvector	st;
-	t_3dvector	tf;
+	t_vec3	fs;
+	t_vec3	st;
+	t_vec3	tf;
 
-	t_3dvector	fp;
-	t_3dvector	sp;
-	t_3dvector	tp;
+	t_vec3	fp;
+	t_vec3	sp;
+	t_vec3	tp;
 
-	t_3dvector	fd;
-	t_3dvector	sd;
-	t_3dvector	td;
+	t_vec3	fd;
+	t_vec3	sd;
+	t_vec3	td;
 
-	set_point((t_3dvector *)&f, 1.f, 1.f, 0.f);
-	set_point((t_3dvector *)&s, 3.f, 6.f, 0.f);
-	set_point((t_3dvector *)&t, 11.f, 2.f, 0.f);
-	set_point((t_3dvector *)&p, 8.f, 3.f, 0.f);
-	set_point((t_3dvector *)&d, 1.f, 2.f, 0.f);
+	set_point((t_vec3 *)&f, 1.f, 1.f, 0.f);
+	set_point((t_vec3 *)&s, 3.f, 6.f, 0.f);
+	set_point((t_vec3 *)&t, 11.f, 2.f, 0.f);
+	set_point((t_vec3 *)&p, 8.f, 3.f, 0.f);
+	set_point((t_vec3 *)&d, 1.f, 2.f, 0.f);
 
 	set_vector(&fs, &s, &f);
 	set_vector(&st, &t, &s);

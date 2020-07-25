@@ -19,7 +19,7 @@ static t_bool		is_plane(t_cylinder *self, t_point *point)
 {
 	t_point		up;
 	t_point		down;
-	t_3dvector	tmp;
+	t_vec3	tmp;
 
 	set_point(&up, self->point.x + (self->height / 2) * self->vector.x,
 				self->point.y + (self->height / 2) * self->vector.y,
@@ -38,14 +38,14 @@ static t_bool		is_plane(t_cylinder *self, t_point *point)
 	return (FALSE);
 }
 
-t_3dvector		*cy_get_n(t_cylinder *self, t_point *point, t_point *camera)
+t_vec3		*cy_get_n(t_cylinder *self, t_point *point, t_point *camera)
 {
-	t_3dvector *norm;
-	t_3dvector camera_to_point;
-	t_3dvector point_to_center;
-	t_3dvector orthogonal;
+	t_vec3 *norm;
+	t_vec3 camera_to_point;
+	t_vec3 point_to_center;
+	t_vec3 orthogonal;
 
-	if (!(norm = (t_3dvector *) malloc(sizeof(t_3dvector))))
+	if (!(norm = (t_vec3 *) malloc(sizeof(t_vec3))))
 	{
 		free_gc(NULL);
 		ft_exit(ENOMEM);

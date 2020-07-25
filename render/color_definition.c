@@ -77,7 +77,7 @@ int				color_definition(t_scene *scene, t_point *camera,
 	t_rgbvec		diffuse;
 	t_rgbvec		result;
 	t_list			*list;
-	t_3dvector		light_vec;
+	t_vec3		light_vec;
 
 	zero_color(&result);
 	zero_color(&diffuse);
