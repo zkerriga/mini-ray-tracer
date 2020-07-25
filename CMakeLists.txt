@@ -229,6 +229,7 @@ set(SRC_FILES
         src/render/color_definition.c
         src/render/get_diffuse.c
         src/render/is_shadow_point.c
+        src/render/ray_lim.c
 
         minirt.c
 
@@ -242,7 +243,6 @@ set(SRC_FILES
         src/events/close_handler.c
 
         src/show_help.c
-        src/ray_lim.c
         )
 
 add_executable(miniRT
