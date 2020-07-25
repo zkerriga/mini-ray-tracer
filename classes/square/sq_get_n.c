@@ -24,9 +24,9 @@ t_vec3	*sq_get_n(t_square *self, t_point *point, t_point *camera)
 		free_gc(NULL);
 		ft_exit(ENOMEM);
 	}
-	norm->x = self->vector.x;
-	norm->y = self->vector.y;
-	norm->z = self->vector.z;
+	norm->x = self->norm.x;
+	norm->y = self->norm.y;
+	norm->z = self->norm.z;
 	set_vector(&camera_to_point, point, camera);
 	if (vdot(norm, &camera_to_point) > 0.f)
 		reverse_vec(norm);

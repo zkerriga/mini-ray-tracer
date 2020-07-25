@@ -33,14 +33,14 @@ float		sq_solve(t_square *self, t_point *camera, t_vec3 *ray, t_limits *l)
 	t_vec3	right;
 	t_vec3	up;
 
-	if ((t = vdot(&self->vector, ray)) == 0.f)
+	if ((t = vdot(&self->norm, ray)) == 0.f)
 		return (-1.f);
 	set_vector(&tmp, camera, &self->center);
-	t = -vdot(&self->vector, &tmp) / t;
+	t = -vdot(&self->norm, &tmp) / t;
 	if (fbetween(t, l->min, l->max))
 	{
-		create_ort_vec(&right, &self->vector);
-		vprod(&up, &right, &self->vector);
+		create_ort_vec(&right, &self->norm);
+		vprod(&up, &right, &self->norm);
 		set_point(&dot, camera->x + t * ray->x, camera->y + t * ray->y, camera->z + t * ray->z);
 		set_vector(&tmp, &dot, &self->center);
 		if (fbetween(vdot(&tmp, &right) / self->side_size, -0.5f, 0.5f)

@@ -28,7 +28,7 @@ static void	set_another(t_square *square, char *line)
 	square->del = &del_square;
 	square->get_n = &sq_get_n;
 	square->solve = &sq_solve;
-	normalize(&square->vector);
+	normalize(&square->norm);
 }
 
 t_square	*new_square(char *line)
@@ -48,11 +48,11 @@ t_square	*new_square(char *line)
 	line = ft_next(line);
 	square->center.z = ft_atof(line);
 	line = ft_next(line);
-	square->vector.x = ft_atof(line);
+	square->norm.x = ft_atof(line);
 	line = ft_next(line);
-	square->vector.y = ft_atof(line);
+	square->norm.y = ft_atof(line);
 	line = ft_next(line);
-	square->vector.z = ft_atof(line);
+	square->norm.z = ft_atof(line);
 	set_another(square, line);
 	return (square);
 }
