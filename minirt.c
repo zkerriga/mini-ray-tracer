@@ -13,32 +13,7 @@
 #include "minirt.h"
 #include "render.h"
 #include "parser.h"
-
-void	print_camera(t_camera *camera) //TODO: delete this function
-{
-	puts("CAMERA:");
-	printf("point={%.1f,%.1f,%.1f} dir={%.2f,%.2f,%.2f}, fov=%d\n",
-			camera->point.x, camera->point.y, camera->point.z, camera->vector.x,
-			camera->vector.y, camera->vector.z, camera->fov);
-}
-
-int		key_handler(int keycode, t_scene *scene)
-{
-	if (keycode == K_ESCAPE)
-	{
-		scene->del(scene);
-		free_gc(NULL);
-		exit(0);
-	}
-	else if (keycode == K_RIGHT || keycode == K_LEFT)
-	{
-		scene->act_cam = scene->get_cam(scene,
-										keycode == K_RIGHT ? RIGHT : LEFT);
-		print_camera(scene->act_cam);
-		render(scene, scene->resolution->x_size, scene->resolution->y_size);
-		scene->dmlx->put_win(scene->dmlx);
-	}
-}
+#include "events.h"
 
 void	argparse(t_args *args, int ac, char **av)
 {
@@ -91,6 +66,7 @@ int		main(int ac, char **av)
 			render(scene, scene->resolution->x_size, scene->resolution->y_size);
 			scene->dmlx->put_win(scene->dmlx);
 			mlx_hook(scene->dmlx->win, 2, 1L << 0, key_handler, scene);
+			mlx_hook(scene->dmlx->win, 17, 1L << 17, close_handler, scene);
 			mlx_loop(scene->dmlx->mlx);
 		}
 	}

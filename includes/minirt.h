@@ -30,9 +30,11 @@
 # define FALSE 0
 # define TRUE 1
 
+# define AIR_BONUS 1
+# define DEBUG 0
+
 # include "scene.h"
 # include "errno.h"
-# include "stdio.h"
 # include "mlx.h"
 
 typedef struct	s_args
