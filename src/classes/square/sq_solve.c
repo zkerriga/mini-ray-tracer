@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "square.h"
+#include "render.h"
 
 static void	create_ort_vec(t_vec3 *dest, t_vec3 *norm)
 {
@@ -32,7 +32,8 @@ float		sq_solve(t_square *self, t_point *camera, t_vec3 *ray, t_limits *l)
 	t_vec3	right;
 	t_vec3	up;
 
-	if ((t = vdot(&self->norm, ray)) == 0.f)
+//	if ((t = vdot(&self->norm, ray)) == 0.f)
+	if (fbetween((t = vdot(&self->norm, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
 	vget(&tmp, camera, &self->center);
 	t = -vdot(&self->norm, &tmp) / t;

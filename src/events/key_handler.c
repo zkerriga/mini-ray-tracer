@@ -26,7 +26,7 @@ void	print_camera(t_camera *camera)
 
 void	print_camera(t_camera *camera)
 {
-	(void *)camera;
+	camera = (void *)camera;
 }
 
 #endif
@@ -47,4 +47,5 @@ int		key_handler(int keycode, t_scene *scene)
 		render(scene, scene->resolution->x_size, scene->resolution->y_size);
 		scene->dmlx->put_win(scene->dmlx);
 	}
+	return (1);
 }

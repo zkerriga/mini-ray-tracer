@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "triangle.h"
+#include "render.h"
 
 t_bool			check_in_triangle(t_triangle *self, t_point *intersection)
 {
@@ -40,7 +41,8 @@ float			tr_solve(t_triangle *self, t_point *camera, t_vec3 *ray,
 	t_vec3	cam_to_first;
 	t_point		intersection;
 
-	if ((t = vdot(&self->norm, ray)) == 0.f)
+//	if ((t = vdot(&self->norm, ray)) == 0.f)
+	if (fbetween((t = vdot(&self->norm, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
 	vget(&cam_to_first, camera, &self->a_point);
 	t = -vdot(&self->norm, &cam_to_first) / t;

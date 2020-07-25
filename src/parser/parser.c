@@ -58,23 +58,26 @@ t_scene			*parser(char *path, char *line)
 	t_dlist			*cameras;
 	int				fd;
 
+	to_zeroes(&resolution, &ambient, &all_obj, &cameras);
 	if (!match(path, "*.rt") || (fd = open(path, O_RDONLY)) < 3)
 		ft_exit(INVALID_DESCRIPTOR);
-	to_zeroes(&resolution, &ambient, &all_obj, &cameras);
-	while (get_next_line(fd, &line) > 0)
+	else
 	{
-		if (ft_strlen(line) > 3 && line[0] != '#')
+		while (get_next_line(fd, &line) > 0)
 		{
-			if (line[0] == 'R' && !resolution)
-				resolution = new_resolution(line);
-			else if (line[0] == 'A' && !ambient)
-				ambient = new_ambient(line);
-			else
-				manager(&all_obj, &cameras, line);
+			if (ft_strlen(line) > 3 && line[0] != '#')
+			{
+				if (line[0] == 'R' && !resolution)
+					resolution = new_resolution(line);
+				else if (line[0] == 'A' && !ambient)
+					ambient = new_ambient(line);
+				else
+					manager(&all_obj, &cameras, line);
+			}
+			free(line);
 		}
 		free(line);
+		close(fd);
 	}
-	free(line);
-	close(fd);
 	return (get_scene(resolution, ambient, cameras, all_obj));
 }

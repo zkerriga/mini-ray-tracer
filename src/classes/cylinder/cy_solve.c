@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cylinder.h"
+#include "render.h"
 
 static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 {
@@ -72,7 +73,8 @@ static float			check_plane(t_cylinder *self, t_point *camera, t_vec3 *ray,
 	t_point		down;
 	t_vec3	op;
 
-	if ((denominator = vdot(&self->vector, ray)) == 0.f)
+//	if ((denominator = vdot(&self->vector, ray)) == 0.f)
+	if (fbetween((denominator = vdot(&self->vector, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
 	vset(&up, self->point.x + (self->height / 2) * self->vector.x,
 		 self->point.y + (self->height / 2) * self->vector.y,
@@ -109,7 +111,7 @@ float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
 	k[2] = vdot(&oc, &oc) - k[2] * k[2] - self->diameter * self->diameter / 4;
 	min_solution_of_equation(t, k, l);
 	t[2] = check_plane(self, camera, ray, l);
-	if (t[0] > 0.f && (t[2] > 0.f && t[2] > t[0]) || t[2] < 0)
+	if (t[0] > 0.f && ((t[2] > 0.f && t[2] > t[0]) || t[2] < 0))
 	{
 		vset(&intersection, camera->x + t[0] * ray->x,
 			 camera->y + t[0] * ray->y, camera->z + t[0] * ray->z);
