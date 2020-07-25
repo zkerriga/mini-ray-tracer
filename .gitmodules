@@ -4,8 +4,8 @@
 [submodule "libs/get_next_line"]
 	path = libs/get_next_line
 	url = https://github.com/zkerriga/get_next_line.git
-[submodule "Google_test/lib"]
-	path = Google_test/lib
+[submodule "unit_tests/lib"]
+	path = unit_tests/lib
 	url = https://github.com/google/googletest.git
 [submodule "libs/minilibx"]
 	path = libs/minilibx

@@ -8,7 +8,7 @@ add_definitions(${MYCOMPILE_FLAGS})
 
 include_directories(libs/get_next_line)
 include_directories(libs/libft)
-include_directories(classes/includes)
+include_directories(src/classes/includes)
 include_directories(includes)
 include_directories(libs/minilibx)
 include_directories(libs/libgraphic_math)
@@ -25,18 +25,18 @@ set(HEADER_FILES
         includes/minirt.h
         includes/events.h
 
-        classes/includes/ambient.h
-        classes/includes/camera.h
-        classes/includes/cylinder.h
-        classes/includes/light.h
-        classes/includes/plane.h
-        classes/includes/resolution.h
-        classes/includes/scene.h
-        classes/includes/sphere.h
-        classes/includes/square.h
-        classes/includes/triangle.h
-        classes/includes/basic_structures.h
-        classes/includes/dmlx.h
+        src/classes/includes/ambient.h
+        src/classes/includes/camera.h
+        src/classes/includes/cylinder.h
+        src/classes/includes/light.h
+        src/classes/includes/plane.h
+        src/classes/includes/resolution.h
+        src/classes/includes/scene.h
+        src/classes/includes/sphere.h
+        src/classes/includes/square.h
+        src/classes/includes/triangle.h
+        src/classes/includes/basic_structures.h
+        src/classes/includes/dmlx.h
 
         )
 
@@ -156,90 +156,90 @@ set(LIBS_SRC
         )
 
 set(SRC_FILES
-        classes/basic_functions/ft_next.c
-        classes/basic_functions/ft_float_between.c
-        classes/basic_functions/check_color.c
-        classes/basic_functions/check_vector.c
-        classes/basic_functions/check_int.c
-        classes/basic_functions/check_float.c
-        classes/basic_functions/check_coordinates.c
+        src/classes/basic_functions/ft_next.c
+        src/classes/basic_functions/ft_float_between.c
+        src/classes/basic_functions/check_color.c
+        src/classes/basic_functions/check_vector.c
+        src/classes/basic_functions/check_int.c
+        src/classes/basic_functions/check_float.c
+        src/classes/basic_functions/check_coordinates.c
 
-        classes/scene/del_scene.c
-        classes/scene/new_scene.c
-        classes/scene/get_d.c
-        classes/scene/get_active_camera.c
+        src/classes/scene/del_scene.c
+        src/classes/scene/new_scene.c
+        src/classes/scene/get_d.c
+        src/classes/scene/get_active_camera.c
 
-        classes/resolution/new_resolution.c
-        classes/resolution/del_resolution.c
-        classes/resolution/resolution_is_valid.c
+        src/classes/resolution/new_resolution.c
+        src/classes/resolution/del_resolution.c
+        src/classes/resolution/resolution_is_valid.c
 
-        classes/ambient/new_ambient.c
-        classes/ambient/del_ambient.c
-        classes/ambient/ambient_is_valid.c
+        src/classes/ambient/new_ambient.c
+        src/classes/ambient/del_ambient.c
+        src/classes/ambient/ambient_is_valid.c
 
-        classes/camera/new_camera.c
-        classes/camera/del_camera.c
-        classes/camera/camera_is_valid.c
+        src/classes/camera/new_camera.c
+        src/classes/camera/del_camera.c
+        src/classes/camera/camera_is_valid.c
 
-        classes/light/new_light.c
-        classes/light/del_light.c
-        classes/light/light_is_valid.c
+        src/classes/light/new_light.c
+        src/classes/light/del_light.c
+        src/classes/light/light_is_valid.c
 
-        classes/sphere/new_sphere.c
-        classes/sphere/del_sphere.c
-        classes/sphere/sphere_is_valid.c
-        classes/sphere/sp_get_n.c
-        classes/sphere/sp_solve.c
+        src/classes/sphere/new_sphere.c
+        src/classes/sphere/del_sphere.c
+        src/classes/sphere/sphere_is_valid.c
+        src/classes/sphere/sp_get_n.c
+        src/classes/sphere/sp_solve.c
 
-        classes/plane/new_plane.c
-        classes/plane/del_plane.c
-        classes/plane/plane_is_valid.c
-        classes/plane/pl_solve.c
-        classes/plane/pl_get_n.c
+        src/classes/plane/new_plane.c
+        src/classes/plane/del_plane.c
+        src/classes/plane/plane_is_valid.c
+        src/classes/plane/pl_solve.c
+        src/classes/plane/pl_get_n.c
 
-        classes/square/new_square.c
-        classes/square/del_square.c
-        classes/square/square_is_valid.c
-        classes/square/sq_get_n.c
-        classes/square/sq_solve.c
+        src/classes/square/new_square.c
+        src/classes/square/del_square.c
+        src/classes/square/square_is_valid.c
+        src/classes/square/sq_get_n.c
+        src/classes/square/sq_solve.c
 
-        classes/cylinder/new_cylinder.c
-        classes/cylinder/del_cylinder.c
-        classes/cylinder/cylinder_is_valid.c
-        classes/cylinder/cy_solve.c
-        classes/cylinder/cy_get_n.c
+        src/classes/cylinder/new_cylinder.c
+        src/classes/cylinder/del_cylinder.c
+        src/classes/cylinder/cylinder_is_valid.c
+        src/classes/cylinder/cy_solve.c
+        src/classes/cylinder/cy_get_n.c
 
-        classes/triangle/new_triangle.c
-        classes/triangle/del_triangle.c
-        classes/triangle/triangle_is_valid.c
-        classes/triangle/tr_get_n.c
-        classes/triangle/tr_solve.c
+        src/classes/triangle/new_triangle.c
+        src/classes/triangle/del_triangle.c
+        src/classes/triangle/triangle_is_valid.c
+        src/classes/triangle/tr_get_n.c
+        src/classes/triangle/tr_solve.c
 
-        classes/dmlx/new_dmlx.c
-        classes/dmlx/del_dmlx.c
-        classes/dmlx/create_window.c
-        classes/dmlx/put_image_to_bmp.c
-        classes/dmlx/put_image_to_win.c
+        src/classes/dmlx/new_dmlx.c
+        src/classes/dmlx/del_dmlx.c
+        src/classes/dmlx/create_window.c
+        src/classes/dmlx/put_image_to_bmp.c
+        src/classes/dmlx/put_image_to_win.c
 
-        parser/parser.c
-        parser/match.c
+        src/parser/parser.c
+        src/parser/match.c
 
-        render/render.c
-        render/trace_ray.c
-        render/color_definition.c
-        render/get_diffuse.c
-        render/is_shadow_point.c
+        src/render/render.c
+        src/render/trace_ray.c
+        src/render/color_definition.c
+        src/render/get_diffuse.c
+        src/render/is_shadow_point.c
 
         minirt.c
 
-        exit/ft_exit.c
-        exit/ft_exit_memerror.c
-        exit/ft_exit_invalid_input.c
-        exit/ft_exit_invalid_descriptor.c
-        exit/ft_exit_window_error.c
+        src/exit/ft_exit.c
+        src/exit/ft_exit_memerror.c
+        src/exit/ft_exit_invalid_input.c
+        src/exit/ft_exit_invalid_descriptor.c
+        src/exit/ft_exit_window_error.c
 
-        events/key_handler.c
-        events/close_handler.c
+        src/events/key_handler.c
+        src/events/close_handler.c
 
         src/show_help.c
         src/ray_lim.c
@@ -253,4 +253,4 @@ add_executable(miniRT
 
 target_link_libraries(miniRT Xext X11 m bsd)
 add_library(test ${SRC_FILES} ${LIBS_SRC})
-add_subdirectory(Google_test)
+add_subdirectory(unit_tests)
