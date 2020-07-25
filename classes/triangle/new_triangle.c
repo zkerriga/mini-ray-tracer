@@ -29,12 +29,12 @@ static void	set_another(t_triangle *triangle, char *line)
 	triangle->color.g = (float)ft_atoi(line) / 255;
 	line = ft_next(line);
 	triangle->color.b = (float)ft_atoi(line) / 255;
-	set_point(&triangle->norm, 0.f, 0.f, 0.f);
+	vset(&triangle->norm, 0.f, 0.f, 0.f);
 	triangle->del = &del_triangle;
 	triangle->solve = &tr_solve;
 	triangle->get_n = &tr_get_n;
-	set_vector(&triangle->ab_edge, &triangle->b_point, &triangle->a_point);
-	set_vector(&triangle->ac_edge, &triangle->c_point, &triangle->a_point);
+	vget(&triangle->ab_edge, &triangle->b_point, &triangle->a_point);
+	vget(&triangle->ac_edge, &triangle->c_point, &triangle->a_point);
 	vprod(&triangle->norm, &triangle->ab_edge, &triangle->ac_edge);
 	normalize(&triangle->norm);
 }

@@ -28,7 +28,7 @@ t_bool			check_in_triangle(t_triangle *self, t_point *intersection)
 	D = a * c - b * b;
 	vsubtract(&u_beta, vmulti(&tmp1, &self->ab_edge, c / D), vmulti(&tmp2, &self->ac_edge, b / D));
 	vsubtract(&u_gama, vmulti(&tmp1, &self->ac_edge, a / D), vmulti(&tmp2, &self->ab_edge, b / D));
-	set_vector(&r, intersection, &self->a_point);
+	vget(&r, intersection, &self->a_point);
 	if ((a = vdot(&u_beta, &r)) < 0 || (b = vdot(&u_gama, &r)) < 0 || 1 < a + b)
 		return (FALSE);
 	return (TRUE);
@@ -43,11 +43,12 @@ float			tr_solve(t_triangle *self, t_point *camera, t_vec3 *ray,
 
 	if ((t = vdot(&self->norm, ray)) == 0.f)
 		return (-1.f);
-	set_vector(&cam_to_first, camera, &self->a_point);
+	vget(&cam_to_first, camera, &self->a_point);
 	t = -vdot(&self->norm, &cam_to_first) / t;
 	if (fbetween(t, l->min, l->max))
 	{
-		set_point(&intersection, camera->x + t * ray->x, camera->y + t * ray->y, camera->z + t * ray->z);
+		vset(&intersection, camera->x + t * ray->x, camera->y + t * ray->y,
+			 camera->z + t * ray->z);
 		if (check_in_triangle(self, &intersection))
 			return (t);
 	}

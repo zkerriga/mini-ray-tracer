@@ -34,21 +34,21 @@ TEST (triangle, t1)
 	t_vec3	sd;
 	t_vec3	td;
 
-	set_point((t_vec3 *)&f, 1.f, 1.f, 0.f);
-	set_point((t_vec3 *)&s, 3.f, 6.f, 0.f);
-	set_point((t_vec3 *)&t, 11.f, 2.f, 0.f);
-	set_point((t_vec3 *)&p, 8.f, 3.f, 0.f);
-	set_point((t_vec3 *)&d, 1.f, 2.f, 0.f);
+	vset((t_vec3 *) &f, 1.f, 1.f, 0.f);
+	vset((t_vec3 *) &s, 3.f, 6.f, 0.f);
+	vset((t_vec3 *) &t, 11.f, 2.f, 0.f);
+	vset((t_vec3 *) &p, 8.f, 3.f, 0.f);
+	vset((t_vec3 *) &d, 1.f, 2.f, 0.f);
 
-	set_vector(&fs, &s, &f);
-	set_vector(&st, &t, &s);
-	set_vector(&tf, &f, &t);
-	set_vector(&fp, &p, &f);
-	set_vector(&sp, &p, &s);
-	set_vector(&tp, &p, &t);
-	set_vector(&fd, &d, &f);
-	set_vector(&sd, &d, &s);
-	set_vector(&td, &d, &t);
+	vget(&fs, &s, &f);
+	vget(&st, &t, &s);
+	vget(&tf, &f, &t);
+	vget(&fp, &p, &f);
+	vget(&sp, &p, &s);
+	vget(&tp, &p, &t);
+	vget(&fd, &d, &f);
+	vget(&sd, &d, &s);
+	vget(&td, &d, &t);
 
 //	printf("P - result: %.2f : %.2f : %.2f\n", vdot(&fs, &fp), vdot(&st, &sp), vdot(&tf, &tp));
 //	printf("D - result: %.2f : %.2f : %.2f\n", vdot(&fs, &fd), vdot(&st, &sd), vdot(&tf, &td));

@@ -69,7 +69,7 @@ t_scene			*parser(char *path, char *line)
 				resolution = new_resolution(line);
 			else if (line[0] == 'A' && !ambient)
 				ambient = new_ambient(line);
-			else if (line[0] != 'R' && line[0] != 'A')
+			else
 				manager(&all_obj, &cameras, line);
 		}
 		free(line);

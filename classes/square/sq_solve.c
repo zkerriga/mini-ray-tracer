@@ -17,11 +17,11 @@
 static void	create_ort_vec(t_vec3 *dest, t_vec3 *norm)
 {
 	if (norm->x != 0.f)
-		set_point(dest, -(norm->y) / norm->x, 1.f, 0.f);
+		vset(dest, -(norm->y) / norm->x, 1.f, 0.f);
 	else if (norm->y != 0.f)
-		set_point(dest, 1.f, -(norm->x) / norm->y, 0.f);
+		vset(dest, 1.f, -(norm->x) / norm->y, 0.f);
 	else
-		set_point(dest, 0.f, 1.f, -(norm->y) / norm->z);
+		vset(dest, 0.f, 1.f, -(norm->y) / norm->z);
 	normalize(dest);
 }
 
@@ -35,14 +35,15 @@ float		sq_solve(t_square *self, t_point *camera, t_vec3 *ray, t_limits *l)
 
 	if ((t = vdot(&self->norm, ray)) == 0.f)
 		return (-1.f);
-	set_vector(&tmp, camera, &self->center);
+	vget(&tmp, camera, &self->center);
 	t = -vdot(&self->norm, &tmp) / t;
 	if (fbetween(t, l->min, l->max))
 	{
 		create_ort_vec(&right, &self->norm);
 		vprod(&up, &right, &self->norm);
-		set_point(&dot, camera->x + t * ray->x, camera->y + t * ray->y, camera->z + t * ray->z);
-		set_vector(&tmp, &dot, &self->center);
+		vset(&dot, camera->x + t * ray->x, camera->y + t * ray->y,
+			 camera->z + t * ray->z);
+		vget(&tmp, &dot, &self->center);
 		if (fbetween(vdot(&tmp, &right) / self->side_size, -0.5f, 0.5f)
 			&& fbetween(vdot(&tmp, &up) / self->side_size, -0.5f, 0.5f))
 			return (t);

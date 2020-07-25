@@ -17,7 +17,7 @@
 ** Example: vec.x = to.x - from.x;
 */
 
-void	set_vector(t_vec3 *dest, t_point *to, t_point *from)
+void	vget(t_vec3 *dest, t_point *to, t_point *from)
 {
 	dest->x = to->x - from->x;
 	dest->y = to->y - from->y;

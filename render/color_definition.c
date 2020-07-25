@@ -73,10 +73,10 @@ static void		air(t_rgbvec *result, t_point *camera, t_point *point)
 int				color_definition(t_scene *scene, t_point *camera,
 									t_any_object *obj, t_point *point)
 {
-	t_rgbvec		ambient;
-	t_rgbvec		diffuse;
-	t_rgbvec		result;
-	t_list			*list;
+	t_rgbvec	ambient;
+	t_rgbvec	diffuse;
+	t_rgbvec	result;
+	t_list		*list;
 	t_vec3		light_vec;
 
 	zero_color(&result);
@@ -85,7 +85,7 @@ int				color_definition(t_scene *scene, t_point *camera,
 	list = scene->lights;
 	while (list)
 	{
-		set_vector(&light_vec, &((t_light *)list->content)->point, point);
+		vget(&light_vec, &((t_light *) list->content)->point, point);
 		if (!is_shadow_point(scene, &((t_light *)list->content)->point,
 								&light_vec))
 		{

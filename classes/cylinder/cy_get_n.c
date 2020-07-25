@@ -21,17 +21,17 @@ static t_bool		is_plane(t_cylinder *self, t_point *point)
 	t_point		down;
 	t_vec3	tmp;
 
-	set_point(&up, self->point.x + (self->height / 2) * self->vector.x,
-				self->point.y + (self->height / 2) * self->vector.y,
-				self->point.z + (self->height / 2) * self->vector.z);
-	set_vector(&tmp, &up, point);
+	vset(&up, self->point.x + (self->height / 2) * self->vector.x,
+		 self->point.y + (self->height / 2) * self->vector.y,
+		 self->point.z + (self->height / 2) * self->vector.z);
+	vget(&tmp, &up, point);
 	normalize(&tmp);
 	if (fbetween(vdot(&tmp, &self->vector), -INACCURACY, +INACCURACY))
 		return (TRUE);
-	set_point(&down, self->point.x - (self->height / 2) * self->vector.x,
-				self->point.y - (self->height / 2) * self->vector.y,
-				self->point.z - (self->height / 2) * self->vector.z);
-	set_vector(&tmp, &down, point);
+	vset(&down, self->point.x - (self->height / 2) * self->vector.x,
+		 self->point.y - (self->height / 2) * self->vector.y,
+		 self->point.z - (self->height / 2) * self->vector.z);
+	vget(&tmp, &down, point);
 	normalize(&tmp);
 	if (fbetween(vdot(&tmp, &self->vector), -INACCURACY, +INACCURACY))
 		return (TRUE);
@@ -50,7 +50,7 @@ t_vec3		*cy_get_n(t_cylinder *self, t_point *point, t_point *camera)
 		free_gc(NULL);
 		ft_exit(ENOMEM);
 	}
-	set_vector(&point_to_center, point, &self->point);
+	vget(&point_to_center, point, &self->point);
 //	if (abs(vdot(&camera_to_point, &self->vector)) == self->height / 2)
 	if (is_plane(self, point))
 	{
@@ -61,7 +61,7 @@ t_vec3		*cy_get_n(t_cylinder *self, t_point *point, t_point *camera)
 		vprod(&orthogonal, &point_to_center, &self->vector);
 		vprod(norm, &orthogonal, &self->vector);
 	}
-	set_vector(&camera_to_point, point, camera);
+	vget(&camera_to_point, point, camera);
 	if (vdot(norm, &camera_to_point) > 0.f)
 		reverse_vec(norm);
 	return (normalize(norm));

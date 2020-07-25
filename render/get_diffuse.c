@@ -22,10 +22,10 @@ void	get_diffuse(t_rgbvec *diffuse, t_light *light, t_vec3 *norm,
 					t_point *point)
 {
 	float		diff;
-	t_vec3	light_vec;
+	t_vec3		light_vec;
 	t_rgbvec	color;
 
-	set_vector(&light_vec, &light->point, point);
+	vget(&light_vec, &light->point, point);
 	normalize(&light_vec);
 	if ((diff = maxf(vdot(norm, &light_vec), 0.f)))
 	{

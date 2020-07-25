@@ -14,8 +14,6 @@
 
 #if DEBUG == 1
 
-#include "stdio.h"
-
 void	print_camera(t_camera *camera)
 {
 	puts("CAMERA:");

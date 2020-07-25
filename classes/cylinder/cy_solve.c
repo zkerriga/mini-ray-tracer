@@ -57,7 +57,8 @@ static float			check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, floa
 {
 	t_point		point;
 
-	set_point(&point, camera->x + t * ray->x, camera->y + t * ray->y, camera->z + t * ray->z);
+	vset(&point, camera->x + t * ray->x, camera->y + t * ray->y,
+		 camera->z + t * ray->z);
 	if (pow(modulep(&point, &self->point), 2) * 4 < self->diameter * self->diameter + self->height * self->height)
 		return (t);
 	else
@@ -75,15 +76,15 @@ static float			check_plane(t_cylinder *self, t_point *camera, t_vec3 *ray,
 
 	if ((denominator = vdot(&self->vector, ray)) == 0.f)
 		return (-1.f);
-	set_point(&up, self->point.x + (self->height / 2) * self->vector.x,
-				self->point.y + (self->height / 2) * self->vector.y,
-				self->point.z + (self->height / 2) * self->vector.z);
-	set_point(&down, self->point.x - (self->height / 2) * self->vector.x,
-				self->point.y - (self->height / 2) * self->vector.y,
-				self->point.z - (self->height / 2) * self->vector.z);
-	set_vector(&op, camera, &up);
+	vset(&up, self->point.x + (self->height / 2) * self->vector.x,
+		 self->point.y + (self->height / 2) * self->vector.y,
+		 self->point.z + (self->height / 2) * self->vector.z);
+	vset(&down, self->point.x - (self->height / 2) * self->vector.x,
+		 self->point.y - (self->height / 2) * self->vector.y,
+		 self->point.z - (self->height / 2) * self->vector.z);
+	vget(&op, camera, &up);
 	t[0] = -vdot(&self->vector, &op) / denominator;
-	set_vector(&op, camera, &down);
+	vget(&op, camera, &down);
 	t[1] = -vdot(&self->vector, &op) / denominator;
 	if (fbetween(t[0], l->min, l->max) &&
 		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
@@ -102,7 +103,7 @@ float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
 	float		k[3];
 	t_point		intersection;
 
-	set_vector(&oc, camera, &self->point);
+	vget(&oc, camera, &self->point);
 	k[0] = vdot(ray, &self->vector);
 	k[2] = vdot(&oc, &self->vector);
 	k[1] = 2 * (vdot(ray, &oc) - k[0] * k[2]);
@@ -112,7 +113,8 @@ float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
 	t[2] = check_plane(self, camera, ray, l);
 	if (t[0] > 0.f && (t[2] > 0.f && t[2] > t[0]) || t[2] < 0)
 	{
-		set_point(&intersection, camera->x + t[0] * ray->x, camera->y + t[0] * ray->y, camera->z + t[0] * ray->z);
+		vset(&intersection, camera->x + t[0] * ray->x,
+			 camera->y + t[0] * ray->y, camera->z + t[0] * ray->z);
 		if (check_intersection(self, &intersection))
 			return (t[0]);
 	}

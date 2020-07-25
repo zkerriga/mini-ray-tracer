@@ -18,7 +18,7 @@ static void	set_default_lookat(t_matrix *lookat, t_vec3 *norm)
 {
 	t_vec3	fake_up;
 
-	set_point(&fake_up, 0.f, 1.f, 0.f);
+	vset(&fake_up, 0.f, 1.f, 0.f);
 	lookat->z_f = *norm;
 	vprod(&lookat->x_r, &fake_up, norm);
 	normalize(&lookat->x_r);
@@ -37,15 +37,15 @@ void		set_lookat(t_matrix *lookat, t_vec3 *norm)
 	{
 		if (norm->y == 1.f)
 		{
-			set_point(&lookat->x_r, 1.f, 0.f, 0.f);
-			set_point(&lookat->y_u, 0.f, 0.f, 1.f);
-			set_point(&lookat->z_f, 0.f, 1.f, 0.f);
+			vset(&lookat->x_r, 1.f, 0.f, 0.f);
+			vset(&lookat->y_u, 0.f, 0.f, 1.f);
+			vset(&lookat->z_f, 0.f, 1.f, 0.f);
 		}
 		else
 		{
-			set_point(&lookat->x_r, 0.f, 0.f, 1.f);
-			set_point(&lookat->y_u, 1.f, 0.f, 0.f);
-			set_point(&lookat->z_f, 0.f, -1.f, 0.f);
+			vset(&lookat->x_r, 0.f, 0.f, 1.f);
+			vset(&lookat->y_u, 1.f, 0.f, 0.f);
+			vset(&lookat->z_f, 0.f, -1.f, 0.f);
 		}
 	}
 	else

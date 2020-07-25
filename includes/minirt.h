@@ -35,6 +35,7 @@
 
 # include "scene.h"
 # include "errno.h"
+# include "stdio.h"
 # include "mlx.h"
 
 typedef struct	s_args

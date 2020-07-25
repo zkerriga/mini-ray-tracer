@@ -25,7 +25,7 @@ t_vec3	*pl_get_n(t_plane *self, t_point *point, t_point *camera)
 		ft_exit(ENOMEM);
 	}
 	*norm = self->norm;
-	set_vector(&camera_to_point, point, camera);
+	vget(&camera_to_point, point, camera);
 	if (vdot(norm, &camera_to_point) > 0.f)
 		reverse_vec(norm);
 	return (normalize(norm));

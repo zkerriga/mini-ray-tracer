@@ -46,7 +46,7 @@ float			sp_solve(t_sphere *self, t_point *cam,
 	float		t2;
 	t_vec3	oc;
 
-	set_vector(&oc, cam, &self->center);
+	vget(&oc, cam, &self->center);
 	t1 = solution_of_equation(vdot(ray, ray), 2 * vdot(&oc, ray),
 				vdot(&oc, &oc) - pow(self->diameter / 2, 2), TRUE);
 	t2 = solution_of_equation(0, 0, 0, FALSE);

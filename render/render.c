@@ -16,11 +16,11 @@
 
 int		*render(t_scene *scene, int x_size, int y_size)
 {
-	int			x;
-	int			y;
+	int		x;
+	int		y;
 	t_vec3	ray;
-	float		d;
-	int			*image;
+	float	d;
+	int		*image;
 
 	image = scene->dmlx->addr;
 	if (scene->act_cam)
@@ -32,9 +32,11 @@ int		*render(t_scene *scene, int x_size, int y_size)
 			x = 0;
 			while (x < x_size)
 			{
-				set_point(&ray, (float)x - (float)x_size / 2.f, (float)y - (float)y_size / 2.f, d);
+				vset(&ray, (float) x - (float) x_size / 2.f,
+					 (float) y - (float) y_size / 2.f, d);
 				rotate_ray(&ray, &scene->act_cam->matrix);
-				image[y * x_size + x] = trace_ray(scene, &scene->act_cam->point, scene->objects, &ray);
+				image[y * x_size + x] = trace_ray(scene, &scene->act_cam->point,
+													scene->objects, &ray);
 				++x;
 			}
 			++y;

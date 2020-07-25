@@ -21,7 +21,7 @@ float	pl_solve(t_plane *self, t_point *camera, t_vec3 *ray, t_limits *l)
 
 	if ((t = vdot(&self->norm, ray)) == 0.f)
 		return (-1.f);
-	set_vector(&op, camera, &self->point);
+	vget(&op, camera, &self->point);
 	t = -vdot(&self->norm, &op) / t;
 	if (fbetween(t, l->min, l->max))
 		return (t);
