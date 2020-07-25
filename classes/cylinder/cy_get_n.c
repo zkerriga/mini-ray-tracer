@@ -12,8 +12,7 @@
 
 #include "minirt.h"
 #include "render.h"
-#include "func.h"
-#include "math.h"
+#include "plane.h"
 
 static t_bool		is_plane(t_cylinder *self, t_point *point)
 {

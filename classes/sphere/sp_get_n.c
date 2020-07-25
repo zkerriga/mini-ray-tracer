@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "sphere.h"
-#include "func.h"
 
 t_vec3	*sp_get_n(t_sphere *self, t_point *point, t_point *camera)
 {

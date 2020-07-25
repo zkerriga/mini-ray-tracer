@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "square.h"
-#include "func.h"
 
 t_vec3	*sq_get_n(t_square *self, t_point *point, t_point *camera)
 {

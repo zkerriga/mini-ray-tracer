@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "func.h"
 
 t_bool			check_in_triangle(t_triangle *self, t_point *intersection)
 {

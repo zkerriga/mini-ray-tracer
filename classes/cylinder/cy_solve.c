@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "func.h"
-#include "math.h"
+#include "cylinder.h"
 
 static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 {

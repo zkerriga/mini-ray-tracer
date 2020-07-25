@@ -13,7 +13,6 @@
 #include "libft.h"
 #include "minirt.h"
 #include "square.h"
-#include "func.h"
 
 static void	set_another(t_square *square, char *line)
 {

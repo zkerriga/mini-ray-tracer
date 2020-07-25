@@ -13,7 +13,6 @@
 #include "libft.h"
 #include "minirt.h"
 #include "triangle.h"
-#include "func.h"
 
 static void	set_another(t_triangle *triangle, char *line)
 {

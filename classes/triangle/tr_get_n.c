@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "func.h"
 
 t_vec3		*tr_get_n(t_triangle *self, t_point *point, t_point *camera)
 {

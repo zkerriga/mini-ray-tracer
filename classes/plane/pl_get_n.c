@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "plane.h"
-#include "func.h"
 
 t_vec3	*pl_get_n(t_plane *self, t_point *point, t_point *camera)
 {

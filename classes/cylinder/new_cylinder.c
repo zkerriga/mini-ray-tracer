@@ -13,7 +13,6 @@
 #include "libft.h"
 #include "minirt.h"
 #include "cylinder.h"
-#include "func.h"
 
 static void	set_another(t_cylinder *cylinder, char *line)
 {

@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "square.h"
-#include "func.h"
 
 static void	create_ort_vec(t_vec3 *dest, t_vec3 *norm)
 {

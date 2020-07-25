@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "render.h"
-#include "func.h"
 
 int		*render(t_scene *scene, int x_size, int y_size)
 {

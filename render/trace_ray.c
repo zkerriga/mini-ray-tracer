@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "render.h"
-#include "func.h"
 
 t_point	*get_point(t_point *camera, t_vec3 *ray, float t)
 {

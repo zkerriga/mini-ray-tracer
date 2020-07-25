@@ -16,30 +16,7 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef char	t_bool;
-
-typedef struct	s_vec3
-{
-	float		x;
-	float		y;
-	float		z;
-}				t_vec3;
-
-typedef struct s_vec3	t_point;
-
-typedef struct	s_matrix
-{
-	t_vec3		x_r;
-	t_vec3		y_u;
-	t_vec3		z_f;
-}				t_matrix;
-
-typedef struct	s_rgbvec
-{
-	float		r;
-	float		g;
-	float		b;
-}				t_rgbvec;
+# include "libgraphic_math.h"
 
 typedef struct	s_limits
 {
@@ -47,13 +24,12 @@ typedef struct	s_limits
 	float		max;
 }				t_limits;
 
-typedef struct	s_any_object
+typedef struct	s_any_obj
 {
 	char		identifier[2];
-	void		(*del)(struct s_any_object *);
-	float		(*solve)(struct s_any_object *, t_point *,
-						  t_vec3 *, t_limits *);
-	t_vec3		*(*get_n)(struct s_any_object *, t_point *, t_point *);
+	void		(*del)(struct s_any_obj *);
+	float		(*solve)(struct s_any_obj *, t_point *, t_vec3 *, t_limits *);
+	t_vec3		*(*get_n)(struct s_any_obj *, t_point *, t_point *);
 	t_rgbvec	color;
 }				t_any_object;
 

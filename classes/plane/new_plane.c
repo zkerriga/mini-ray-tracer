@@ -13,7 +13,6 @@
 #include "libft.h"
 #include "minirt.h"
 #include "plane.h"
-#include "func.h"
 
 static void	set_another(t_plane *plane, char *line)
 {

@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "render.h"
-#include "func.h"
 
 static void		set_ambient(t_rgbvec *dest, t_rgbvec *ambient, float bright)
 {

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "sphere.h"
-#include "func.h"
 #include "render.h"
 
 static float	solution_of_equation(float k1, float k2, float k3, t_bool get1)

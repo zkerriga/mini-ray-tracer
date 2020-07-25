@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "plane.h"
-#include "func.h"
 
 float	pl_solve(t_plane *self, t_point *camera, t_vec3 *ray, t_limits *l)
 {

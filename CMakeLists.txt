@@ -11,17 +11,18 @@ include_directories(libs/libft)
 include_directories(classes/includes)
 include_directories(includes)
 include_directories(libs/minilibx)
+include_directories(libs/libgraphic_math)
 
 set(HEADER_FILES
         libs/get_next_line/get_next_line.h
         libs/libft/libft.h
         libs/minilibx/mlx.h
         libs/minilibx/mlx_int.h
+        libs/libgraphic_math/libgraphic_math.h
 
         includes/parser.h
         includes/render.h
         includes/minirt.h
-        includes/func.h
         includes/events.h
 
         classes/includes/ambient.h
@@ -131,6 +132,27 @@ set(LIBS_SRC
         libs/minilibx/mlx_rgb.c
         libs/minilibx/mlx_string_put.c
         libs/minilibx/mlx_xpm.c
+
+
+        libs/libgraphic_math/src/color_multi.c
+        libs/libgraphic_math/src/color_sum.c
+        libs/libgraphic_math/src/color_to_int.c
+        libs/libgraphic_math/src/fbetween.c
+        libs/libgraphic_math/src/maxf.c
+        libs/libgraphic_math/src/module.c
+        libs/libgraphic_math/src/normalize.c
+        libs/libgraphic_math/src/rad_to_deg.c
+        libs/libgraphic_math/src/reverse_vec.c
+        libs/libgraphic_math/src/rotate_ray.c
+        libs/libgraphic_math/src/set_lookat.c
+        libs/libgraphic_math/src/vaddition.c
+        libs/libgraphic_math/src/vdot.c
+        libs/libgraphic_math/src/vget.c
+        libs/libgraphic_math/src/vmulti.c
+        libs/libgraphic_math/src/vprod.c
+        libs/libgraphic_math/src/vset.c
+        libs/libgraphic_math/src/vsubtract.c
+        libs/libgraphic_math/libgraphic_math.h
         )
 
 set(SRC_FILES
@@ -207,7 +229,6 @@ set(SRC_FILES
         render/color_definition.c
         render/get_diffuse.c
         render/is_shadow_point.c
-        render/rotate.c
 
         minirt.c
 
@@ -221,24 +242,7 @@ set(SRC_FILES
         events/close_handler.c
 
         src/show_help.c
-        src/color_to_int.c
-        src/vdot.c
-        src/color_sum.c
-        src/color_multi.c
-        src/module.c
-        src/fbetween.c
-        src/set_vector.c
-        src/maxf.c
         src/ray_lim.c
-        src/vprod.c
-        src/set_point.c
-        src/normalize.c
-        src/reverse_vec.c
-        src/rad_to_deg.c
-        src/vmulti.c
-        src/vaddition.c
-        src/vsubtract.c
-        src/set_lookat.c
         )
 
 add_executable(miniRT
