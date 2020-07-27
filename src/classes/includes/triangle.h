@@ -29,6 +29,9 @@ typedef struct	s_triangle
 	t_vec3		ab_edge;
 	t_vec3		ac_edge;
 	t_vec3		norm;
+	float		ab_ab_coef;
+	float		ab_ac_coef;
+	float		ac_ac_coef;
 }				t_triangle;
 
 t_triangle		*new_triangle(char *line);

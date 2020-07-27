@@ -37,6 +37,9 @@ static void	set_another(t_triangle *triangle, char *line)
 	vget(&triangle->ac_edge, &triangle->c_point, &triangle->a_point);
 	vprod(&triangle->norm, &triangle->ab_edge, &triangle->ac_edge);
 	normalize(&triangle->norm);
+	triangle->ab_ab_coef = vdot(&triangle->ab_edge, &triangle->ab_edge);
+	triangle->ab_ac_coef = vdot(&triangle->ab_edge, &triangle->ac_edge);
+	triangle->ac_ac_coef = vdot(&triangle->ac_edge, &triangle->ac_edge);
 }
 
 t_triangle	*new_triangle(char *line)
