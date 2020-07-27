@@ -14,8 +14,6 @@
 
 /*
 ** The function defines the minimum and maximum values of solutions for the ray.
-** The first time the function is run to create a range,
-** and the second time to delete it.
 */
 
 t_limits	*ray_lim(t_limits *dest, float min, float max)

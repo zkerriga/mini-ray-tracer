@@ -186,3 +186,7 @@ libre:
 .PHONY: va
 va: all
 	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) test_castle.rt
+
+.PHONY: time_test
+time_test:
+	@./test_time_script.sh

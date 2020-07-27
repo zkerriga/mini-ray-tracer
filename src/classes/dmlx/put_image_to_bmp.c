@@ -40,7 +40,7 @@ void		put_image_to_bmp(t_dmlx *self, int x_size, int y_size)
 {
 	int		fd;
 
-	fd = open("zkerriga.bmp", O_CREAT | O_RDWR);
+	fd = open("zkerriga.bmp", O_CREAT | O_RDWR, 0755);
 	write(fd, "BM", 2);
 	write_n(fd, BM_HEAD_SIZE + BM_INFO_SIZE +
 				sizeof(int) * x_size * y_size, sizeof(int));
