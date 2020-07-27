@@ -21,14 +21,15 @@ static void	set_another(t_cylinder *cylinder, char *line)
 	line = ft_next(line);
 	cylinder->height = ft_atof(line);
 	line = ft_next(line);
-	cylinder->color.r = (float)ft_atoi(line) / 255;
+	cylinder->color.r = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
-	cylinder->color.g = (float)ft_atoi(line) / 255;
+	cylinder->color.g = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
-	cylinder->color.b = (float)ft_atoi(line) / 255;
+	cylinder->color.b = (float)ft_atoi(line) / 255.f;
 	cylinder->del = &del_cylinder;
 	cylinder->solve = &cy_solve;
 	cylinder->get_n = &cy_get_n;
+	cylinder->prepare = &cy_prepare;
 	normalize(&cylinder->vector);
 }
 

@@ -18,6 +18,8 @@
 
 # include "libgraphic_math.h"
 
+typedef struct s_scene	t_scene;
+
 typedef struct	s_limits
 {
 	float		min;
@@ -30,6 +32,7 @@ typedef struct	s_any_obj
 	void		(*del)(struct s_any_obj *);
 	float		(*solve)(struct s_any_obj *, t_point *, t_vec3 *, t_limits *);
 	t_vec3		*(*get_n)(struct s_any_obj *, t_point *, t_point *);
+	void		(*prepare)(struct s_any_obj *, t_scene *);
 	t_rgbvec	color;
 }				t_any_object;
 

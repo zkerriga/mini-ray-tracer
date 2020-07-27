@@ -17,14 +17,15 @@
 static void	set_another(t_plane *plane, char *line)
 {
 	line = ft_next(line);
-	plane->color.r = (float)ft_atoi(line) / 255;
+	plane->color.r = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
-	plane->color.g = (float)ft_atoi(line) / 255;
+	plane->color.g = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
-	plane->color.b = (float)ft_atoi(line) / 255;
+	plane->color.b = (float)ft_atoi(line) / 255.f;
 	plane->del = &del_plane;
 	plane->solve = &pl_solve;
 	plane->get_n = &pl_get_n;
+	plane->prepare = &pl_prepare;
 	normalize(&plane->norm);
 }
 

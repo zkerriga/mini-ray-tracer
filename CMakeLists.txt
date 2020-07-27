@@ -168,6 +168,7 @@ set(SRC_FILES
         src/classes/scene/new_scene.c
         src/classes/scene/get_d.c
         src/classes/scene/get_active_camera.c
+        src/classes/scene/scene_prepare.c
 
         src/classes/resolution/new_resolution.c
         src/classes/resolution/del_resolution.c
@@ -190,30 +191,35 @@ set(SRC_FILES
         src/classes/sphere/sphere_is_valid.c
         src/classes/sphere/sp_get_n.c
         src/classes/sphere/sp_solve.c
+        src/classes/sphere/sp_prepare.c
 
         src/classes/plane/new_plane.c
         src/classes/plane/del_plane.c
         src/classes/plane/plane_is_valid.c
         src/classes/plane/pl_solve.c
         src/classes/plane/pl_get_n.c
+        src/classes/plane/pl_prepare.c
 
         src/classes/square/new_square.c
         src/classes/square/del_square.c
         src/classes/square/square_is_valid.c
         src/classes/square/sq_get_n.c
         src/classes/square/sq_solve.c
+        src/classes/square/sq_prepare.c
 
         src/classes/cylinder/new_cylinder.c
         src/classes/cylinder/del_cylinder.c
         src/classes/cylinder/cylinder_is_valid.c
         src/classes/cylinder/cy_solve.c
         src/classes/cylinder/cy_get_n.c
+        src/classes/cylinder/cy_prepare.c
 
         src/classes/triangle/new_triangle.c
         src/classes/triangle/del_triangle.c
         src/classes/triangle/triangle_is_valid.c
         src/classes/triangle/tr_get_n.c
         src/classes/triangle/tr_solve.c
+        src/classes/triangle/tr_prepare.c
 
         src/classes/dmlx/new_dmlx.c
         src/classes/dmlx/del_dmlx.c

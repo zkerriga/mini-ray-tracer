@@ -30,14 +30,14 @@ CLASS_DMLX =		$(addprefix dmlx/,				create_window del_dmlx new_dmlx put_image_to
 CLASS_BASIC_FOO =	$(addprefix basic_functions/,	ft_next check_color check_coordinates check_float check_int check_vector ft_float_between)
 CLASS_AMBIENT =		$(addprefix ambient/,			del_ambient new_ambient ambient_is_valid)
 CLASS_CAMERA =		$(addprefix camera/,			del_camera new_camera camera_is_valid)
-CLASS_CYLINDER =	$(addprefix cylinder/,			del_cylinder new_cylinder cylinder_is_valid cy_get_n cy_solve)
+CLASS_CYLINDER =	$(addprefix cylinder/,			del_cylinder new_cylinder cylinder_is_valid cy_get_n cy_solve cy_prepare)
 CLASS_LIGHT =		$(addprefix light/,				del_light new_light light_is_valid)
-CLASS_PLANE =		$(addprefix plane/,				del_plane new_plane plane_is_valid pl_get_n pl_solve)
+CLASS_PLANE =		$(addprefix plane/,				del_plane new_plane plane_is_valid pl_get_n pl_solve pl_prepare)
 CLASS_RESOLUTION =	$(addprefix resolution/,		del_resolution new_resolution resolution_is_valid)
-CLASS_SCENE =		$(addprefix scene/,				del_scene new_scene get_d get_active_camera)
-CLASS_SPHERE =		$(addprefix sphere/,			del_sphere new_sphere sphere_is_valid sp_get_n sp_solve)
-CLASS_SQUARE =		$(addprefix square/,			del_square new_square square_is_valid sq_get_n sq_solve)
-CLASS_TRIANGLE =	$(addprefix triangle/,			del_triangle new_triangle triangle_is_valid tr_get_n tr_solve)
+CLASS_SCENE =		$(addprefix scene/,				del_scene new_scene get_d get_active_camera scene_prepare )
+CLASS_SPHERE =		$(addprefix sphere/,			del_sphere new_sphere sphere_is_valid sp_get_n sp_solve sp_prepare)
+CLASS_SQUARE =		$(addprefix square/,			del_square new_square square_is_valid sq_get_n sq_solve sq_prepare)
+CLASS_TRIANGLE =	$(addprefix triangle/,			del_triangle new_triangle triangle_is_valid tr_get_n tr_solve tr_prepare)
 CLASS_FILES = $(addprefix $(CLASS_DIR), $(CLASS_BASIC_FOO)	$(CLASS_AMBIENT)	$(CLASS_CAMERA) \
 										$(CLASS_CYLINDER)	$(CLASS_LIGHT)		$(CLASS_PLANE) \
 										$(CLASS_RESOLUTION)	$(CLASS_SCENE)		$(CLASS_SPHERE) \

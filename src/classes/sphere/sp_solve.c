@@ -36,7 +36,7 @@ float		sp_solve(t_sphere *self, t_point *cam, t_vec3 *ray, t_limits *l)
 
 	vget(&oc, cam, &self->center);
 	solution_of_equation(t, vdot(ray, ray), 2 * vdot(&oc, ray),
-				vdot(&oc, &oc) - pow(self->diameter / 2, 2));
+				vdot(&oc, &oc) - self->radius_square);
 	if (fbetween(t[0], l->min, l->max) &&
 		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
 		return (t[0]);

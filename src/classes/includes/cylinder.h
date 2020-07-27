@@ -21,6 +21,7 @@ typedef struct	s_cylinder
 	void		(*del)(struct s_cylinder *);
 	float		(*solve)(struct s_cylinder *, t_point *, t_vec3 *, t_limits *);
 	t_vec3		*(*get_n)(struct s_cylinder *, t_point *, t_point *);
+	void		(*prepare)(struct s_cylinder *, t_scene *);
 	t_rgbvec	color;
 	t_point		point;
 	t_vec3		vector;
@@ -34,5 +35,6 @@ t_bool			cylinder_is_valid(char *line);
 float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*cy_get_n(t_cylinder *self, t_point *point, t_point *camera);
+void			cy_prepare(t_cylinder *self, t_scene *scene);
 
 #endif

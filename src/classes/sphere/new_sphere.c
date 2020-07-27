@@ -19,6 +19,8 @@ static void	set_another(t_sphere *sphere)
 	sphere->del = &del_sphere;
 	sphere->solve = &sp_solve;
 	sphere->get_n = &sp_get_n;
+	sphere->prepare = &sp_prepare;
+	sphere->radius_square = sphere->diameter * sphere->diameter / 4;
 }
 
 t_sphere	*new_sphere(char *line)
@@ -40,11 +42,11 @@ t_sphere	*new_sphere(char *line)
 	line = ft_next(line);
 	sphere->diameter = ft_atof(line);
 	line = ft_next(line);
-	sphere->color.r = (float)ft_atoi(line) / 255;
+	sphere->color.r = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
-	sphere->color.g = (float)ft_atoi(line) / 255;
+	sphere->color.g = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
-	sphere->color.b = (float)ft_atoi(line) / 255;
+	sphere->color.b = (float)ft_atoi(line) / 255.f;
 	set_another(sphere);
 	return (sphere);
 }
