@@ -13,47 +13,35 @@
 #include "sphere.h"
 #include "render.h"
 
-static float	solution_of_equation(float k1, float k2, float k3, t_bool get1)
+static void	solution_of_equation(float t[2], float k1, float k2, float k3)
 {
-	float			discriminant;
-	float			t1;
-	static float	t2;
+	float	discriminant;
 
-	if (get1)
+	if ((discriminant = k2 * k2 - 4 * k1 * k3) < 0)
 	{
-		discriminant = k2 * k2 - 4 * k1 * k3;
-		if (discriminant < 0)
-		{
-			t1 = -1.0f;
-			t2 = -1.0f;
-		}
-		else
-		{
-			t1 = (-k2 + sqrt(discriminant)) / (2 * k1);
-			t2 = (-k2 - sqrt(discriminant)) / (2 * k1);
-		}
-		return (t1);
+		t[0] = -1.f;
+		t[1] = -1.f;
 	}
 	else
-		return (t2);
+	{
+		t[0] = (-k2 + sqrt(discriminant)) / (2 * k1);
+		t[1] = (-k2 - sqrt(discriminant)) / (2 * k1);
+	}
 }
 
-float			sp_solve(t_sphere *self, t_point *cam,
-						  t_vec3 *ray, t_limits *l)
+float		sp_solve(t_sphere *self, t_point *cam, t_vec3 *ray, t_limits *l)
 {
-	float		t1;
-	float		t2;
+	float	t[2];
 	t_vec3	oc;
 
 	vget(&oc, cam, &self->center);
-	t1 = solution_of_equation(vdot(ray, ray), 2 * vdot(&oc, ray),
-				vdot(&oc, &oc) - pow(self->diameter / 2, 2), TRUE);
-	t2 = solution_of_equation(0, 0, 0, FALSE);
-	if (fbetween(t1, l->min, l->max) &&
-		!(fbetween(t2, l->min, l->max) && t1 > t2))
-		return (t1);
-	else if (fbetween(t2, l->min, l->max))
-		return (t2);
+	solution_of_equation(t, vdot(ray, ray), 2 * vdot(&oc, ray),
+				vdot(&oc, &oc) - pow(self->diameter / 2, 2));
+	if (fbetween(t[0], l->min, l->max) &&
+		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
+		return (t[0]);
+	else if (fbetween(t[1], l->min, l->max))
+		return (t[1]);
 	else
-		return (-1.0f);
+		return (-1.f);
 }
