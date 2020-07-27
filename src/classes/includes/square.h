@@ -32,7 +32,7 @@ t_square		*new_square(char *line);
 void			del_square(t_square *self);
 t_bool			square_is_valid(char *line);
 t_vec3			*sq_get_n(t_square *self, t_point *point, t_point *camera);
-float			sq_solve(t_square *self, t_point *camera,
+float			sq_solve(t_square *self, t_point *origin,
 							t_vec3 *ray, t_limits *l);
 void			sq_prepare(t_square *self, t_scene *scene);
 

@@ -32,7 +32,7 @@ typedef struct	s_cylinder
 t_cylinder		*new_cylinder(char *line);
 void			del_cylinder(t_cylinder *self);
 t_bool			cylinder_is_valid(char *line);
-float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
+float			cy_solve(t_cylinder *self, t_point *origin, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*cy_get_n(t_cylinder *self, t_point *point, t_point *camera);
 void			cy_prepare(t_cylinder *self, t_scene *scene);

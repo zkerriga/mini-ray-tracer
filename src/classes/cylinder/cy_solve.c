@@ -64,7 +64,7 @@ static float			check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, floa
 		return (-1.f);
 }
 
-static float			check_plane(t_cylinder *self, t_point *camera, t_vec3 *ray,
+static float			check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
 									t_limits *l)
 {
 	float		t[2];
@@ -73,7 +73,6 @@ static float			check_plane(t_cylinder *self, t_point *camera, t_vec3 *ray,
 	t_point		down;
 	t_vec3	op;
 
-//	if ((denominator = vdot(&self->vector, ray)) == 0.f)
 	if (fbetween((denominator = vdot(&self->vector, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
 	vset(&up, self->point.x + (self->height / 2) * self->vector.x,
@@ -82,39 +81,39 @@ static float			check_plane(t_cylinder *self, t_point *camera, t_vec3 *ray,
 	vset(&down, self->point.x - (self->height / 2) * self->vector.x,
 		 self->point.y - (self->height / 2) * self->vector.y,
 		 self->point.z - (self->height / 2) * self->vector.z);
-	vget(&op, camera, &up);
+	vget(&op, origin, &up);
 	t[0] = -vdot(&self->vector, &op) / denominator;
-	vget(&op, camera, &down);
+	vget(&op, origin, &down);
 	t[1] = -vdot(&self->vector, &op) / denominator;
 	if (fbetween(t[0], l->min, l->max) &&
 		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
-		return (check_circle(self, camera, ray, t[0]));
+		return (check_circle(self, origin, ray, t[0]));
 	else if (fbetween(t[1], l->min, l->max))
-		return (check_circle(self, camera, ray, t[1]));
+		return (check_circle(self, origin, ray, t[1]));
 	else
 		return (-1.f);
 }
 
-float			cy_solve(t_cylinder *self, t_point *camera, t_vec3 *ray,
+float			cy_solve(t_cylinder *self, t_point *origin, t_vec3 *ray,
 						  t_limits *l)
 {
 	float		t[3];
-	t_vec3	oc;
+	t_vec3		oc;
 	float		k[3];
 	t_point		intersection;
 
-	vget(&oc, camera, &self->point);
+	vget(&oc, origin, &self->point);
 	k[0] = vdot(ray, &self->vector);
 	k[2] = vdot(&oc, &self->vector);
 	k[1] = 2 * (vdot(ray, &oc) - k[0] * k[2]);
 	k[0] = vdot(ray, ray) - k[0] * k[0];
 	k[2] = vdot(&oc, &oc) - k[2] * k[2] - self->diameter * self->diameter / 4;
 	min_solution_of_equation(t, k, l);
-	t[2] = check_plane(self, camera, ray, l);
+	t[2] = check_plane(self, origin, ray, l);
 	if (t[0] > 0.f && ((t[2] > 0.f && t[2] > t[0]) || t[2] < 0))
 	{
-		vset(&intersection, camera->x + t[0] * ray->x,
-			 camera->y + t[0] * ray->y, camera->z + t[0] * ray->z);
+		vset(&intersection, origin->x + t[0] * ray->x,
+			 origin->y + t[0] * ray->y, origin->z + t[0] * ray->z);
 		if (check_intersection(self, &intersection))
 			return (t[0]);
 	}

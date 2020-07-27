@@ -31,7 +31,7 @@ typedef struct	s_sphere
 t_sphere		*new_sphere(char *line);
 void			del_sphere(t_sphere *self);
 t_bool			sphere_is_valid(char *line);
-float			sp_solve(t_sphere *self, t_point *camera, t_vec3 *ray,
+float			sp_solve(t_sphere *self, t_point *origin, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*sp_get_n(t_sphere *self, t_point *point, t_point *camera);
 void			sp_prepare(t_sphere *self, t_scene *scene);

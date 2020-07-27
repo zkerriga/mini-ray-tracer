@@ -29,15 +29,14 @@ typedef struct	s_triangle
 	t_vec3		ab_edge;
 	t_vec3		ac_edge;
 	t_vec3		norm;
-	float		ab_ab_coef;
-	float		ab_ac_coef;
-	float		ac_ac_coef;
+	t_vec3		u_beta;
+	t_vec3		u_gama;
 }				t_triangle;
 
 t_triangle		*new_triangle(char *line);
 void			del_triangle(t_triangle *self);
 t_bool			triangle_is_valid(char *line);
-float			tr_solve(t_triangle *self, t_point *camera, t_vec3 *ray,
+float			tr_solve(t_triangle *self, t_point *origin, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*tr_get_n(t_triangle *self, t_point *point, t_point *camera);
 void			tr_prepare(t_triangle *self, t_scene *scene);

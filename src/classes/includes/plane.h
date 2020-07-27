@@ -30,7 +30,7 @@ typedef struct	s_plane
 t_plane			*new_plane(char *line);
 void			del_plane(t_plane *self);
 t_bool			plane_is_valid(char *line);
-float			pl_solve(t_plane *self, t_point *camera, t_vec3 *ray,
+float			pl_solve(t_plane *self, t_point *origin, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*pl_get_n(t_plane *self, t_point *point, t_point *camera);
 void			pl_prepare(t_plane *self, t_scene *scene);

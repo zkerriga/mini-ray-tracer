@@ -29,12 +29,12 @@ static void	solution_of_equation(float t[2], float k1, float k2, float k3)
 	}
 }
 
-float		sp_solve(t_sphere *self, t_point *cam, t_vec3 *ray, t_limits *l)
+float		sp_solve(t_sphere *self, t_point *origin, t_vec3 *ray, t_limits *l)
 {
 	float	t[2];
 	t_vec3	oc;
 
-	vget(&oc, cam, &self->center);
+	vget(&oc, origin, &self->center);
 	solution_of_equation(t, vdot(ray, ray), 2 * vdot(&oc, ray),
 				vdot(&oc, &oc) - self->radius_square);
 	if (fbetween(t[0], l->min, l->max) &&

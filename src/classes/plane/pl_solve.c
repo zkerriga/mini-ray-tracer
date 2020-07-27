@@ -13,15 +13,14 @@
 #include "plane.h"
 #include "render.h"
 
-float	pl_solve(t_plane *self, t_point *camera, t_vec3 *ray, t_limits *l)
+float	pl_solve(t_plane *self, t_point *origin, t_vec3 *ray, t_limits *l)
 {
-	float		t;
+	float	t;
 	t_vec3	op;
 
-//	if ((t = vdot(&self->norm, ray)) == 0.f)
 	if (fbetween((t = vdot(&self->norm, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
-	vget(&op, camera, &self->point);
+	vget(&op, origin, &self->point);
 	t = -vdot(&self->norm, &op) / t;
 	if (fbetween(t, l->min, l->max))
 		return (t);

@@ -24,25 +24,24 @@ static void	create_ort_vec(t_vec3 *dest, t_vec3 *norm)
 	normalize(dest);
 }
 
-float		sq_solve(t_square *self, t_point *camera, t_vec3 *ray, t_limits *l)
+float		sq_solve(t_square *self, t_point *origin, t_vec3 *ray, t_limits *l)
 {
-	float		t;
-	t_point		dot;
+	float	t;
+	t_point	dot;
 	t_vec3	tmp;
 	t_vec3	right;
 	t_vec3	up;
 
-//	if ((t = vdot(&self->norm, ray)) == 0.f)
 	if (fbetween((t = vdot(&self->norm, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
-	vget(&tmp, camera, &self->center);
+	vget(&tmp, origin, &self->center);
 	t = -vdot(&self->norm, &tmp) / t;
 	if (fbetween(t, l->min, l->max))
 	{
 		create_ort_vec(&right, &self->norm);
 		vprod(&up, &right, &self->norm);
-		vset(&dot, camera->x + t * ray->x, camera->y + t * ray->y,
-			 camera->z + t * ray->z);
+		vset(&dot, origin->x + t * ray->x, origin->y + t * ray->y,
+				origin->z + t * ray->z);
 		vget(&tmp, &dot, &self->center);
 		if (fbetween(vdot(&tmp, &right) / self->side_size, -0.5f, 0.5f)
 			&& fbetween(vdot(&tmp, &up) / self->side_size, -0.5f, 0.5f))

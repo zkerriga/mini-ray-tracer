@@ -14,6 +14,24 @@
 #include "minirt.h"
 #include "triangle.h"
 
+static void	computing(t_triangle *self)
+{
+	float	ab_ab_coef;
+	float	ab_ac_coef;
+	float	ac_ac_coef;
+	float	d;
+	t_vec3	tmp[2];
+
+	ab_ab_coef = vdot(&self->ab_edge, &self->ab_edge);
+	ab_ac_coef = vdot(&self->ab_edge, &self->ac_edge);
+	ac_ac_coef = vdot(&self->ac_edge, &self->ac_edge);
+	d = ab_ab_coef * ac_ac_coef - ab_ac_coef * ab_ac_coef;
+	vsubtract(&self->u_beta, vmulti(&tmp[0], &self->ab_edge, ac_ac_coef / d),
+				vmulti(&tmp[1], &self->ac_edge, ab_ac_coef / d));
+	vsubtract(&self->u_gama, vmulti(&tmp[0], &self->ac_edge, ab_ab_coef / d),
+				vmulti(&tmp[1], &self->ab_edge, ab_ac_coef / d));
+}
+
 static void	set_another(t_triangle *triangle, char *line)
 {
 	line = ft_next(line);
@@ -37,9 +55,7 @@ static void	set_another(t_triangle *triangle, char *line)
 	vget(&triangle->ac_edge, &triangle->c_point, &triangle->a_point);
 	vprod(&triangle->norm, &triangle->ab_edge, &triangle->ac_edge);
 	normalize(&triangle->norm);
-	triangle->ab_ab_coef = vdot(&triangle->ab_edge, &triangle->ab_edge);
-	triangle->ab_ac_coef = vdot(&triangle->ab_edge, &triangle->ac_edge);
-	triangle->ac_ac_coef = vdot(&triangle->ac_edge, &triangle->ac_edge);
+	computing(triangle);
 }
 
 t_triangle	*new_triangle(char *line)

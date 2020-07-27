@@ -13,42 +13,33 @@
 #include "triangle.h"
 #include "render.h"
 
-t_bool			check_in_triangle(t_triangle *self, t_point *intersection)
+t_bool	check_in_triangle(t_triangle *self, t_point *intersection)
 {
-	float	k[3];
-	t_vec3	tmp1;
-	t_vec3	tmp2;
-	t_vec3	u_beta;
-	t_vec3	u_gama;
+	float	k1;
+	float	k2;
+	t_vec3	r;
 
-	k[2] = self->ab_ab_coef * self->ac_ac_coef -
-			self->ab_ac_coef * self->ab_ac_coef;
-	vsubtract(&u_beta, vmulti(&tmp1, &self->ab_edge, self->ac_ac_coef / k[2]),
-				vmulti(&tmp2, &self->ac_edge, self->ab_ac_coef / k[2]));
-	vsubtract(&u_gama, vmulti(&tmp1, &self->ac_edge, self->ab_ab_coef / k[2]),
-				vmulti(&tmp2, &self->ab_edge, self->ab_ac_coef / k[2]));
-	vget(&tmp1, intersection, &self->a_point);
-	if ((k[0] = vdot(&u_beta, &tmp1)) < 0 ||
-		(k[1] = vdot(&u_gama, &tmp1)) < 0 || 1 < k[0] + k[1])
+	vget(&r, intersection, &self->a_point);
+	if ((k1 = vdot(&self->u_beta, &r)) < 0 ||
+		(k2 = vdot(&self->u_gama, &r)) < 0 || 1 < k1 + k2)
 		return (FALSE);
 	return (TRUE);
 }
 
-float			tr_solve(t_triangle *self, t_point *camera, t_vec3 *ray,
-							t_limits *l)
+float	tr_solve(t_triangle *self, t_point *origin, t_vec3 *ray, t_limits *l)
 {
 	float		t;
-	t_vec3		cam_to_a;
+	t_vec3		oa;
 	t_point		intersection;
 
 	if (fbetween((t = vdot(&self->norm, ray)), -INACCURACY, +INACCURACY))
 		return (-1.f);
-	vget(&cam_to_a, camera, &self->a_point);
-	t = -vdot(&self->norm, &cam_to_a) / t;
+	vget(&oa, origin, &self->a_point);
+	t = -vdot(&self->norm, &oa) / t;
 	if (fbetween(t, l->min, l->max))
 	{
-		vset(&intersection, camera->x + t * ray->x, camera->y + t * ray->y,
-				camera->z + t * ray->z);
+		vset(&intersection, origin->x + t * ray->x, origin->y + t * ray->y,
+				origin->z + t * ray->z);
 		if (check_in_triangle(self, &intersection))
 			return (t);
 	}
