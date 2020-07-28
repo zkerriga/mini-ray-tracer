@@ -30,6 +30,7 @@ typedef struct	s_cylinder
 	t_point		up_center;
 	t_point		down_center;
 	float		radius_square;
+	float		diagonal_square;
 }				t_cylinder;
 
 t_cylinder		*new_cylinder(char *line);

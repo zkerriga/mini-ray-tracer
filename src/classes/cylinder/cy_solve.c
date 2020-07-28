@@ -13,7 +13,7 @@
 #include "cylinder.h"
 #include "render.h"
 
-static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
+void	cy_min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 {
 	float	discriminant;
 	float	t1;
@@ -37,28 +37,20 @@ static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 	t[1] = t1_is_biggest ? t1 : t2;
 }
 
-static t_bool			check_intersection(t_cylinder *self, t_point *intersection)
+float	cy_check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, float t)
 {
-	if (pow(modulep(intersection, &self->point), 2) * 4 > self->diameter * self->diameter + self->height * self->height)
-		return (FALSE);
-	else
-		return (TRUE);
-}
+	t_point		intersection;
 
-static float			check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, float t)
-{
-	t_point		point;
-
-	vset(&point, camera->x + t * ray->x, camera->y + t * ray->y,
-		 camera->z + t * ray->z);
-	if (pow(modulep(&point, &self->point), 2) * 4 < self->diameter * self->diameter + self->height * self->height)
+	vset(&intersection, camera->x + t * ray->x, camera->y + t * ray->y,
+			camera->z + t * ray->z);
+	if (modulep_sqr(&intersection, &self->point) < self->diagonal_square)
 		return (t);
 	else
 		return (-1.f);
 }
 
-static float			check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
-									t_limits *l)
+float	cy_check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
+						t_limits *l)
 {
 	float	t[2];
 	float	denominator;
@@ -73,15 +65,14 @@ static float			check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
 	t[1] = -vdot(&self->vector, &op) / denominator;
 	if (fbetween(t[0], l->min, l->max) &&
 		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
-		return (check_circle(self, origin, ray, t[0]));
+		return (cy_check_circle(self, origin, ray, t[0]));
 	else if (fbetween(t[1], l->min, l->max))
-		return (check_circle(self, origin, ray, t[1]));
+		return (cy_check_circle(self, origin, ray, t[1]));
 	else
 		return (-1.f);
 }
 
-float			cy_solve(t_cylinder *self, t_point *origin, t_vec3 *ray,
-							t_limits *l)
+float	cy_solve(t_cylinder *self, t_point *origin, t_vec3 *ray, t_limits *l)
 {
 	float		t[3];
 	t_vec3		op;
@@ -94,13 +85,13 @@ float			cy_solve(t_cylinder *self, t_point *origin, t_vec3 *ray,
 	k[1] = 2 * (vdot(ray, &op) - k[0] * k[2]);
 	k[0] = vdot(ray, ray) - k[0] * k[0];
 	k[2] = vdot(&op, &op) - k[2] * k[2] - self->radius_square;
-	min_solution_of_equation(t, k, l);
-	t[2] = check_plane(self, origin, ray, l);
+	cy_min_solution_of_equation(t, k, l);
+	t[2] = cy_check_plane(self, origin, ray, l);
 	if (t[0] > 0.f && (t[2] < 0 || t[2] > t[0]))
 	{
 		vset(&intersection, origin->x + t[0] * ray->x,
-			 origin->y + t[0] * ray->y, origin->z + t[0] * ray->z);
-		if (check_intersection(self, &intersection))
+				origin->y + t[0] * ray->y, origin->z + t[0] * ray->z);
+		if (modulep_sqr(&intersection, &self->point) <= self->diagonal_square)
 			return (t[0]);
 	}
 	return (t[2]);

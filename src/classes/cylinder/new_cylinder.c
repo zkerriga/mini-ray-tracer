@@ -26,6 +26,8 @@ static void	calculate(t_cylinder *self)
 	vset(&self->down_center, self->point.x - half_height * self->vector.x,
 			self->point.y - half_height * self->vector.y,
 			self->point.z - half_height * self->vector.z);
+	self->diagonal_square = (self->diameter * self->diameter +
+							self->height * self->height) / 4;
 }
 
 static void	set_another(t_cylinder *cylinder, char *line)
