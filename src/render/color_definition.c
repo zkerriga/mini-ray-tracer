@@ -93,8 +93,8 @@ int				color_definition(t_scene *scene, t_point *camera,
 		}
 		list = list->next;
 	}
-	color_multi(&result, *color_sum(&result, ambient, diffuse), obj->color);
+	color_multi(&result, color_sum(&result, &ambient, &diffuse), &obj->color);
 	air(&result, camera, point);
 	free(point);
-	return (color_to_int(result));
+	return (color_to_int(&result));
 }

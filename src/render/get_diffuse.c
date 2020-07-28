@@ -31,7 +31,7 @@ void	get_diffuse(t_rgbvec *diffuse, t_light *light, t_vec3 *norm,
 		color.r = diff * light->color.r;
 		color.g = diff * light->color.g;
 		color.b = diff * light->color.b;
-		color_sum(diffuse, *diffuse, color);
+		color_sum(diffuse, diffuse, &color);
 	}
 	free(norm);
 }
