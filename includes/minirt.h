@@ -27,8 +27,8 @@
 # define INVALID_DESCRIPTOR (-2)
 # define WINDOW_ERROR (-3)
 
-# define FALSE (0)
-# define TRUE (1)
+# define FALSE 0
+# define TRUE 1
 
 # include "scene.h"
 # include "errno.h"

@@ -50,17 +50,14 @@ static void		to_zeroes(t_resolution **resolution, t_ambient **ambient,
 	*cameras = NULL;
 }
 
-t_scene			*parser(char *path, char *line)
+t_scene			*read_cycle(int fd, char *line)
 {
 	t_resolution	*resolution;
 	t_ambient		*ambient;
 	t_list			*all_obj;
 	t_dlist			*cameras;
-	int				fd;
 
 	to_zeroes(&resolution, &ambient, &all_obj, &cameras);
-	if (!match(path, "*.rt") || (fd = open(path, O_RDONLY)) < 3)
-		ft_exit(INVALID_DESCRIPTOR);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ft_strlen(line) > 3 && line[0] != '#')
@@ -75,6 +72,21 @@ t_scene			*parser(char *path, char *line)
 		free(line);
 	}
 	free(line);
-	close(fd);
 	return (get_scene(resolution, ambient, cameras, all_obj));
+}
+
+t_scene			*parser(char *path, char *line)
+{
+	t_scene	*scene;
+	int		fd;
+
+	scene = NULL;
+	if (!match(path, "*.rt") || (fd = open(path, O_RDONLY)) < 3)
+		ft_exit(INVALID_DESCRIPTOR);
+	else
+	{
+		scene = read_cycle(fd, line);
+		close(fd);
+	}
+	return (scene);
 }
