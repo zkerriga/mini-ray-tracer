@@ -26,6 +26,8 @@ typedef struct	s_square
 	t_point		center;
 	t_vec3		norm;
 	float		side_size;
+	t_vec3		right;
+	t_vec3		up;
 }				t_square;
 
 t_square		*new_square(char *line);

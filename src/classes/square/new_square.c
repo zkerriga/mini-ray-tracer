@@ -14,6 +14,18 @@
 #include "minirt.h"
 #include "square.h"
 
+static void	calculate(t_square *self)
+{
+	if (self->norm.x != 0.f)
+		vset(&self->right, -(self->norm.y) / self->norm.x, 1.f, 0.f);
+	else if (self->norm.y != 0.f)
+		vset(&self->right, 1.f, -(self->norm.x) / self->norm.y, 0.f);
+	else
+		vset(&self->right, 0.f, 1.f, -(self->norm.y) / self->norm.z);
+	normalize(&self->right);
+	vprod(&self->up, &self->right, &self->norm);
+}
+
 static void	set_another(t_square *square, char *line)
 {
 	line = ft_next(line);
@@ -29,6 +41,7 @@ static void	set_another(t_square *square, char *line)
 	square->solve = &sq_solve;
 	square->prepare = &sq_prepare;
 	normalize(&square->norm);
+	calculate(square);
 }
 
 t_square	*new_square(char *line)
