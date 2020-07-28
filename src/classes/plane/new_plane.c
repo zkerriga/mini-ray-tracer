@@ -25,7 +25,6 @@ static void	set_another(t_plane *plane, char *line)
 	plane->del = &del_plane;
 	plane->solve = &pl_solve;
 	plane->get_n = &pl_get_n;
-	plane->prepare = &pl_prepare;
 	normalize(&plane->norm);
 }
 

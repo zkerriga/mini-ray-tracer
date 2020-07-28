@@ -39,7 +39,6 @@ static void	set_another(t_square *square, char *line)
 	square->del = &del_square;
 	square->get_n = &sq_get_n;
 	square->solve = &sq_solve;
-	square->prepare = &sq_prepare;
 	normalize(&square->norm);
 	calculate(square);
 }

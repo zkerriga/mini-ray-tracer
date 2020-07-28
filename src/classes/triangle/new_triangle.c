@@ -50,7 +50,6 @@ static void	set_another(t_triangle *triangle, char *line)
 	triangle->del = &del_triangle;
 	triangle->solve = &tr_solve;
 	triangle->get_n = &tr_get_n;
-	triangle->prepare = &tr_prepare;
 	vget(&triangle->ab_edge, &triangle->b_point, &triangle->a_point);
 	vget(&triangle->ac_edge, &triangle->c_point, &triangle->a_point);
 	vprod(&triangle->norm, &triangle->ab_edge, &triangle->ac_edge);

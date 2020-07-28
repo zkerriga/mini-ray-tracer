@@ -19,7 +19,6 @@ static void	set_another(t_sphere *sphere)
 	sphere->del = &del_sphere;
 	sphere->solve = &sp_solve;
 	sphere->get_n = &sp_get_n;
-	sphere->prepare = &sp_prepare;
 	sphere->radius_square = sphere->diameter * sphere->diameter / 4;
 }
 

@@ -53,6 +53,5 @@ t_scene		*new_scene(t_resolution *resolution, t_ambient *ambient,
 	scene->get_d = &get_d;
 	scene->del = &del_scene;
 	scene->get_cam = &get_active_camera;
-	scene->prepare = &scene_prepare;
 	return (scene);
 }

@@ -22,8 +22,8 @@ void	cy_min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 
 	if ((discriminant = k[1] * k[1] - 4 * k[0] * k[2]) < 0)
 	{
-		t1 = -1.f;
-		t2 = -1.f;
+		t[0] = -1.f;
+		t[1] = -1.f;
 	}
 	else
 	{
@@ -31,10 +31,10 @@ void	cy_min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 		t2 = (-k[1] - sqrt(discriminant)) / (2 * k[0]);
 		t1 = fbetween(t1, l->min, l->max) ? t1 : -1.f;
 		t2 = fbetween(t2, l->min, l->max) ? t2 : -1.f;
+		t1_is_biggest = t2 > 0.f && (t1 < 0.f || t2 < t1);
+		t[0] = t1_is_biggest ? t2 : t1;
+		t[1] = t1_is_biggest ? t1 : t2;
 	}
-	t1_is_biggest = t2 > 0.f && (t1 < 0.f || t2 < t1);
-	t[0] = t1_is_biggest ? t2 : t1;
-	t[1] = t1_is_biggest ? t1 : t2;
 }
 
 float	cy_check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, float t)
@@ -61,13 +61,14 @@ float	cy_check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
 		return (-1.f);
 	vget(&op, origin, &self->up_center);
 	t[0] = -vdot(&self->vector, &op) / denominator;
+	t[0] = fbetween(t[0], l->min, l->max) ? t[0] : -1.f;
 	vget(&op, origin, &self->down_center);
 	t[1] = -vdot(&self->vector, &op) / denominator;
-	if (fbetween(t[0], l->min, l->max) &&
-		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
-		return (cy_check_circle(self, origin, ray, t[0]));
-	else if (fbetween(t[1], l->min, l->max))
+	t[1] = fbetween(t[1], l->min, l->max) ? t[1] : -1.f;
+	if (t[1] > 0.f && (t[0] < 0.f || t[1] < t[0]))
 		return (cy_check_circle(self, origin, ray, t[1]));
+	else if (t[0] > 0.f)
+		return (cy_check_circle(self, origin, ray, t[0]));
 	else
 		return (-1.f);
 }

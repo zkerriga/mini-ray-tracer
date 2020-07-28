@@ -21,7 +21,6 @@ typedef struct	s_plane
 	void		(*del)(struct s_plane *);
 	float		(*solve)(struct s_plane *, t_point *, t_vec3 *, t_limits *);
 	t_vec3		*(*get_n)(struct s_plane *, t_point *, t_point *);
-	void		(*prepare)(struct s_plane *, t_scene *);
 	t_rgbvec	color;
 	t_point		point;
 	t_vec3		norm;
@@ -33,6 +32,5 @@ t_bool			plane_is_valid(char *line);
 float			pl_solve(t_plane *self, t_point *origin, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*pl_get_n(t_plane *self, t_point *point, t_point *camera);
-void			pl_prepare(t_plane *self, t_scene *scene);
 
 #endif

@@ -21,7 +21,6 @@ typedef struct	s_triangle
 	void		(*del)(struct s_triangle *);
 	float		(*solve)(struct s_triangle *, t_point *, t_vec3 *, t_limits *);
 	t_vec3		*(*get_n)(struct s_triangle *, t_point *, t_point *);
-	void		(*prepare)(struct s_triangle *, t_scene *);
 	t_rgbvec	color;
 	t_point		a_point;
 	t_point		b_point;
@@ -39,6 +38,5 @@ t_bool			triangle_is_valid(char *line);
 float			tr_solve(t_triangle *self, t_point *origin, t_vec3 *ray,
 							t_limits *l);
 t_vec3			*tr_get_n(t_triangle *self, t_point *point, t_point *camera);
-void			tr_prepare(t_triangle *self, t_scene *scene);
 
 #endif

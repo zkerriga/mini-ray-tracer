@@ -38,7 +38,6 @@ typedef struct		s_scene
 	t_list			*objects;
 	float			(*get_d)(struct s_scene *, int);
 	t_camera		*(*get_cam)(struct s_scene *, t_bool);
-	void			(*prepare)(struct s_scene *);
 	void			(*del)(struct s_scene *);
 }					t_scene;
 
@@ -47,6 +46,5 @@ t_scene				*new_scene(t_resolution *resolution, t_ambient *ambient,
 void				del_scene(t_scene *self);
 float				get_d(t_scene *self, int fov);
 t_camera			*get_active_camera(t_scene *self, t_bool mode);
-void				scene_prepare(t_scene *self);
 
 #endif

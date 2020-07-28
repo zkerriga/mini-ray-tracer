@@ -45,7 +45,6 @@ static void	set_another(t_cylinder *cylinder, char *line)
 	cylinder->del = &del_cylinder;
 	cylinder->solve = &cy_solve;
 	cylinder->get_n = &cy_get_n;
-	cylinder->prepare = &cy_prepare;
 	normalize(&cylinder->vector);
 	calculate(cylinder);
 }
