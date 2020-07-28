@@ -15,15 +15,15 @@
 
 static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 {
-	float discriminant;
-	float t1;
-	float t2;
+	float	discriminant;
+	float	t1;
+	float	t2;
+	t_bool	t1_is_biggest;
 
-	discriminant = k[1] * k[1] - 4 * k[0] * k[2];
-	if (discriminant < 0)
+	if ((discriminant = k[1] * k[1] - 4 * k[0] * k[2]) < 0)
 	{
-		t1 = -1.0f;
-		t2 = -1.0f;
+		t1 = -1.f;
+		t2 = -1.f;
 	}
 	else
 	{
@@ -32,16 +32,9 @@ static void	min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 		t1 = fbetween(t1, l->min, l->max) ? t1 : -1.f;
 		t2 = fbetween(t2, l->min, l->max) ? t2 : -1.f;
 	}
-	if (t2 > 0.f && (t1 < 0.f || t2 < t1))
-	{
-		t[0] = t2;
-		t[1] = t1;
-	}
-	else
-	{
-		t[0] = t1;
-		t[1] = t2;
-	}
+	t1_is_biggest = t2 > 0.f && (t1 < 0.f || t2 < t1);
+	t[0] = t1_is_biggest ? t2 : t1;
+	t[1] = t1_is_biggest ? t1 : t2;
 }
 
 static t_bool			check_intersection(t_cylinder *self, t_point *intersection)
@@ -67,23 +60,16 @@ static float			check_circle(t_cylinder *self, t_point *camera, t_vec3 *ray, floa
 static float			check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
 									t_limits *l)
 {
-	float		t[2];
-	float		denominator;
-	t_point		up;
-	t_point		down;
+	float	t[2];
+	float	denominator;
 	t_vec3	op;
 
-	if (fbetween((denominator = vdot(&self->vector, ray)), -INACCURACY, +INACCURACY))
+	if (fbetween((denominator = vdot(&self->vector, ray)),
+					-INACCURACY, +INACCURACY))
 		return (-1.f);
-	vset(&up, self->point.x + (self->height / 2) * self->vector.x,
-		 self->point.y + (self->height / 2) * self->vector.y,
-		 self->point.z + (self->height / 2) * self->vector.z);
-	vset(&down, self->point.x - (self->height / 2) * self->vector.x,
-		 self->point.y - (self->height / 2) * self->vector.y,
-		 self->point.z - (self->height / 2) * self->vector.z);
-	vget(&op, origin, &up);
+	vget(&op, origin, &self->up_center);
 	t[0] = -vdot(&self->vector, &op) / denominator;
-	vget(&op, origin, &down);
+	vget(&op, origin, &self->down_center);
 	t[1] = -vdot(&self->vector, &op) / denominator;
 	if (fbetween(t[0], l->min, l->max) &&
 		!(fbetween(t[1], l->min, l->max) && t[0] > t[1]))
@@ -95,22 +81,22 @@ static float			check_plane(t_cylinder *self, t_point *origin, t_vec3 *ray,
 }
 
 float			cy_solve(t_cylinder *self, t_point *origin, t_vec3 *ray,
-						  t_limits *l)
+							t_limits *l)
 {
 	float		t[3];
-	t_vec3		oc;
+	t_vec3		op;
 	float		k[3];
 	t_point		intersection;
 
-	vget(&oc, origin, &self->point);
+	vget(&op, origin, &self->point);
 	k[0] = vdot(ray, &self->vector);
-	k[2] = vdot(&oc, &self->vector);
-	k[1] = 2 * (vdot(ray, &oc) - k[0] * k[2]);
+	k[2] = vdot(&op, &self->vector);
+	k[1] = 2 * (vdot(ray, &op) - k[0] * k[2]);
 	k[0] = vdot(ray, ray) - k[0] * k[0];
-	k[2] = vdot(&oc, &oc) - k[2] * k[2] - self->diameter * self->diameter / 4;
+	k[2] = vdot(&op, &op) - k[2] * k[2] - self->radius_square;
 	min_solution_of_equation(t, k, l);
 	t[2] = check_plane(self, origin, ray, l);
-	if (t[0] > 0.f && ((t[2] > 0.f && t[2] > t[0]) || t[2] < 0))
+	if (t[0] > 0.f && (t[2] < 0 || t[2] > t[0]))
 	{
 		vset(&intersection, origin->x + t[0] * ray->x,
 			 origin->y + t[0] * ray->y, origin->z + t[0] * ray->z);

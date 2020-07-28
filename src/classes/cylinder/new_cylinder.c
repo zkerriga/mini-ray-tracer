@@ -14,6 +14,20 @@
 #include "minirt.h"
 #include "cylinder.h"
 
+static void	calculate(t_cylinder *self)
+{
+	float	half_height;
+
+	half_height = self->height / 2;
+	self->radius_square = self->diameter * self->diameter / 4;
+	vset(&self->up_center, self->point.x + half_height * self->vector.x,
+			self->point.y + half_height * self->vector.y,
+			self->point.z + half_height * self->vector.z);
+	vset(&self->down_center, self->point.x - half_height * self->vector.x,
+			self->point.y - half_height * self->vector.y,
+			self->point.z - half_height * self->vector.z);
+}
+
 static void	set_another(t_cylinder *cylinder, char *line)
 {
 	line = ft_next(line);
@@ -31,6 +45,7 @@ static void	set_another(t_cylinder *cylinder, char *line)
 	cylinder->get_n = &cy_get_n;
 	cylinder->prepare = &cy_prepare;
 	normalize(&cylinder->vector);
+	calculate(cylinder);
 }
 
 t_cylinder	*new_cylinder(char *line)
