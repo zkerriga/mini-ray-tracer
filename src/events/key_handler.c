@@ -12,25 +12,6 @@
 
 #include "events.h"
 
-#if DEBUG == 1
-
-void	print_camera(t_camera *camera)
-{
-	puts("CAMERA:");
-	printf("point={%.1f,%.1f,%.1f} dir={%.2f,%.2f,%.2f}, fov=%d\n",
-			camera->point.x, camera->point.y, camera->point.z, camera->norm.x,
-			camera->norm.y, camera->norm.z, camera->fov);
-}
-
-#else
-
-void	print_camera(t_camera *camera)
-{
-	camera = (void *)camera;
-}
-
-#endif
-
 int		key_handler(int keycode, t_scene *scene)
 {
 	if (keycode == K_ESCAPE)
@@ -43,7 +24,6 @@ int		key_handler(int keycode, t_scene *scene)
 	{
 		scene->act_cam = scene->get_cam(scene,
 										keycode == K_RIGHT ? RIGHT : LEFT);
-		print_camera(scene->act_cam);
 		render(scene, scene->resolution->x_size, scene->resolution->y_size);
 		scene->dmlx->put_win(scene->dmlx);
 	}

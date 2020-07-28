@@ -27,41 +27,6 @@ static void		zero_color(t_rgbvec *color)
 	color->b = 0.f;
 }
 
-#if AIR_BONUS == 1
-
-static void		air(t_rgbvec *result, t_point *camera, t_point *point)
-{
-	float	t;
-	float	dr;
-	float	dg;
-	float	db;
-
-	t = modulep(point, camera);
-	if (t * 3.f < MAX_T)
-		db = (MAX_T - t * 3.f) / MAX_T;
-	else
-		db = 0.f;
-	if (t * 2.6f < MAX_T)
-		dg = (MAX_T - t * 2.6f) / MAX_T;
-	else
-		dg = 0.f;
-	if (t * 2.2f < MAX_T)
-		dr = (MAX_T - t * 2.2f) / MAX_T;
-	else
-		dr = 0.f;
-	result->r *= dr;
-	result->g *= dg;
-	result->b *= db;
-}
-
-#else
-
-static void		air(t_rgbvec *result, t_point *camera, t_point *point)
-{
-}
-
-#endif
-
 /*
 ** The function gets the point where the ray collides with the object and
 ** the object. Next, the function determines how the object's color
@@ -94,7 +59,6 @@ int				color_definition(t_scene *scene, t_point *camera,
 		list = list->next;
 	}
 	color_multi(&result, color_sum(&result, &ambient, &diffuse), &obj->color);
-	air(&result, camera, point);
 	free(point);
 	return (color_to_int(&result));
 }
