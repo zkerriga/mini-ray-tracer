@@ -23,7 +23,7 @@ t_vec3	*sp_get_n(t_sphere *self, t_point *point, t_point *camera)
 		ft_exit(ENOMEM);
 	}
 	vget(norm, point, &self->center);
-	if (2 * modulep(camera, &self->center) < self->diameter)
+	if (modulep_sqr(camera, &self->center) < self->radius_square)
 		reverse_vec(norm);
 	return (normalize(norm));
 }
