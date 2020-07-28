@@ -31,7 +31,8 @@ t_dmlx	*new_dmlx(int *x_size, int *y_size)
 	if (!(dmlx->img = mlx_new_image(dmlx->mlx, *x_size, *y_size)))
 		ft_exit(WINDOW_ERROR);
 	dmlx->win = NULL;
-	dmlx->addr = (int *)mlx_get_data_addr(dmlx->img, &dmlx->bits_per_pixel, &dmlx->line_length, &dmlx->endian);
+	dmlx->addr = (int *)mlx_get_data_addr(dmlx->img, &dmlx->bits_per_pixel,
+											&dmlx->line_length, &dmlx->endian);
 	dmlx->del = &del_dmlx;
 	dmlx->set_win = &create_window;
 	dmlx->put_bmp = &put_image_to_bmp;

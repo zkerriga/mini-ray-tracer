@@ -49,7 +49,7 @@ int				color_definition(t_scene *scene, t_point *camera,
 	list = scene->lights;
 	while (list)
 	{
-		vget(&light_vec, &((t_light *) list->content)->point, point);
+		vget(&light_vec, &((t_light *)list->content)->point, point);
 		if (!is_shadow_point(scene, &((t_light *)list->content)->point,
 								&light_vec))
 		{

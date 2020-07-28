@@ -37,7 +37,7 @@ void	sp_min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 	}
 }
 
-float		sp_solve(t_sphere *self, t_point *origin, t_vec3 *ray, t_limits *l)
+float	sp_solve(t_sphere *self, t_point *origin, t_vec3 *ray, t_limits *l)
 {
 	float	t[2];
 	float	k[3];

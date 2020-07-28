@@ -24,7 +24,8 @@ int		key_handler(int keycode, t_scene *scene)
 	{
 		scene->act_cam = scene->get_cam(scene,
 										keycode == K_RIGHT ? RIGHT : LEFT);
-		render(scene, scene->resolution->x_size, scene->resolution->y_size);
+		render(scene, scene->dmlx->addr, scene->resolution->x_size,
+				scene->resolution->y_size);
 		scene->dmlx->put_win(scene->dmlx);
 	}
 	return (1);

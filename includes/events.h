@@ -13,8 +13,8 @@
 #ifndef EVENTS_H
 # define EVENTS_H
 
-#include "minirt.h"
-#include "render.h"
+# include "minirt.h"
+# include "render.h"
 
 int		key_handler(int keycode, t_scene *scene);
 int		close_handler(t_scene *scene);

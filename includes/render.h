@@ -21,8 +21,9 @@
 # include "libgraphic_math.h"
 # include "minirt.h"
 
-int			*render(t_scene *scene, int x_size, int y_size);
-int			trace_ray(t_scene *scene, t_point *cam, t_list *objects, t_vec3 *ray);
+int			*render(t_scene *scene, int *image, int x_size, int y_size);
+int			trace_ray(t_scene *scene, t_point *cam,
+						t_list *objects, t_vec3 *ray);
 int			color_definition(t_scene *scene, t_point *camera,
 								t_any_object *obj, t_point *point);
 void		get_diffuse(t_rgbvec *diffuse, t_light *light,

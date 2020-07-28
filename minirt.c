@@ -20,7 +20,6 @@ void	argparse(t_args *args, int ac, char **av)
 	args->path = NULL;
 	args->save = FALSE;
 	args->help = FALSE;
-
 	if (ac == 1)
 		args->help = TRUE;
 	else
@@ -43,6 +42,18 @@ void	argparse(t_args *args, int ac, char **av)
 		args->help = TRUE;
 }
 
+void	start_scene_with_hook(t_scene *scene)
+{
+	scene->dmlx->set_win(scene->dmlx, scene->resolution->x_size,
+							scene->resolution->y_size);
+	render(scene, scene->dmlx->addr, scene->resolution->x_size,
+			scene->resolution->y_size);
+	scene->dmlx->put_win(scene->dmlx);
+	mlx_hook(scene->dmlx->win, 2, 1L << 0, key_handler, scene);
+	mlx_hook(scene->dmlx->win, 17, 1L << 17, close_handler, scene);
+	mlx_loop(scene->dmlx->mlx);
+}
+
 int		main(int ac, char **av)
 {
 	t_scene	*scene;
@@ -57,18 +68,13 @@ int		main(int ac, char **av)
 		scene->act_cam = scene->get_cam(scene, NONE);
 		if (args.save)
 		{
-			render(scene, scene->resolution->x_size, scene->resolution->y_size);
-			scene->dmlx->put_bmp(scene->dmlx, scene->resolution->x_size, scene->resolution->y_size);
+			render(scene, scene->dmlx->addr, scene->resolution->x_size,
+					scene->resolution->y_size);
+			scene->dmlx->put_bmp(scene->dmlx, scene->resolution->x_size,
+									scene->resolution->y_size);
 		}
 		else
-		{
-			scene->dmlx->set_win(scene->dmlx, scene->resolution->x_size, scene->resolution->y_size);
-			render(scene, scene->resolution->x_size, scene->resolution->y_size);
-			scene->dmlx->put_win(scene->dmlx);
-			mlx_hook(scene->dmlx->win, 2, 1L << 0, key_handler, scene);
-			mlx_hook(scene->dmlx->win, 17, 1L << 17, close_handler, scene);
-			mlx_loop(scene->dmlx->mlx);
-		}
+			start_scene_with_hook(scene);
 	}
 	return (0);
 }

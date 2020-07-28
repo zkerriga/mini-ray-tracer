@@ -46,7 +46,6 @@ static void	set_another(t_triangle *triangle, char *line)
 	triangle->color.g = (float)ft_atoi(line) / 255.f;
 	line = ft_next(line);
 	triangle->color.b = (float)ft_atoi(line) / 255.f;
-	vset(&triangle->norm, 0.f, 0.f, 0.f); //TODO: delete string
 	triangle->del = &del_triangle;
 	triangle->solve = &tr_solve;
 	triangle->get_n = &tr_get_n;
