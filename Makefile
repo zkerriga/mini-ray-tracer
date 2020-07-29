@@ -68,8 +68,6 @@ HELP_FILES.O = $(addprefix $(OBJ_DIR), $(HELP_FILES:=.o))
 MAIN_FILES = minirt
 MAIN_FILES.O = $(addprefix $(OBJ_DIR), $(MAIN_FILES:=.o))
 
-# TODO: валгринд проверки!
-
 .PHONY: all
 all: $(OBJ_DIR) lft lgraphic_math lx $(NAME)
 	@echo -e "\n\e[32m[+] $(NAME) is assembled!\e[0m"
@@ -192,10 +190,12 @@ libfclean:
 	@$(MAKE) -C ./$(LIB_DIR)libgraphic_math --no-print-directory fclean
 	@$(MAKE) -C ./$(LIB_DIR)minilibx --no-print-directory clean
 
-.PHONY: va
-va: all
-	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) test_camera.rt
+.PHONY: valg
+valg: $(NAME)
+	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) scene_tests/valgrind.rt
 
 .PHONY: bonus
 bonus: all
 	@echo -e "\e[35m\n  Knowing the mouse might one day leave its hole and get the cheese...\n  It fills you with determination.\n\e[0m"
+
+#norminette *.c includes libs/libft libs/libgraphic_math src | grep -B1 Error
