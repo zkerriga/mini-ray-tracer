@@ -14,6 +14,7 @@
 # define DMLX_H
 
 # include "mlx.h"
+# define MAINTAINER "zkerriga"
 
 typedef struct	s_dmlx
 {

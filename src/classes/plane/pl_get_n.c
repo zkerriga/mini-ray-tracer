@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
+#include "exit.h"
 #include "plane.h"
 
 t_vec3	*pl_get_n(t_plane *self, t_point *point, t_point *camera)

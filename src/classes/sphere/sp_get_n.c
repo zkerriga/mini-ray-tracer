@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
+#include "exit.h"
 #include "sphere.h"
 
 t_vec3	*sp_get_n(t_sphere *self, t_point *point, t_point *camera)

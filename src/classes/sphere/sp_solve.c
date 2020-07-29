@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "sphere.h"
-#include "render.h"
 
 void	sp_min_solution_of_equation(float t[2], const float k[3], t_limits *l)
 {

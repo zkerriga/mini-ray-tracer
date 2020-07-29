@@ -12,7 +12,7 @@
 
 #include "libft.h"
 #include "sphere.h"
-#include "minirt.h"
+#include "exit.h"
 
 static void	set_another(t_sphere *sphere)
 {

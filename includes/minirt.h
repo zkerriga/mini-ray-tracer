@@ -13,27 +13,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define MAINTAINER "zkerriga"
-# define K_ESCAPE (0xff1b)
-# define K_RIGHT (0xff53)
-# define K_LEFT (0xff51)
-
-# define RIGHT (2)
-# define LEFT (1)
-# define NONE (0)
-
-# define ENOMEM (12)
-# define INVALID_INPUT (-1)
-# define INVALID_DESCRIPTOR (-2)
-# define WINDOW_ERROR (-3)
-
-# define FALSE 0
-# define TRUE 1
-
 # include "scene.h"
-# include "errno.h"
-# include "stdio.h"
-# include "mlx.h"
 
 typedef struct	s_args
 {
@@ -42,11 +22,6 @@ typedef struct	s_args
 	const char	*path;
 }				t_args;
 
-void			ft_exit(int error_code);
-void			ft_exit_memerror(int error_code);
-void			ft_exit_invalid_input(void);
-void			ft_exit_invalid_descriptor(void);
-void			ft_exit_window_error(void);
 void			show_help(void);
 
 #endif

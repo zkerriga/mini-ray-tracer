@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "basic_structures.h"
 
 t_bool	check_coordinates(char **line)

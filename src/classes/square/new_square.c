@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 #include "square.h"
 
 static void	calculate(t_square *self)

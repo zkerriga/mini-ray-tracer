@@ -24,6 +24,7 @@ set(HEADER_FILES
         includes/render.h
         includes/minirt.h
         includes/events.h
+        includes/exit.h
 
         src/classes/includes/ambient.h
         src/classes/includes/camera.h

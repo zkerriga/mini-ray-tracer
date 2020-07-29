@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 #include "light.h"
 
 t_light	*new_light(char *line)

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "libft.h"
+#include "exit.h"
 
 void	ft_exit_window_error(void)
 {

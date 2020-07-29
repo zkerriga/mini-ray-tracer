@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "render.h"
 
 int		*render(t_scene *scene, int *image, int x_size, int y_size)

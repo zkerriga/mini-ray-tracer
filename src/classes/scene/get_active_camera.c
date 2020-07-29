@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "scene.h"
+#include "events.h"
 
 static t_dlist	*dlast(t_dlist *cameras)
 {

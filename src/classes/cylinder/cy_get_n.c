@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "exit.h"
 #include "render.h"
 #include "plane.h"
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 #include "ambient.h"
 
 t_ambient	*new_ambient(char *line)

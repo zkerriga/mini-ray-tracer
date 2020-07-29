@@ -12,7 +12,7 @@
 
 #include "resolution.h"
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 
 t_resolution	*new_resolution(char *line)
 {

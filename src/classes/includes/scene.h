@@ -14,8 +14,6 @@
 # define SCENE_H
 
 # include "libft.h"
-# include "mlx.h"
-
 # include "ambient.h"
 # include "camera.h"
 # include "cylinder.h"

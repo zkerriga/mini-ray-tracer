@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "render.h"
 
 /*
 ** The function defines the minimum and maximum values of solutions for the ray.

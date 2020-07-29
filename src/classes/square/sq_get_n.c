@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
+#include "exit.h"
 #include "square.h"
 
 t_vec3	*sq_get_n(t_square *self, t_point *point, t_point *camera)

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 #include "camera.h"
-#include "minirt.h"
+#include "exit.h"
 
 static void	set_another(t_camera *camera, char *line)
 {

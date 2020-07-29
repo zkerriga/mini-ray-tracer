@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 #include "triangle.h"
 
 static void	computing(t_triangle *self)

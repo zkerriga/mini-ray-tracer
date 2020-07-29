@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "math.h"
 
 float	get_d(t_scene *self, int fov)
 {

@@ -19,7 +19,7 @@
 # define BLACK (0)
 
 # include "libgraphic_math.h"
-# include "minirt.h"
+# include "scene.h"
 
 int			*render(t_scene *scene, int *image, int x_size, int y_size);
 int			trace_ray(t_scene *scene, t_point *cam,

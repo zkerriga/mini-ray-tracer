@@ -12,7 +12,7 @@
 
 #include "scene.h"
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 
 static void	mlx_setup(t_scene *self)
 {

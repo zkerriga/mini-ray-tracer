@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "render.h"
 
 t_bool	is_shadow_point(t_scene *scene, t_point *light_point, t_vec3 *ray)

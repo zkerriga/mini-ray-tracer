@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "exit.h"
 #include "libft.h"
 
 void	ft_exit_invalid_input(void)

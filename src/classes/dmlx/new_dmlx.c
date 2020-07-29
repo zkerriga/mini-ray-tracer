@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "exit.h"
 #include "dmlx.h"
+#include "libft.h"
 
 t_dmlx	*new_dmlx(int *x_size, int *y_size)
 {

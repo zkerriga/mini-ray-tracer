@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "exit.h"
+#include "triangle.h"
+#include "libft.h"
 
 t_vec3		*tr_get_n(t_triangle *self, t_point *point, t_point *camera)
 {

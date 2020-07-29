@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "dmlx.h"
-#include "minirt.h"
+#include "exit.h"
 
 void	create_window(t_dmlx *self, int x_size, int y_size)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "exit.h"
 #include "render.h"
 
 t_point	*get_point(t_point *camera, t_vec3 *ray, float t)

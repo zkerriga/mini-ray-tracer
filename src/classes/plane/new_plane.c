@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minirt.h"
+#include "exit.h"
 #include "plane.h"
 
 static void	set_another(t_plane *plane, char *line)

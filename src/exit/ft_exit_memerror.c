@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "exit.h"
+#include "libft.h"
 
 void	ft_exit_memerror(int error_code)
 {

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "minirt.h"
+#include "exit.h"
 
 static t_scene	*get_scene(t_resolution *resolution, t_ambient *ambient,
 							t_dlist *cameras, t_list *all_obj)
