@@ -15,14 +15,16 @@ NAME = miniRT
 OBJ_DIR = bin/
 HDR_DIR = includes/
 SRC_DIR = src/
+LIB_DIR = libs/
 
 CC = gcc
 
-INCLUDES = -I$(HDR_DIR) -I$(SRC_DIR)$(CLASS_DIR)$(HDR_DIR) -I$(GNL_DIR) -I./libs/libft/ -I./libs/minilibx -I./libs/libgraphic_math
-FLAGS = $(INCLUDES) -D BUFFER_SIZE=50 -Wall -Wextra -Werror -O2
+INCLUDES =	-I$(HDR_DIR) -I$(SRC_DIR)$(CLASS_DIR)$(HDR_DIR) -I$(GNL_DIR) -I./$(LIB_DIR)libft/ \
+			-I./$(LIB_DIR)minilibx -I./$(LIB_DIR)libgraphic_math
+FLAGS = $(INCLUDES) -D BUFFER_SIZE=50 -Wall -Wextra -Werror -O2 -MMD
 
-GNL_DIR = libs/get_next_line/
-GNL_FILES = $(addprefix $(GNL_DIR), get_next_line get_next_line_utils)
+GNL_DIR = $(LIB_DIR)get_next_line/
+GNL_FILES = $(addprefix $(GNL_DIR), get_next_line get_next_line_utils )
 GNL_FILES.O = $(addprefix $(OBJ_DIR), $(GNL_FILES:=.o))
 
 CLASS_DIR = classes/
@@ -66,8 +68,7 @@ HELP_FILES.O = $(addprefix $(OBJ_DIR), $(HELP_FILES:=.o))
 MAIN_FILES = minirt
 MAIN_FILES.O = $(addprefix $(OBJ_DIR), $(MAIN_FILES:=.o))
 
-#TODO: реализовать сворачивание окна?
-#TODO: добавить флаг -MD для контроля хедеров
+# TODO: валгринд проверки!
 
 .PHONY: all
 all: $(OBJ_DIR) lft lgraphic_math lx $(NAME)
@@ -91,80 +92,88 @@ $(OBJ_DIR):
 
 .PHONY: lft
 lft:
-	@$(MAKE) -C ./libs/libft --no-print-directory --silent
+	@$(MAKE) -C ./$(LIB_DIR)libft --no-print-directory --silent
 	@echo -e "\e[32m[+] Libft is assembled!\e[0m"
 
 .PHONY: lgraphic_math
 lgraphic_math:
-	@$(MAKE) -C ./libs/libgraphic_math --no-print-directory --silent
+	@$(MAKE) -C ./$(LIB_DIR)libgraphic_math --no-print-directory --silent
 	@echo -e "\e[32m[+] Libgraphic_math is assembled!\e[0m\n"
 
 .PHONY: lx
 lx:
-	@$(MAKE) -C ./libs/minilibx --no-print-directory --silent
+	@$(MAKE) -C ./$(LIB_DIR)minilibx --no-print-directory --silent
 	@echo -e "\e[32m[+] Minilibx is assembled!\e[0m"
 
 $(NAME): $(GNL_FILES.O) $(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) $(PARSER_FILES.O) $(RENDER_FILES.O) $(HELP_FILES.O) $(MAIN_FILES.O)
 	@echo -e "\e[34m[+] END\e[0m"
 	@$(CC) $(FLAGS)	$(GNL_FILES.O) $(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) \
 					$(PARSER_FILES.O) $(RENDER_FILES.O) $(HELP_FILES.O) $(MAIN_FILES.O) \
-					-L./libs/libft -lft -L./libs/libgraphic_math -lgraphic_math \
-					-L./libs/minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd \
+					-L./$(LIB_DIR)libft -lft -L./$(LIB_DIR)libgraphic_math -lgraphic_math \
+					-L./$(LIB_DIR)minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd \
 					-o $(NAME)
 
 ifndef ECHO
 T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
-      -nrRf $(firstword $(MAKEFILE_LIST)) \
-      ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+	-nrRf $(firstword $(MAKEFILE_LIST)) \
+	ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
 N := x
 C = $(words $N)$(eval N := x $N)
 ifneq ($(T), 0)
 	ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / $T`%]"
-endif
+endif # ifneq #
 ifeq ($(T), 0)
 	ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / 72`%]"
-endif
-endif
+endif # ifeq #
+endif # ECHO #
 
 $(GNL_FILES.O): $(OBJ_DIR)%.o: %.c
 	@$(ECHO) "GNL"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)$(LIB_DIR)$(GNL_DIR)*.d)
 
 $(CLASS_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "CLASSES"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)$(CLASS_DIR)*/*.d)
 
 $(EVENTS_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "EVENTS"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)$(EVENTS_DIR)*.d)
 
 $(EXIT_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "EXIT"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)$(EXIT_DIR)*.d)
 
 $(PARSER_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "PARSER"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)$(PARSER_DIR)*.d)
 
 $(RENDER_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "RENDER"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)$(RENDER_DIR)*.d)
 
 $(HELP_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "HELP"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)*.d)
 
 $(MAIN_FILES.O): $(OBJ_DIR)%.o: %.c
 	@$(ECHO) "MAIN"
 	@echo
 	@$(CC) $(FLAGS) -c $< -o $@
+include $(wildcard $(OBJ_DIR)*.d)
 
 .PHONY: clean
 clean:
@@ -175,18 +184,18 @@ fclean: clean
 	$(RM) $(NAME)
 
 .PHONY: re
-re: fclean libre all
+re: fclean libfclean all
 
-.PHONY: libre
-libre:
-	@$(MAKE) -C ./libs/libft --no-print-directory fclean
-	@$(MAKE) -C ./libs/libgraphic_math --no-print-directory fclean
-	@$(MAKE) -C ./libs/minilibx --no-print-directory clean
+.PHONY: libfclean
+libfclean:
+	@$(MAKE) -C ./$(LIB_DIR)libft --no-print-directory fclean
+	@$(MAKE) -C ./$(LIB_DIR)libgraphic_math --no-print-directory fclean
+	@$(MAKE) -C ./$(LIB_DIR)minilibx --no-print-directory clean
 
 .PHONY: va
 va: all
-	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) test_castle.rt
+	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) test_camera.rt
 
-.PHONY: time_test
-time_test:
-	@./test_time_script.sh
+.PHONY: bonus
+bonus: all
+	@echo -e "\e[35m\n  Knowing the mouse might one day leave its hole and get the cheese...\n  It fills you with determination.\n\e[0m"
