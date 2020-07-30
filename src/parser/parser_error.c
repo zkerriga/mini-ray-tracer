@@ -1,25 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/18 20:28:45 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/18 20:28:51 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/30 09:49:43 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/30 09:49:45 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "parser.h"
+#include "exit.h"
 
-# include "scene.h"
-# include <fcntl.h>
-# include "get_new_line.h"
+/*
+** Deletes the created objects.
+*/
 
-t_scene	*parser(char *path, char *line);
-t_bool	match(char *str, char *format);
 void	parser_error(t_resolution *resolution, t_ambient *ambient,
-					 t_list *all_obj, t_dlist *cameras);
+						t_list *all_obj, t_dlist *cameras)
+{
+	t_any_object	*any;
+	void			*tmp;
 
-#endif
+	if (resolution)
+		resolution->del(resolution);
+	if (ambient)
+		ambient->del(ambient);
+	if (cameras)
+	{
+		ft_dlstclear(&cameras, free_gc);
+	}
+	while (all_obj)
+	{
+		any = all_obj->content;
+		any->del(any);
+		tmp = all_obj;
+		all_obj = all_obj->next;
+		free(tmp);
+	}
+	ft_exit(INVALID_DESCRIPTOR);
+}

@@ -19,13 +19,9 @@ LIB_DIR = libs/
 
 CC = gcc
 
-INCLUDES =	-I$(HDR_DIR) -I$(SRC_DIR)$(CLASS_DIR)$(HDR_DIR) -I$(GNL_DIR) -I./$(LIB_DIR)libft/ \
+INCLUDES =	-I$(HDR_DIR) -I$(SRC_DIR)$(CLASS_DIR)$(HDR_DIR) -I./$(LIB_DIR)libft/ \
 			-I./$(LIB_DIR)minilibx -I./$(LIB_DIR)libgraphic_math
 FLAGS = $(INCLUDES) -D BUFFER_SIZE=50 -Wall -Wextra -Werror -O2 -MMD
-
-GNL_DIR = $(LIB_DIR)get_next_line/
-GNL_FILES = $(addprefix $(GNL_DIR), get_next_line get_next_line_utils )
-GNL_FILES.O = $(addprefix $(OBJ_DIR), $(GNL_FILES:=.o))
 
 CLASS_DIR = classes/
 CLASS_DMLX =		$(addprefix dmlx/,				create_window del_dmlx new_dmlx put_image_to_bmp put_image_to_win )
@@ -55,7 +51,7 @@ EXIT_FILES = $(addprefix $(EXIT_DIR)ft_, exit exit_invalid_descriptor exit_inval
 EXIT_FILES.O = $(addprefix $(OBJ_DIR), $(EXIT_FILES:=.o))
 
 PARSER_DIR = parser/
-PARSER_FILES = $(addprefix $(PARSER_DIR), parser match )
+PARSER_FILES = $(addprefix $(PARSER_DIR), parser match parser_error)
 PARSER_FILES.O = $(addprefix $(OBJ_DIR), $(PARSER_FILES:=.o))
 
 RENDER_DIR = render/
@@ -73,7 +69,7 @@ all: $(OBJ_DIR) lft lgraphic_math lx $(NAME)
 	@echo -e "\n\e[32m[+] $(NAME) is assembled!\e[0m"
 
 $(OBJ_DIR):
-	@mkdir -p	$(OBJ_DIR)/$(GNL_DIR) $(OBJ_DIR)/$(EXIT_DIR) $(OBJ_DIR)/$(EVENTS_DIR) \
+	@mkdir -p	$(OBJ_DIR)/$(EXIT_DIR) $(OBJ_DIR)/$(EVENTS_DIR) \
 				$(OBJ_DIR)/$(PARSER_DIR) $(OBJ_DIR)/$(RENDER_DIR)
 	@mkdir -p $(OBJ_DIR)/$(CLASS_DIR)/dmlx/
 	@mkdir -p $(OBJ_DIR)/$(CLASS_DIR)/basic_functions/
@@ -90,7 +86,7 @@ $(OBJ_DIR):
 
 .PHONY: lft
 lft:
-	@$(MAKE) -C ./$(LIB_DIR)libft --no-print-directory --silent
+	@$(MAKE) -C ./$(LIB_DIR)libft gnl_buff_size=45 --no-print-directory --silent
 	@echo -e "\e[32m[+] Libft is assembled!\e[0m"
 
 .PHONY: lgraphic_math
@@ -103,33 +99,27 @@ lx:
 	@$(MAKE) -C ./$(LIB_DIR)minilibx --no-print-directory --silent
 	@echo -e "\e[32m[+] Minilibx is assembled!\e[0m"
 
-$(NAME): $(GNL_FILES.O) $(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) $(PARSER_FILES.O) $(RENDER_FILES.O) $(HELP_FILES.O) $(MAIN_FILES.O)
+$(NAME): $(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) $(PARSER_FILES.O) $(RENDER_FILES.O) $(HELP_FILES.O) $(MAIN_FILES.O)
 	@echo -e "\e[34m[+] END\e[0m"
-	@$(CC) $(FLAGS)	$(GNL_FILES.O) $(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) \
+	@$(CC) $(FLAGS)	$(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) \
 					$(PARSER_FILES.O) $(RENDER_FILES.O) $(HELP_FILES.O) $(MAIN_FILES.O) \
 					-L./$(LIB_DIR)libft -lft -L./$(LIB_DIR)libgraphic_math -lgraphic_math \
 					-L./$(LIB_DIR)minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd \
 					-o $(NAME)
 
 ifndef ECHO
-T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
-	-nrRf $(firstword $(MAKEFILE_LIST)) \
-	ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
-N := x
-C = $(words $N)$(eval N := x $N)
-ifneq ($(T), 0)
-	ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / $T`%]"
-endif # ifneq #
-ifeq ($(T), 0)
-	ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / 72`%]"
-endif # ifeq #
+	T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
+		-nrRf $(firstword $(MAKEFILE_LIST)) \
+		ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+	N := x
+	C = $(words $N)$(eval N := x $N)
+	ifneq ($(T), 0)
+		ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / $T`%]"
+	endif # ifneq #
+	ifeq ($(T), 0)
+		ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / 73`%]"
+	endif # ifeq #
 endif # ECHO #
-
-$(GNL_FILES.O): $(OBJ_DIR)%.o: %.c
-	@$(ECHO) "GNL"
-	@echo
-	@$(CC) $(FLAGS) -c $< -o $@
-include $(wildcard $(OBJ_DIR)$(LIB_DIR)$(GNL_DIR)*.d)
 
 $(CLASS_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(ECHO) "CLASSES"

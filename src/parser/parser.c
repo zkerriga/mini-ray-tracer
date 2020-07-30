@@ -16,9 +16,9 @@
 static t_scene	*get_scene(t_resolution *resolution, t_ambient *ambient,
 							t_dlist *cameras, t_list *all_obj)
 {
+	return (new_scene(resolution, ambient, cameras, all_obj));
 	if (!ambient || !resolution)
 		ft_exit(INVALID_INPUT);
-	return (new_scene(resolution, ambient, cameras, all_obj));
 }
 
 static void		manager(t_list **all_obj, t_dlist **cameras, char *line)
@@ -56,9 +56,10 @@ t_scene			*read_cycle(int fd, char *line)
 	t_ambient		*ambient;
 	t_list			*all_obj;
 	t_dlist			*cameras;
+	t_gnl			res;
 
 	to_zeroes(&resolution, &ambient, &all_obj, &cameras);
-	while (get_next_line(fd, &line) > 0)
+	while ((res = get_new_line(fd, &line)) == READ)
 	{
 		if (ft_strlen(line) > 3 && line[0] != '#')
 		{
@@ -72,6 +73,8 @@ t_scene			*read_cycle(int fd, char *line)
 		free(line);
 	}
 	free(line);
+	if (res < END)
+		parser_error(resolution, ambient, all_obj, cameras);
 	return (get_scene(resolution, ambient, cameras, all_obj));
 }
 

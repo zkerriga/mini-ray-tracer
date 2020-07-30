@@ -14,8 +14,8 @@ include_directories(libs/minilibx)
 include_directories(libs/libgraphic_math)
 
 set(HEADER_FILES
-        libs/get_next_line/get_next_line.h
         libs/libft/libft.h
+        libs/libft/get_new_line.h
         libs/minilibx/mlx.h
         libs/minilibx/mlx_int.h
         libs/libgraphic_math/libgraphic_math.h
@@ -42,8 +42,6 @@ set(HEADER_FILES
         )
 
 set(LIBS_SRC
-        libs/get_next_line/get_next_line.c
-        libs/get_next_line/get_next_line_utils.c
         libs/libft/src/is/ft_isalnum.c
         libs/libft/src/is/ft_isalpha.c
         libs/libft/src/is/ft_isascii.c
@@ -103,6 +101,7 @@ set(LIBS_SRC
         libs/libft/src/tree/ft_treeinorder.c
         libs/libft/src/tree/ft_treepostorder.c
         libs/libft/src/tree/ft_treepreorder.c
+        libs/libft/src/get_new_line/get_new_line.c
 
         libs/minilibx/mlx_clear_window.c
         libs/minilibx/mlx_destroy_image.c
@@ -224,6 +223,7 @@ set(SRC_FILES
 
         src/parser/parser.c
         src/parser/match.c
+        src/parser/parser_error.c
 
         src/render/render.c
         src/render/trace_ray.c
