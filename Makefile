@@ -186,7 +186,7 @@ valg: $(NAME)
 
 .PHONY: valg_zero
 valg_zero:
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) test_tmp.rtf
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) # Написать адрес файла, в котором есть ошибка описания
 
 .PHONY: bonus
 bonus: all
