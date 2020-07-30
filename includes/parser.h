@@ -20,7 +20,7 @@
 t_scene	*parser(char *path, char *line);
 t_bool	match(char *str, char *format);
 void	parser_error(t_resolution *resolution, t_ambient *ambient,
-					 t_list *all_obj, t_dlist *cameras);
+						t_list *all_obj, t_dlist *cameras);
 t_dlist	*ft_dlstnew_gc(void *content);
 t_list	*ft_lstnew_gc(void *content);
 

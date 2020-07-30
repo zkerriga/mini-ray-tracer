@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "exit.h"
 #include "light.h"
+
 static void	set_another(t_light *light, char *line)
 {
 	line = ft_next(line);
