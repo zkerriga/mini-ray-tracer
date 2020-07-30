@@ -86,7 +86,7 @@ $(OBJ_DIR):
 
 .PHONY: lft
 lft:
-	@$(MAKE) -C ./$(LIB_DIR)libft gnl_buff_size=350 --no-print-directory --silent
+	@$(MAKE) -C ./$(LIB_DIR)libft gnl_buff_size=100 --no-print-directory --silent
 	@echo -e "\e[32m[+] Libft is assembled!\e[0m"
 
 .PHONY: lgraphic_math
