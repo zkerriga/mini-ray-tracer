@@ -33,7 +33,10 @@ t_plane		*new_plane(char *line)
 	t_plane	*plane;
 
 	if (!plane_is_valid(line))
+	{
+		free(line);
 		ft_exit(INVALID_INPUT);
+	}
 	if (!(plane = (t_plane *)malloc_gc(sizeof(t_plane))))
 		ft_exit(ENOMEM);
 	plane->identifier[0] = 'p';

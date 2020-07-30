@@ -19,7 +19,10 @@ t_resolution	*new_resolution(char *line)
 	t_resolution	*resolution;
 
 	if (!resolution_is_valid(line))
+	{
+		free(line);
 		ft_exit(INVALID_INPUT);
+	}
 	if (!(resolution = (t_resolution *)malloc_gc(sizeof(t_resolution))))
 		ft_exit(ENOMEM);
 	resolution->identifier[0] = 'R';

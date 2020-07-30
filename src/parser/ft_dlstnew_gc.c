@@ -16,7 +16,7 @@ t_dlist	*ft_dlstnew_gc(void *content)
 {
 	t_dlist	*fresh;
 
-	fresh = (t_dlist *)malloc(sizeof(t_dlist));
+	fresh = (t_dlist *)malloc_gc(sizeof(t_dlist));
 	if (fresh)
 	{
 		fresh->content = content;

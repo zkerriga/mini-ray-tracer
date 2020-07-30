@@ -13,13 +13,26 @@
 #include "libft.h"
 #include "exit.h"
 #include "light.h"
+static void	set_another(t_light *light, char *line)
+{
+	line = ft_next(line);
+	light->color.r = light->light_ratio * ((float)ft_atoi(line) / 255.f);
+	line = ft_next(line);
+	light->color.g = light->light_ratio * ((float)ft_atoi(line) / 255.f);
+	line = ft_next(line);
+	light->color.b = light->light_ratio * ((float)ft_atoi(line) / 255.f);
+	light->del = &del_light;
+}
 
-t_light	*new_light(char *line)
+t_light		*new_light(char *line)
 {
 	t_light	*light;
 
 	if (!light_is_valid(line))
+	{
+		free(line);
 		ft_exit(INVALID_INPUT);
+	}
 	if (!(light = (t_light *)malloc_gc(sizeof(t_light))))
 		ft_exit(ENOMEM);
 	light->identifier[0] = 'l';
@@ -32,12 +45,6 @@ t_light	*new_light(char *line)
 	light->point.z = ft_atof(line);
 	line = ft_next(line);
 	light->light_ratio = ft_atof(line);
-	line = ft_next(line);
-	light->color.r = light->light_ratio * ((float)ft_atoi(line) / 255.f);
-	line = ft_next(line);
-	light->color.g = light->light_ratio * ((float)ft_atoi(line) / 255.f);
-	line = ft_next(line);
-	light->color.b = light->light_ratio * ((float)ft_atoi(line) / 255.f);
-	light->del = &del_light;
+	set_another(light, line);
 	return (light);
 }

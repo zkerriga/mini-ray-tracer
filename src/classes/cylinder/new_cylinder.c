@@ -54,7 +54,10 @@ t_cylinder	*new_cylinder(char *line)
 	t_cylinder	*cylinder;
 
 	if (!cylinder_is_valid(line))
+	{
+		free(line);
 		ft_exit(INVALID_INPUT);
+	}
 	if (!(cylinder = (t_cylinder *)malloc_gc(sizeof(t_cylinder))))
 		ft_exit(ENOMEM);
 	cylinder->identifier[0] = 'c';

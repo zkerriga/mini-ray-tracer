@@ -28,7 +28,10 @@ t_camera	*new_camera(char *line)
 	t_camera	*camera;
 
 	if (!camera_is_valid(line))
+	{
+		free(line);
 		ft_exit(INVALID_INPUT);
+	}
 	if (!(camera = (t_camera *)malloc_gc(sizeof(t_camera))))
 		ft_exit(ENOMEM);
 	camera->identifier[0] = 'c';
