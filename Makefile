@@ -6,7 +6,7 @@
 #    By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/17 11:20:16 by zkerriga          #+#    #+#              #
-#    Updated: 2020/06/17 11:24:47 by zkerriga         ###   ########.fr        #
+#    Updated: 2020/07/30 13:29:06 by zkerriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = gcc
 
 INCLUDES =	-I$(HDR_DIR) -I$(SRC_DIR)$(CLASS_DIR)$(HDR_DIR) -I./$(LIB_DIR)libft/ \
 			-I./$(LIB_DIR)minilibx -I./$(LIB_DIR)libgraphic_math
-FLAGS = $(INCLUDES) -D BUFFER_SIZE=50 -Wall -Wextra -Werror -O2 -MMD
+FLAGS = $(INCLUDES) -Wall -Wextra -Werror -O2 -MMD
 
 CLASS_DIR = classes/
 CLASS_DMLX =		$(addprefix dmlx/,				create_window del_dmlx new_dmlx put_image_to_bmp put_image_to_win )
@@ -86,7 +86,7 @@ $(OBJ_DIR):
 
 .PHONY: lft
 lft:
-	@$(MAKE) -C ./$(LIB_DIR)libft gnl_buff_size=45 --no-print-directory --silent
+	@$(MAKE) -C ./$(LIB_DIR)libft gnl_buff_size=350 --no-print-directory --silent
 	@echo -e "\e[32m[+] Libft is assembled!\e[0m"
 
 .PHONY: lgraphic_math
