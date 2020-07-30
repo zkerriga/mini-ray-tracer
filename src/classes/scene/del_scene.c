@@ -24,7 +24,7 @@ static void	del_objects(t_list *objects)
 		any->del(objects->content);
 		tmp = objects;
 		objects = objects->next;
-		free(tmp);
+		free_gc(tmp);
 	}
 }
 
@@ -40,14 +40,14 @@ void		del_scene(t_scene *self)
 		((t_camera *)self->cameras->content)->del(self->cameras->content);
 		tmp = self->cameras;
 		self->cameras = self->cameras->next;
-		free(tmp);
+		free_gc(tmp);
 	}
 	while (self->lights)
 	{
 		((t_light *)self->lights->content)->del(self->lights->content);
 		tmp = self->lights;
 		self->lights = self->lights->next;
-		free(tmp);
+		free_gc(tmp);
 	}
 	del_objects(self->objects);
 	free_gc(self);

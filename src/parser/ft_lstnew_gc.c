@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   ft_lstnew_gc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkerriga <zkerriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/18 20:28:45 by zkerriga          #+#    #+#             */
-/*   Updated: 2020/06/18 20:28:51 by zkerriga         ###   ########.fr       */
+/*   Created: 2020/07/30 10:59:58 by zkerriga          #+#    #+#             */
+/*   Updated: 2020/07/30 11:01:44 by zkerriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "libft.h"
 
-# include "scene.h"
-# include <fcntl.h>
-# include "get_new_line.h"
+t_list	*ft_lstnew_gc(void *content)
+{
+	t_list	*fresh;
 
-t_scene	*parser(char *path, char *line);
-t_bool	match(char *str, char *format);
-void	parser_error(t_resolution *resolution, t_ambient *ambient,
-					 t_list *all_obj, t_dlist *cameras);
-t_dlist	*ft_dlstnew_gc(void *content);
-t_list	*ft_lstnew_gc(void *content);
-
-#endif
+	fresh = (t_list *)malloc_gc(sizeof(t_list));
+	if (fresh)
+	{
+		fresh->content = content;
+		fresh->next = NULL;
+	}
+	return (fresh);
+}

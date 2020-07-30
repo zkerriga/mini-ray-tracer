@@ -24,19 +24,19 @@ static t_scene	*get_scene(t_resolution *resolution, t_ambient *ambient,
 static void		manager(t_list **all_obj, t_dlist **cameras, char *line)
 {
 	if (line[0] == 's' && line[1] == 'p')
-		ft_lstadd_front(all_obj, ft_lstnew(new_sphere(line)));
+		ft_lstadd_front(all_obj, ft_lstnew_gc(new_sphere(line)));
 	else if (line[0] == 'p' && line[1] == 'l')
-		ft_lstadd_front(all_obj, ft_lstnew(new_plane(line)));
+		ft_lstadd_front(all_obj, ft_lstnew_gc(new_plane(line)));
 	else if (line[0] == 's' && line[1] == 'q')
-		ft_lstadd_front(all_obj, ft_lstnew(new_square(line)));
+		ft_lstadd_front(all_obj, ft_lstnew_gc(new_square(line)));
 	else if (line[0] == 'c' && line[1] == 'y')
-		ft_lstadd_front(all_obj, ft_lstnew(new_cylinder(line)));
+		ft_lstadd_front(all_obj, ft_lstnew_gc(new_cylinder(line)));
 	else if (line[0] == 't' && line[1] == 'r')
-		ft_lstadd_front(all_obj, ft_lstnew(new_triangle(line)));
+		ft_lstadd_front(all_obj, ft_lstnew_gc(new_triangle(line)));
 	else if (line[0] == 'c')
-		ft_dlstadd_front(cameras, ft_dlstnew(new_camera(line)));
+		ft_dlstadd_front(cameras, ft_dlstnew_gc(new_camera(line)));
 	else if (line[0] == 'l')
-		ft_lstadd_front(all_obj, ft_lstnew(new_light(line)));
+		ft_lstadd_front(all_obj, ft_lstnew_gc(new_light(line)));
 	else
 		ft_exit(INVALID_INPUT);
 }

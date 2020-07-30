@@ -51,7 +51,7 @@ EXIT_FILES = $(addprefix $(EXIT_DIR)ft_, exit exit_invalid_descriptor exit_inval
 EXIT_FILES.O = $(addprefix $(OBJ_DIR), $(EXIT_FILES:=.o))
 
 PARSER_DIR = parser/
-PARSER_FILES = $(addprefix $(PARSER_DIR), parser match parser_error)
+PARSER_FILES = $(addprefix $(PARSER_DIR), parser match parser_error ft_lstnew_gc ft_dlstnew_gc )
 PARSER_FILES.O = $(addprefix $(OBJ_DIR), $(PARSER_FILES:=.o))
 
 RENDER_DIR = render/
@@ -108,17 +108,17 @@ $(NAME): $(CLASS_FILES.O) $(EVENTS_FILES.O) $(EXIT_FILES.O) $(PARSER_FILES.O) $(
 					-o $(NAME)
 
 ifndef ECHO
-	T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
-		-nrRf $(firstword $(MAKEFILE_LIST)) \
-		ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
-	N := x
-	C = $(words $N)$(eval N := x $N)
-	ifneq ($(T), 0)
-		ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / $T`%]"
-	endif # ifneq #
-	ifeq ($(T), 0)
-		ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / 73`%]"
-	endif # ifeq #
+T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
+	-nrRf $(firstword $(MAKEFILE_LIST)) \
+	ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+N := x
+C = $(words $N)$(eval N := x $N)
+ifneq ($(T), 0)
+	ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / $T`%]"
+endif # ifneq #
+ifeq ($(T), 0)
+	ECHO = echo -ne "\e[36m\r[`expr $C '*' 100 / 73`%]"
+endif # ifeq #
 endif # ECHO #
 
 $(CLASS_FILES.O): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -183,6 +183,10 @@ libfclean:
 .PHONY: valg
 valg: $(NAME)
 	valgrind --leak-check=full --leak-resolution=med --track-origins=yes --vgdb=no ./$(NAME) scene_tests/valgrind.rt
+
+.PHONY: valg_zero
+valg_zero:
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) test_tmp.rtf
 
 .PHONY: bonus
 bonus: all

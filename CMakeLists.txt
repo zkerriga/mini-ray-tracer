@@ -224,6 +224,8 @@ set(SRC_FILES
         src/parser/parser.c
         src/parser/match.c
         src/parser/parser_error.c
+        src/parser/ft_dlstnew_gc.c
+        src/parser/ft_lstnew_gc.c
 
         src/render/render.c
         src/render/trace_ray.c
