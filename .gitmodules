@@ -7,3 +7,6 @@
 [submodule "libs/libgraphic_math"]
 	path = libs/libgraphic_math
 	url = https://github.com/zkerriga/libgraphic_math.git
+[submodule "libs/minilibx"]
+	path = libs/minilibx
+	url = https://github.com/42Paris/minilibx-linux.git
