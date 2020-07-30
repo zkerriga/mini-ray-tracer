@@ -16,9 +16,9 @@
 static t_scene	*get_scene(t_resolution *resolution, t_ambient *ambient,
 							t_dlist *cameras, t_list *all_obj)
 {
-	return (new_scene(resolution, ambient, cameras, all_obj));
 	if (!ambient || !resolution)
 		ft_exit(INVALID_INPUT);
+	return (new_scene(resolution, ambient, cameras, all_obj));
 }
 
 static void		manager(t_list **all_obj, t_dlist **cameras, char *line)
