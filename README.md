@@ -13,3 +13,13 @@ git clone https://github.com/zkerriga/miniRT --recursive
 Next, you need to compile the project with the ` make ` command. The Makefile will report the successful build of the project.
 
 ### Usage:
+The program starts as follows in the terminal:
+```
+./miniRT DESCRIPTION_PATH [FLAG]
+```
+Available flags:
+- `-h`, `--help`  -  Shows the help
+- `-s`, `--save`  -  Enables bmp-image saving mode.
+
+### Issue:
+The <a href="https://github.com/ttshivhula/minilibx.git">minilibx</a> library that is used in the project doesn't run on all systems. This build works well on ArchLinux with Xorg installed. If the library is not built, try replacing it with <a href="https://github.com/42Paris/minilibx-linux">this one</a>.
