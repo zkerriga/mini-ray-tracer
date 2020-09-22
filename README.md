@@ -1,5 +1,5 @@
 # miniRT
-This project is the beginning of the study of <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">Ray Tracing</a> technology!
+:eyes::art: This project is the beginning of the study of <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">Ray Tracing</a> technology!
 
 ### Objective of program:
 The program gets a file that describes the scene, which can contain three-dimensional objects, light sources, and cameras.
