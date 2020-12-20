@@ -8,7 +8,7 @@ If the program is running in `--save` mode, it should create a bmp-image of the 
 ### Prepare:
 To download a project, use the command with an additional flag (used for connecting all libraries).
 ```
-git clone https://github.com/zkerriga/miniRT --recursive
+git clone https://github.com/zkerriga/mini-ray-tracer --recursive
 ```
 Next, you need to compile the project with the ` make ` command. The Makefile will report the successful build of the project.
 
